@@ -1,0 +1,12 @@
+{
+    "author": "Jose Juan Gonzalez Jr",
+    "tech_stack": ["typescript", "react", "nodejs", "mongodb"],
+    "images": ["/images/e-shop.png"],
+    "heading": "E-Shop Online",
+    "date": "December 2023",
+    "links": {
+        "live": "https://eshoponline.cyou",
+        "github": "https://github.com/josegonz115/e-shop"
+    },
+    "summary": "This project was an eCommerce personal project I built to gain firsthand experience using a MERN tech stack for frontend and backend practices.\n\nThe eCommerce site's data was built using a MongoDB database and Node.js/Express.js api routes. In cohesion with the frontend, there was JSON web tokens and HTTP-Only cookies utilized to provide authentication. The frontend was developed using React.js along with other apis and libraries such as bootstrap and PayPal API. The global state was managed using the Redux Toolkit.\n\nAlso it was my first project using TypeScript. I believe that TS's static type feature is extremely helpful in the development process."
+}

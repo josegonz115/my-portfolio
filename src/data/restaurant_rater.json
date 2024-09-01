@@ -1,0 +1,12 @@
+{
+    "author": "Jose Juan Gonzalez Jr",
+    "tech_stack": ["javascript", "react", "nodejs", "postgresql"],
+    "images": ["/images/restaruant-rater.png"],
+    "heading": "Restaurant Rater",
+    "date": "November 2023",
+    "links": {
+        "live": "",
+        "github": "https://github.com/josegonz115/restaurant-rater"
+    },
+    "summary": "The Restaurant Rater project is intended to be a clone site of a very popular review forum, Yelp. It is built using the PERN stack.\n\nI specifically used PostgreSQL to steer away from document-oriented NoSQL databases. I plan to learn how to utilize cloud-based storage products like AWS to deploy my projects to the web using PostgreSQL.\n\nThis project was the first project where I learned how to handle client requests and manage database operations."
+}

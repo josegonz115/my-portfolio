@@ -1,0 +1,36 @@
+#root {
+  max-width: 1280px;
+  /* width: 50%; */
+  margin: 0 auto;
+  /* padding: 2rem; */
+  /* text-align: center; */
+}
+@media (min-width: 540px) {
+  #root {
+    width: 1080px;
+  }
+}
+
+main, body{
+  background-color: var(--color-bg);
+  /* background: var(--bg-image); */
+  color: var(--color-text);
+}
+
+.dark-mode-button{
+  background-color: var(--color-text);
+  color: var(--color-bg);
+}
+
+.dark-mode-button-inverse{
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+.tooltip {
+  @apply invisible absolute;
+}
+
+.has-tooltip:hover .tooltip {
+  @apply visible z-50;
+}

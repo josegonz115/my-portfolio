@@ -16,9 +16,11 @@ const Project:FC<ProjectProps> = ({ projectsName }) => {
     };
 
     return (
-        <div className="flex flex-col gap-4 mt-4">
-            <h1>{project.heading}</h1>
-            <h3>{project.date}</h3>
+        <div className="flex flex-col gap-8 mt-4 px-4 md:px-0">
+            <div className="mt-4 mb-8">
+                <h1>{project.heading}</h1>
+                <h3>{project.date}</h3>
+            </div>
             <div className="project-container flex flex-col justify-center items-center gap-6">
                 {project.images.length === 1 ? (
                     <img
@@ -32,7 +34,7 @@ const Project:FC<ProjectProps> = ({ projectsName }) => {
                                 src={image}
                                 alt={project.heading}
                                 className="
-                                w-[365px] 
+                                w-[540px] 
                                 bg-gray-200 
                                 rounded-lg 
                                 shadow-md 
@@ -50,8 +52,9 @@ const Project:FC<ProjectProps> = ({ projectsName }) => {
                             />
                         )))}
             </div>
-
+            {project.subheading && <h2 className="font-medium text-lg text-purple-600">{project.subheading}</h2>}
             <div className="prose prose-invert prose-2xl overflow-visible relative mb-10">
+
                 {project.summary.split('\n\n').map((paragraph, index) => (
                     <>
                     <p key={index}>{paragraph}</p>

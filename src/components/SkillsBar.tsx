@@ -1,7 +1,7 @@
 
 const SkillsBar = () => {
   return (
-<section id="nav-skills skills" className="my-auto" >
+<section id="nav-skills skills"  >
     <h2 className="text-5xl text-center md:text-left font-medium py-5 ">My Skills</h2>
     {/* <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-8/12 mb-auto mx-auto"> */}
     <div className="flex flex-col sm:flex-row gap-4 px-0 md:px-5  mx-auto  w-full">

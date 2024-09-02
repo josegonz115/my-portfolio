@@ -1,7 +1,7 @@
 
 const AboutMe = () => {
   return (
-    <section id="nav-about-me" >
+    <section id="about-me" >
     <h1 className="font-bold text-center md:text-left text-4xl py-5">
         A brief intro about me
     </h1>

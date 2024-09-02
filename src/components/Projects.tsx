@@ -2,7 +2,7 @@ import retrieveProjects from "../utils/retrieveProjects";
 import ProjectCard from "./ProjectCard";
 
 const Projects = () => {
-  const projects = retrieveProjects();
+  const projects = retrieveProjects().sort((a, b) => new Date(a.date) > new Date(b.date) ? -1 : 1);
   return (
     <section id="projects" className="mx-auto">
       <h2 className="text-5xl text-center md:text-left font-medium py-5">My Projects</h2>

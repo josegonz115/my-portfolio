@@ -1,0 +1,96 @@
+[
+    {
+        "author": "Jose Juan Gonzalez Jr",
+        "tech_stack": ["python", "latex", "matplotlib", "xarray", "pandas"],
+        "images": ["/images/ecco_dataset_production.png", "/images/ecco_dataset_production-2.png"],
+        "heading": "ECCO Dataset Production",
+        "subheading": "NASA JPL - Student Independent Research Intern",
+        "date": "May 2023",
+        "links": {
+            "live": "",
+            "github": "https://github.com/josegonz115/ECCO-Dataset-Production"
+        },
+        "summary": "I spent about 4 months learning how to utilize Python to create scripts for automating the creation of dataset documentation in the ECCO team at NASA JPL. It was my first experience working on a real problem where I had to interact with a team to learn the problem context, which was that it took too much of a scientist’s time to create documentation for every single dataset, resulting in user guides that did not get the attention they deserved.\n\nI utilized various libraries from Python, such as Matplotlib to create visualizations, xarray and netCDF to read and parse the information from the multi-dimensional datasets, and argparse to create processes for generating documentation on individual or all datasets. This, paired with LaTeX templates I designed, led to the creation of new documentation.\n\nThe hardest part of this experience was learning the problem context, which I did not realize at first. However, once I knew exactly what needed to be addressed, my work speed increased tenfold. I am grateful for my mentor Dr. Ian Fenty and the experience at JPL."
+    },
+    {
+        "author": "Jose Juan Gonzalez Jr",
+        "tech_stack": ["javascript", "react", "nodejs", "postgresql"],
+        "images": ["/images/restaruant-rater.png"],
+        "heading": "Restaurant Rater",
+        "date": "November 2023",
+        "links": {
+            "live": "",
+            "github": "https://github.com/josegonz115/restaurant-rater"
+        },
+        "summary": "The Restaurant Rater project is intended to be a clone site of a very popular review forum, Yelp. It is built using the PERN stack.\n\nI specifically used PostgreSQL to steer away from document-oriented NoSQL databases. I plan to learn how to utilize cloud-based storage products like AWS to deploy my projects to the web using PostgreSQL.\n\nThis project was the first project where I learned how to handle client requests and manage database operations."
+    },
+    {
+        "author": "Jose Juan Gonzalez Jr",
+        "tech_stack": ["typescript", "react", "nodejs", "mongodb"],
+        "images": ["/images/e-shop.png"],
+        "heading": "E-Shop Online",
+        "date": "December 2023",
+        "links": {
+            "live": "https://eshoponline.cyou",
+            "github": "https://github.com/josegonz115/e-shop"
+        },
+        "summary": "This project was an eCommerce personal project I built to gain firsthand experience using a MERN tech stack for frontend and backend practices.\n\nThe eCommerce site's data was built using a MongoDB database and Node.js/Express.js api routes. In cohesion with the frontend, there was JSON web tokens and HTTP-Only cookies utilized to provide authentication. The frontend was developed using React.js along with other apis and libraries such as bootstrap and PayPal API. The global state was managed using the Redux Toolkit.\n\nAlso it was my first project using TypeScript. I believe that TS's static type feature is extremely helpful in the development process."
+    }, 
+    {
+        "author": "Jose Juan Gonzalez Jr",
+        "tech_stack": ["python", "google-gemini", "openai", "opencv"],
+        "images": ["/images/amelia.jpg", "/images/amelia-2.jpg"],
+        "heading": "Amelia",
+        "date": "January 2024",
+        "subheading": "Internet of Things Companion",
+        "links": {
+            "live": "",
+            "github": "https://github.com/dylanvu/Amelia-Software"
+        },
+        "summary": "I took part in IrvineHacks 2024 at my university, UCI, where I and three other companions built an Internet of Things (IoT) companion called Amelia. We gave “Gemini” the ability to see, hear, talk, and walk. She can communicate about landmarks all over the world and follow you around using her camera and motor.\n\nI personally programmed Amelia's software, utilizing an event-driven loop to cohesively integrate speech-to-text, text-to-speech, and photo-to-speech functionalities. The processes involved various Python libraries, such as OpenCV for camera analysis and AI/NLP APIs like Whisper by OpenAI. I also contributed to the prompt engineering effort to prime the Gemini model into acknowledging its role as a tour guide companion.\n\nThis was my first hackathon project, and I'm glad to say it was a success. Not only did our project win Hacker's Choice, but I also learned a lot about working under a strict deadline and making last-minute decisions to take alternative approaches when the initial design did not go as expected!"
+    },
+    {
+        "author": "Jose Juan Gonzalez Jr",
+        "tech_stack": ["typescript", "langchain", "react", "nodejs", "jest"],
+        "images": ["/images/ai_live_testing.gif", "/images/ai_live_testing2.gif", "/images/ai_live_testing3.gif", "/images/ai_live_testing4.gif"],
+        "heading": "AI Live Testing",
+        "subheading": "Spider Lab - Student Research Assistant Developer",
+        "date": "April 2024",
+        "links": {
+            "live": "https://marketplace.visualstudio.com/items?itemName=SpiderLabAtUCI.spider-lab-testing-tool",
+            "github": "https://github.com/spideruci/live-testing"
+        },
+        "summary": "I was able to join a lab at UCI called the Spider Lab, which specializes in software analysis, testing, and visualization. More specifically, I joined PhD student Yi-Hung Chou’s team, where he organized a group of undergraduate students to aid his project in creating a software testing VS Code developer tool.\n\nThe VS Code tool is aimed at automating the creation of unit tests and bypassing the personal testing biases that developers hold when programming. Through the use of LangChain integration, paired with techniques such as prompt engineering and function calling, I was able to funnel the developer’s code and context to the LLM backend, which returned a structured JSON response that effectively connected to the developer-friendly React user interface.\n\nThe two primary goals were functionality and user experience. This project allowed me to develop as a programmer by improving my ability to visualize my programming. Now, whenever I program, I think about how the code is going to be used by future users, whether they are other developers or non-technical users."
+    },
+    {
+        "author": "Jose Juan Gonzalez Jr",
+        "tech_stack": ["nextjs", "aws", "supabase"],
+        "images": [
+            "/images/pixelplates.png", 
+            "/images/pixelplates-2.png", 
+            "/images/pixelplates-3.png", 
+            "/images/pixelplates-4.png"
+        ],
+        "heading": "PixelPlates",
+        "subheading": "A content-creator focused foodie review website",
+        "date": "June 2024",
+        "links": {
+            "live": "",
+            "github": "https://github.com/INF124-Group25/pixel-plates"
+        },
+        "summary": "In my web applications course, INF 134 at UCI, we were tasked with a quarter-long team project to create a full-stack web application. I took this opportunity to propose using technologies such as Next.js and AWS to store and serve our images to the frontend. My team accepted the challenge as long as I were to take the lead in introducing them to these new technologies. I took this challenge despite not having utilized them before. We were able to decouple the backend and frontend, per the course’s project requirement, and succeeded in hosting, serving, and rendering foodie reviews alongside their locations with help from various APIs.\n\nMy favorite part was interacting with AWS technologies to create a CDN through CloudFront and creating Lambdas to use in unison with our two S3 buckets—one for storing the original images and one for storing modified images triggered and created by Lambda functions. These modified images worked alongside the CDN to cache resized images, increasing usability and user experience with our web application.\n\nThroughout my projects so far, I believe this is the project that solidified my knowledge in creating and managing backends and databases. Thankful for the struggle and perseverance my team and I went through."
+    },
+    {
+        "author": "Jose Juan Gonzalez Jr",
+        "tech_stack": ["typescript", "expressjs", "react", "postgresql", "prisma", "google-cloud"],
+        "images": ["/images/reeltunes.png", "/images/reeltunes2.png", "/images/reeltunes3.png", "/images/reeltunes4.png"],
+        "heading": "Reeltunes",
+        "subheading": "A music promotion platform where creators can promote artist's music",
+        "date": "August 2024",
+        "links": {
+            "live": "https://reeltunes.io/",
+            "github": "https://github.com/ReelTunes/reeltunes-mono/tree/main"
+        },
+        "summary": "Over the summer, I joined a startup team comprised of students at Georgia Tech to build a web application product aimed at facilitating partnerships between creators and artists. The platform is designed to allow creators and artists to discover each other and request collaborations to promote their music.\n\nI started the project by architecting and building it with Kevin Yan, which taught me a lot about modularizing API endpoints into routes, controllers, and services, creating developer-friendly code. I also wrote code for authenticating, authorizing, and validating users through the use of JSON web tokens and HTTP-only cookies. Now, I am more comfortable writing middleware for authenticating users. Using an object-relational mapping tool like Prisma taught me the importance of using tools that provide type-safe and intuitive environments for fast programming.\n\nLater on, due to a lack of team members, there was a void in the frontend development. Given my prior skills, I rose to the occasion and took on the frontend work where the team needed help. For the rest of the project, I developed the React components on the frontend to be used alongside the backend API endpoints. This experience taught me how to connect to the backend and what to expect from both sides of the equation. I also learned more about the frontend’s state, particularly how data is fetched and rendered.\n\nOverall, it was a great experience and a valuable way to spend my summer, allowing me to delve deeper into creating not just a web application but a complete product."
+    }
+]

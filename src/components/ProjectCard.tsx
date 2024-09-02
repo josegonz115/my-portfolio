@@ -30,13 +30,17 @@ const ProjectCard:FC<ProjectCardProps> = ({ project }) => {
     </div></Link>
     <div className="px-3 flex flex-col  flex-grow pb-3">
     {/* <div className="p-6 text-lg mt-auto grow"> */}
-        <Link
-            to='/projects/$projectsName'
-            params={{ projectsName: project.heading }}
-            className="text-xl md:text-2xl font-bold primary-gradient flex items-center hover:underline"
-        >
-            {project.heading}
-        </Link>
+        <div className='flex flex-row justify-between items-center'>
+            <Link
+                to='/projects/$projectsName'
+                params={{ projectsName: project.heading }}
+                className="text-xl md:text-2xl font-bold primary-gradient flex items-center hover:underline"
+            >
+                {project.heading}
+            </Link>
+            <p className='text-sm'>{project.date}</p>
+        </div>
+
         <div className="flex items-center my-2 gap-1 ">
             {
                 project.tech_stack.map((item) => (
@@ -70,7 +74,7 @@ const ProjectCard:FC<ProjectCardProps> = ({ project }) => {
                     target="_blank"
                     className="text-lg font-bold primary-gradient hover:underline flex items-center mt-2"
                 >
-                    <p className='pr-1'>Website</p>
+                    <p className='pr-1'>Showcase</p>
                     <img src={external} alt="external" className='w-6' />
                 </a>
             }

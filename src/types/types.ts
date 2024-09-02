@@ -4,6 +4,7 @@ export type Project = {
     tech_stack: string[];
     images: string[];
     heading: string;
+    subheading?: string;
     date: string;
     links: {
         live: string;

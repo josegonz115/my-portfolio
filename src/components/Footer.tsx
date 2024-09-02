@@ -1,4 +1,4 @@
-import discord from '../assets/svg/discord.svg'
+import github from '../assets/svg/github.svg'
 import linkedin from '../assets/svg/linkedin.svg'
 
 const Footer = () => {
@@ -15,10 +15,10 @@ const Footer = () => {
                     josegonz115@gmail.com
                 </a>
             </p>
-            <p>
+            <p className='flex items-center gap-2'>
                 <b className="pr-2">GitHub</b>
-                <a href="https://github.com/josegonz115/" target="_blank" className="text-violet-500 hover:text-violet-600">josegonz115
-                        <img src={discord} alt="discord" className='inline'/>
+                <a href="https://github.com/josegonz115/" target="_blank" className="text-violet-500 hover:text-violet-600 ">josegonz115
+                        <img src={github} alt="github" className='inline w-[3rem] ml-2'/>
                 </a>
             </p>
             <p>

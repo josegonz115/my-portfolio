@@ -1,18 +1,28 @@
 import "../App.css";
 import { createRootRoute, Outlet, ScrollRestoration } from "@tanstack/react-router";
-import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
+import { lazy, Suspense } from "react";
+const isProduction = import.meta.env.PROD;
 
 const Root = () => {
+    const TanStackRouterDevtools = isProduction
+        ? () => null 
+        : lazy(() =>
+            import('@tanstack/router-devtools').then((res) => ({
+                default: res.TanStackRouterDevtools,
+            })),
+        )
 
     return (
             <main className=''>
-                <NavBar  />
                 <ScrollRestoration />
+                <NavBar  />
                 <Outlet />
                 <Footer />
-                <TanStackRouterDevtools />
+                <Suspense>
+                    <TanStackRouterDevtools />
+                </Suspense>
             </main>
     );
 };

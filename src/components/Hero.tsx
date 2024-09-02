@@ -23,15 +23,14 @@ const HeroAttributes = () => {
 
 const Hero = () => {
   return (
-<section id="nav-hero">
-  <a className="anchor" id="hero"></a>
-  <div className="flex flex-col sm:flex-row mx-16 h-fit col-span-6 2xl:col-span-12">
+<section id="nav-hero  mx-auto">
+  <div className="flex flex-col sm:flex-row md:mx-16 h-fit col-span-6 2xl:col-span-12 ">
     <div
-      className='flex flex-col w-fit h-fit col-span-6 2xl:col-span-12 bg-gradient-to-tr text-center md:text-left'
+      className='flex flex-col  w-fit h-fit col-span-6 2xl:col-span-12 bg-gradient-to-tr text-center md:text-left mx-auto md:mx-0'
     >
       <h1
         // className='font-black text-6xl md:text-7xl 2xl:text-8xl primary-gradient '
-        className='font-medium text-6xl primary-gradient '
+        className='font-medium text-4xl md:text-6xl primary-gradient '
       >
         Hi! I'm Jose Gonzalez.
       </h1>
@@ -49,7 +48,6 @@ const Hero = () => {
     </div>
     <div className="relative grid place-items-center">
       <img src={bitme} alt="Profile of Jose Juan Gonzalez Jr" className="object-cover z-[2] max-h-[70vh]" />
-      {/* <img src={'https://i.imgur.com/Q4P6ZLo.png'} alt="Profile of Jose Juan Gonzalez Jr" className="object-cover z-[2] max-h-[70vh]" /> */}
     </div>
   </div>
 </section>

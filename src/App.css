@@ -1,13 +1,11 @@
 #root {
-  max-width: 1280px;
-  /* width: 50%; */
+  max-width: 100%;
   margin: 0 auto;
-  /* padding: 2rem; */
-  /* text-align: center; */
 }
 @media (min-width: 540px) {
   #root {
     width: 1080px;
+    padding: 0;
   }
 }
 

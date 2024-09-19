@@ -25,7 +25,7 @@ const NavBar= () => {
                     Projects
                 </Link>
                 <a
-                    href="/Jose_Gonzalez_resume.pdf"
+                    href="/jose_gonzalez_resume.pdf"
                     target="_blank"
                     className="font-bold hover:underline hover:underline-offset-4"
                     rel="noopener noreferrer"

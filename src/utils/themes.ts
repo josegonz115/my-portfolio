@@ -1,24 +1,23 @@
 export type Theme = "light" | "dark";
 
 export const getTheme = (): Theme => {
-    // Check localStorage first
+    if (typeof window === "undefined") {
+        return "light"; 
+    }
+
     if (localStorage.theme === "light" || localStorage.theme === "dark") {
         return localStorage.theme as Theme;
     }
 
     try {
-        if (
-            typeof window !== "undefined" &&
-            window.matchMedia &&
-            window.matchMedia("(prefers-color-scheme: dark)").matches
-        ) {
+        const mediaQuery = window.matchMedia?.("(prefers-color-scheme: dark)");
+        if (mediaQuery?.matches) {
             return "dark";
         }
     } catch (error) {
         console.warn("Error checking color scheme preference:", error);
     }
 
-    // Default fallback
     return "light";
 };
 

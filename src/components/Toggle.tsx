@@ -1,59 +1,21 @@
-import { useState } from "react";
-// import "../styles/toggle.css";
-import { getPreferredTheme, setTheme } from "../utils/themes";
-import useBodyClass from "../hooks/useBodyClass";
-
+import { useTheme } from "../contexts/ThemeContext";
 
 const Toggle = () => {
-    const [className, setClassName] = useState<string>(getPreferredTheme());
-    const darkLabel = "color mode toggle, dark mode";
-    const lightLabel = "color mode toggle, light mode";
-    const isLightMode = className === 'light';
-    const [active, setActive] = useState(isLightMode);
-    const [ariaActive, setAriaActive] = useState(!isLightMode);
-    const [ariaLabel, setAriaLabel] = useState(isLightMode ? lightLabel : darkLabel);
-
-    const changeThemeAndToggle = () => {
-        const newTheme = localStorage.getItem("theme") === "dark" ? "light" : "dark";
-        setTheme(newTheme, setClassName);
-        const isLight = newTheme === "light";
-        setActive(isLight);
-        setAriaActive(!isLight);
-        setAriaLabel(isLight ? lightLabel : darkLabel);
-    };
-    const handleOnClick = () => {
-        changeThemeAndToggle();
-    };
-    const handleKeypress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.code === "Enter") {
-            changeThemeAndToggle();
-        }
-    };
-
-    useBodyClass(className);
+    const { theme, toggleTheme } = useTheme();
 
     return (
-        <div id='theme-toggle' className="container--toggle hover:underline hover:underline-offset-4 " title="color mode toggle">
-            <input
-                role="switch"
-                aria-checked={ariaActive}
-                onKeyDown={handleKeypress}
-                type="checkbox"
-                id="toggle"
-                className="toggle--checkbox"
-                onClick={handleOnClick}
-                checked={active}
-                readOnly
-                hidden
-            />
-            <label
-                htmlFor="toggle"
-                className="toggle--label text-xl cursor-pointer"
-                aria-label={ariaLabel}
-                id={className}
+        <div
+            id="theme-toggle"
+            className="hover:underline hover:underline-offset-4"
+            title="Toggle theme"
+        >
+            <button
+                onClick={toggleTheme}
+                aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
+                className="text-xl cursor-pointer bg-transparent border-none p-0"
             >
-                {className==='light' ? '🌚' : '🌝'}
-            </label>
+                {theme === "light" ? "🌚" : "🌝"}
+            </button>
         </div>
     );
 };

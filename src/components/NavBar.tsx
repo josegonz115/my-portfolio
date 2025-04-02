@@ -12,7 +12,7 @@ const NavBar= () => {
                 className="mx-auto w-80 md:w-full"
             />
             <nav 
-                className="overflow-hidden sticky top-0 z-10 p-2 flex gap-8 sm:gap-2 justify-center sm:justify-around bg-light dark:bg-dark"
+                className="overflow-hidden sticky top-0 z-10 p-2 flex gap-8 sm:gap-2 justify-center sm:justify-around "
             >
                 <Link to="/" className="font-bold hover:underline hover:underline-offset-4">
                     Home

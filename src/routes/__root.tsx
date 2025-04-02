@@ -1,5 +1,5 @@
 import "../App.css";
-import { createRootRoute, Outlet, ScrollRestoration } from "@tanstack/react-router";
+import { createRootRoute, Outlet } from "@tanstack/react-router";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import { lazy, Suspense } from "react";
@@ -16,7 +16,6 @@ const Root = () => {
 
     return (
             <main className=''>
-                <ScrollRestoration />
                 <NavBar  />
                 <Outlet />
                 <Footer />

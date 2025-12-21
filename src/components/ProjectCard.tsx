@@ -11,14 +11,14 @@ type ProjectCardProps = {
 const ProjectCard:FC<ProjectCardProps> = ({ project }) => {
   return (
 <div
-    className="shadow-neutral-200/5 backdrop-blur-sm  border-neutral-200/10 max-w-[350px] md:max-w-xl group relative overflow-hidden flex flex-col      bg-gray-400   border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 gap-4"
+    className="shadow-neutral-200/5 backdrop-blur-sm  border-neutral-200/10 max-w-[350px] md:max-w-xl group relative overflow-hidden flex flex-col      bg-gray-400   border border-gray-200 rounded-lg shadow dark:bg-gray-400 dark:border-gray-500 gap-4"
     // className="shadow-lg bg-slate-400 shadow-neutral-200/5 backdrop-blur-sm rounded-lg border border-neutral-200/10 max-w-[350px] md:max-w-xl h-[40rem] group relative overflow-hidden flex flex-col"
 >
     <Link 
         to='/projects/$projectsName' 
         params={{projectsName: project.heading}}
         className='h-[15rem] w-full'
-    ><div className="h-[15rem] bg-gray-800 cursor-pointer">
+    ><div className="h-[15rem] bg-gray-500 cursor-pointer">
     {/* <div className="relative overflow-hidden w-134 m-auto cursor-pointer h-[20rem] bg-gray-800 flex items-center justify-center "> */}
         <img
             src={project.images[0]}

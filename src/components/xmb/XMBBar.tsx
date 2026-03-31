@@ -12,18 +12,18 @@ export function XMBBar({ state, dispatch }: Props) {
   const { categories, activeCategoryIndex, activeItemIndex } = state;
   const activeCategory = categories[activeCategoryIndex];
 
-  // Calculate offset to center the active category
-  // Each category is 120px wide, we shift so the active one is centered
-  const offsetX = -(activeCategoryIndex * 120);
+  // Center the active category — each icon is 140px wide
+  const offsetX = -(activeCategoryIndex * 140);
 
   return (
     <div className="flex flex-col items-center w-full">
       {/* Horizontal category bar */}
       <div className="relative w-full flex justify-center overflow-visible">
         <div
-          className="flex items-center gap-0 transition-transform duration-400 ease-out"
+          className="flex items-center gap-0"
           style={{
             transform: `translateX(${offsetX}px)`,
+            transition: 'transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1)',
           }}
         >
           {categories.map((category, index) => (
@@ -36,6 +36,14 @@ export function XMBBar({ state, dispatch }: Props) {
           ))}
         </div>
       </div>
+
+      {/* Subtle horizontal line through the bar */}
+      <div
+        className="w-full max-w-lg mx-auto h-px mt-1 mb-0"
+        style={{
+          background: 'linear-gradient(90deg, transparent 0%, rgba(200, 164, 78, 0.08) 30%, rgba(200, 164, 78, 0.08) 70%, transparent 100%)',
+        }}
+      />
 
       {/* Vertical item list for active category */}
       <div className="w-full max-w-sm mx-auto px-4">

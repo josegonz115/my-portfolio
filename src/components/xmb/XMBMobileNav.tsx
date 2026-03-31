@@ -19,18 +19,26 @@ export function XMBMobileNav({ state, dispatch }: Props) {
 
   return (
     <div className="flex flex-col flex-1 overflow-hidden">
-      {/* Category tab bar */}
-      <div className="flex items-center justify-center gap-1 px-2 py-3 overflow-x-auto shrink-0 border-b border-xmb-border">
+      {/* Category tab bar — minimal, tactical */}
+      <div className="flex items-center justify-center gap-0 px-1 py-2 overflow-x-auto shrink-0 border-b border-xmb-border/30">
         {categories.map((cat, index) => (
           <button
             key={cat.id}
             onClick={() => dispatch({ type: 'GO_TO_CATEGORY', index })}
-            className={`flex flex-col items-center gap-1 px-3 py-1.5 rounded transition-all bg-transparent border-none cursor-pointer shrink-0 ${
-              index === activeCategoryIndex ? 'bg-xmb-highlight' : ''
-            }`}
+            className="flex flex-col items-center gap-1 px-4 py-2 bg-transparent border-none cursor-pointer shrink-0"
+            style={{
+              borderBottom: index === activeCategoryIndex ? '1px solid var(--color-xmb-accent-dim)' : '1px solid transparent',
+              transition: 'border-color 0.5s ease',
+            }}
           >
             <CategorySvgIcon name={cat.icon} active={index === activeCategoryIndex} />
-            <span className={`text-[10px] ${index === activeCategoryIndex ? 'text-xmb-accent' : 'text-xmb-text-dim'}`}>
+            <span
+              className="text-[9px] tracking-[0.2em] uppercase"
+              style={{
+                color: index === activeCategoryIndex ? 'var(--color-xmb-accent-dim)' : 'var(--color-xmb-text-dim)',
+                transition: 'color 0.5s ease',
+              }}
+            >
               {cat.label}
             </span>
           </button>
@@ -42,9 +50,10 @@ export function XMBMobileNav({ state, dispatch }: Props) {
         <div className="flex-1 overflow-y-auto p-4">
           <button
             onClick={() => dispatch({ type: 'BACK' })}
-            className="mb-4 flex items-center gap-1 text-xs text-xmb-accent bg-transparent border-none cursor-pointer"
+            className="mb-5 flex items-center gap-2 text-[10px] tracking-widest uppercase text-xmb-accent-dim/60 bg-transparent border-none cursor-pointer"
+            style={{ transition: 'color 0.4s ease' }}
           >
-            &larr; Back
+            &larr; <span>Back</span>
           </button>
           {selectedCategoryId === 'about' && <DetailAbout item={selectedItem} />}
           {selectedCategoryId === 'projects' && <DetailProject item={selectedItem} />}
@@ -53,7 +62,7 @@ export function XMBMobileNav({ state, dispatch }: Props) {
           {selectedCategoryId === 'contact' && <DetailContact item={selectedItem} />}
         </div>
       ) : (
-        <div className="flex-1 overflow-y-auto py-2">
+        <div className="flex-1 overflow-y-auto py-1">
           {activeCategory.items.map((item, index) => (
             <button
               key={item.id}
@@ -64,23 +73,45 @@ export function XMBMobileNav({ state, dispatch }: Props) {
                   index,
                 })
               }
-              className={`
-                flex items-center gap-3 w-full px-4 py-3 text-left bg-transparent border-none cursor-pointer
-                transition-colors
-                ${index === activeIdx ? 'bg-xmb-highlight border-l-2 border-l-xmb-accent' : 'border-l-2 border-l-transparent'}
-              `}
+              className="flex items-center gap-3 w-full px-4 py-3 text-left bg-transparent border-none cursor-pointer"
+              style={{
+                borderLeft: index === activeIdx ? '1px solid var(--color-xmb-accent-dim)' : '1px solid transparent',
+                backgroundColor: index === activeIdx ? 'rgba(200, 164, 78, 0.03)' : 'transparent',
+                transition: 'all 0.4s ease',
+              }}
             >
               {item.thumbnail && (
-                <div className="w-10 h-10 rounded overflow-hidden shrink-0">
-                  <img src={item.thumbnail} alt={item.label} className="w-full h-full object-cover" loading="lazy" />
+                <div className="w-10 h-10 overflow-hidden shrink-0" style={{ border: '1px solid rgba(200, 164, 78, 0.06)' }}>
+                  <img
+                    src={item.thumbnail}
+                    alt={item.label}
+                    className="w-full h-full object-cover"
+                    style={{ filter: 'saturate(0.4) brightness(0.7)' }}
+                    loading="lazy"
+                  />
                 </div>
               )}
-              <div className="flex flex-col min-w-0">
-                <span className={`text-sm truncate ${index === activeIdx ? 'text-xmb-accent' : 'text-xmb-text'}`}>
+              <div className="flex flex-col min-w-0 gap-0.5">
+                <span
+                  className="text-[12px] font-light tracking-wide truncate"
+                  style={{
+                    color: index === activeIdx ? 'var(--color-xmb-text-bright)' : 'var(--color-xmb-text-dim)',
+                    transition: 'color 0.4s ease',
+                  }}
+                >
                   {item.label}
                 </span>
                 {item.sublabel && (
-                  <span className="text-xs text-xmb-text-dim truncate">{item.sublabel}</span>
+                  <span
+                    className="text-[9px] tracking-wider truncate"
+                    style={{
+                      fontFamily: "'IBM Plex Mono', monospace",
+                      color: index === activeIdx ? 'var(--color-xmb-accent-dim)' : 'var(--color-xmb-text-dim)',
+                      opacity: 0.5,
+                    }}
+                  >
+                    {item.sublabel}
+                  </span>
                 )}
               </div>
             </button>

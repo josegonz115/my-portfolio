@@ -23,7 +23,23 @@ export function XMBLayout({ state, dispatch, sound }: Props) {
 
   return (
     <div className="relative w-full h-screen overflow-hidden select-none" tabIndex={0}>
+      {/* Cinematic background canvas */}
       <XMBBackground />
+
+      {/* Vignette overlay */}
+      <div className="vignette" />
+
+      {/* Film grain */}
+      <div className="film-grain" />
+
+      {/* Subtle scanline */}
+      <div
+        className="fixed inset-0 z-[48] pointer-events-none opacity-[0.015]"
+        style={{
+          backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.3) 2px, rgba(0,0,0,0.3) 4px)',
+          backgroundSize: '100% 4px',
+        }}
+      />
 
       <div className="relative z-10 flex flex-col w-full h-full">
         <XMBStatusBar
@@ -34,12 +50,13 @@ export function XMBLayout({ state, dispatch, sound }: Props) {
 
         {isDesktop ? (
           <div className="flex-1 flex items-center relative overflow-hidden">
-            {/* XMB Bar - shifts left when panel opens */}
+            {/* XMB Bar — shifts left with cinematic easing when panel opens */}
             <div
-              className="w-full transition-all duration-400 ease-out"
+              className="w-full"
               style={{
                 transform: state.panelOpen ? 'translateX(-35%)' : 'translateX(0)',
-                opacity: state.panelOpen ? 0.3 : 1,
+                opacity: state.panelOpen ? 0.2 : 1,
+                transition: 'transform 0.7s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 0.6s ease',
               }}
             >
               <XMBBar state={state} dispatch={dispatch} />

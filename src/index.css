@@ -1,34 +1,60 @@
 @import "tailwindcss";
 
 @theme {
-  --color-xmb-bg: #0a0a0f;
-  --color-xmb-text: #e0e0e0;
-  --color-xmb-text-dim: #888888;
-  --color-xmb-accent: #00ff41;
-  --color-xmb-accent-dim: #00cc33;
-  --color-xmb-glow: rgba(0, 255, 65, 0.3);
-  --color-xmb-panel-bg: rgba(10, 10, 20, 0.92);
-  --color-xmb-highlight: rgba(0, 255, 65, 0.1);
-  --color-xmb-border: rgba(0, 255, 65, 0.15);
+  /* === KOJIMA PALETTE === */
+  /* Deep blacks, muted earth tones, desaturated greens/grays */
+  --color-xmb-bg: #0d0d0d;
+  --color-xmb-bg-warm: #111110;
+  --color-xmb-text: #b8b4a8;
+  --color-xmb-text-dim: #5c5a52;
+  --color-xmb-text-bright: #d4d0c4;
+
+  /* Amber/gold accent — like a codec frequency glow */
+  --color-xmb-accent: #c8a44e;
+  --color-xmb-accent-dim: #8a7235;
+  --color-xmb-accent-bright: #e0c068;
+
+  /* Cold blue secondary — tactical HUD */
+  --color-xmb-blue: #4a6e82;
+  --color-xmb-blue-dim: #2d4450;
+  --color-xmb-blue-bright: #6a9ab8;
+
+  /* Desaturated military green */
+  --color-xmb-green: #4a5a3a;
+  --color-xmb-green-dim: #2d3822;
+
+  /* Atmospheric */
+  --color-xmb-glow: rgba(200, 164, 78, 0.25);
+  --color-xmb-glow-blue: rgba(74, 110, 130, 0.3);
+  --color-xmb-panel-bg: rgba(13, 13, 13, 0.88);
+  --color-xmb-highlight: rgba(200, 164, 78, 0.06);
+  --color-xmb-border: rgba(200, 164, 78, 0.1);
+  --color-xmb-border-blue: rgba(74, 110, 130, 0.15);
 }
 
+/* === GLOW UTILITIES === */
 @utility xmb-glow {
-  text-shadow: 0 0 10px var(--color-xmb-glow), 0 0 20px var(--color-xmb-glow);
+  text-shadow: 0 0 12px var(--color-xmb-glow), 0 0 30px rgba(200, 164, 78, 0.1);
+}
+
+@utility xmb-glow-blue {
+  text-shadow: 0 0 12px var(--color-xmb-glow-blue), 0 0 30px rgba(74, 110, 130, 0.1);
 }
 
 @utility xmb-icon-glow {
-  filter: drop-shadow(0 0 8px var(--color-xmb-glow));
+  filter: drop-shadow(0 0 6px var(--color-xmb-glow)) drop-shadow(0 0 20px rgba(200, 164, 78, 0.08));
 }
 
 @utility xmb-glass {
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(20px) saturate(0.8);
   background: var(--color-xmb-panel-bg);
 }
 
+/* === BASE === */
 :root {
-  font-family: 'IBM Plex Mono', monospace, Arial, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   line-height: 1.5;
-  font-weight: 400;
+  font-weight: 300;
   font-size: 16px;
 
   color-scheme: dark;
@@ -59,9 +85,30 @@ body {
   overflow: hidden;
 }
 
-/* Scrollbar styling for detail panel */
+/* === FILM GRAIN OVERLAY === */
+.film-grain {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  mix-blend-mode: overlay;
+}
+
+/* === VIGNETTE === */
+.vignette {
+  position: fixed;
+  inset: 0;
+  z-index: 49;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.5) 100%);
+}
+
+/* === SCROLLBAR — minimal, tactical === */
 ::-webkit-scrollbar {
-  width: 4px;
+  width: 2px;
 }
 
 ::-webkit-scrollbar-track {
@@ -70,18 +117,18 @@ body {
 
 ::-webkit-scrollbar-thumb {
   background: var(--color-xmb-accent-dim);
-  border-radius: 2px;
+  border-radius: 1px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-xmb-accent);
 }
 
-/* XMB Animations */
+/* === ANIMATIONS — cinematic easing, slower, intentional === */
 @keyframes xmb-item-enter {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
@@ -92,8 +139,37 @@ body {
 @keyframes xmb-fade-in {
   from {
     opacity: 0;
+    transform: translateY(4px);
   }
   to {
     opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes xmb-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes xmb-scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+@keyframes xmb-breathe {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.7;
   }
 }

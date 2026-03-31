@@ -11,8 +11,11 @@ export function DetailAbout({ item }: Props) {
   if (type === 'bio') {
     return (
       <div className="flex flex-col gap-6">
-        <h2 className="text-2xl font-bold text-xmb-accent xmb-glow">About Me</h2>
-        <p className="text-xmb-text leading-relaxed text-sm">{data.content as string}</p>
+        <div className="flex items-center gap-3">
+          <div className="w-8 h-px bg-xmb-accent/30" />
+          <h2 className="text-lg font-light tracking-[0.2em] uppercase text-xmb-text-bright">About</h2>
+        </div>
+        <p className="text-xmb-text/80 leading-relaxed text-[13px] font-light">{data.content as string}</p>
       </div>
     );
   }
@@ -21,13 +24,21 @@ export function DetailAbout({ item }: Props) {
     const entries = data.entries as Array<{ school: string; degree: string; period: string }>;
     return (
       <div className="flex flex-col gap-6">
-        <h2 className="text-2xl font-bold text-xmb-accent xmb-glow">Education</h2>
-        <div className="flex flex-col gap-4">
+        <div className="flex items-center gap-3">
+          <div className="w-8 h-px bg-xmb-accent/30" />
+          <h2 className="text-lg font-light tracking-[0.2em] uppercase text-xmb-text-bright">Education</h2>
+        </div>
+        <div className="flex flex-col gap-5">
           {entries.map((entry, i) => (
-            <div key={i} className="border-l-2 border-xmb-accent pl-4 py-2">
-              <h3 className="text-base font-semibold text-xmb-text">{entry.school}</h3>
-              <p className="text-sm text-xmb-text-dim">{entry.degree}</p>
-              <p className="text-xs text-xmb-accent mt-1 font-mono">{entry.period}</p>
+            <div key={i} className="border-l border-xmb-accent/15 pl-5 py-1">
+              <h3 className="text-[13px] font-normal text-xmb-text-bright tracking-wide">{entry.school}</h3>
+              <p className="text-[12px] text-xmb-text-dim mt-1 font-light">{entry.degree}</p>
+              <p
+                className="text-[10px] text-xmb-accent-dim/70 mt-2 tracking-widest uppercase"
+                style={{ fontFamily: "'IBM Plex Mono', monospace" }}
+              >
+                {entry.period}
+              </p>
             </div>
           ))}
         </div>
@@ -39,12 +50,15 @@ export function DetailAbout({ item }: Props) {
     const items = data.items as Array<{ name: string; description: string }>;
     return (
       <div className="flex flex-col gap-6">
-        <h2 className="text-2xl font-bold text-xmb-accent xmb-glow">Interests</h2>
-        <div className="grid grid-cols-1 gap-3">
+        <div className="flex items-center gap-3">
+          <div className="w-8 h-px bg-xmb-accent/30" />
+          <h2 className="text-lg font-light tracking-[0.2em] uppercase text-xmb-text-bright">Interests</h2>
+        </div>
+        <div className="flex flex-col gap-3">
           {items.map((interest, i) => (
-            <div key={i} className="p-3 rounded border border-xmb-border bg-xmb-highlight">
-              <h3 className="text-sm font-semibold text-xmb-accent">{interest.name}</h3>
-              <p className="text-xs text-xmb-text-dim mt-1">{interest.description}</p>
+            <div key={i} className="px-4 py-3 border border-xmb-border/50 bg-xmb-highlight/30">
+              <h3 className="text-[12px] font-normal text-xmb-text-bright tracking-wider uppercase">{interest.name}</h3>
+              <p className="text-[11px] text-xmb-text-dim mt-1 font-light">{interest.description}</p>
             </div>
           ))}
         </div>

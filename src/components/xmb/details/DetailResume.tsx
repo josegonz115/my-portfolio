@@ -12,8 +12,11 @@ export function DetailResume({ item }: Props) {
     const url = data.url as string;
     return (
       <div className="flex flex-col gap-4">
-        <h2 className="text-2xl font-bold text-xmb-accent xmb-glow">Resume</h2>
-        <div className="rounded border border-xmb-border overflow-hidden" style={{ height: '70vh' }}>
+        <div className="flex items-center gap-3">
+          <div className="w-6 h-px bg-xmb-accent/30" />
+          <h2 className="text-lg font-light tracking-[0.2em] uppercase text-xmb-text-bright">Intel Document</h2>
+        </div>
+        <div className="overflow-hidden" style={{ height: '70vh', border: '1px solid rgba(200, 164, 78, 0.06)' }}>
           <iframe
             src={url}
             className="w-full h-full"
@@ -27,15 +30,20 @@ export function DetailResume({ item }: Props) {
   if (type === 'download') {
     const url = data.url as string;
     return (
-      <div className="flex flex-col gap-6 items-center justify-center py-12">
-        <h2 className="text-2xl font-bold text-xmb-accent xmb-glow">Download Resume</h2>
-        <p className="text-sm text-xmb-text-dim">Save a copy to your device</p>
+      <div className="flex flex-col gap-8 items-center justify-center py-16">
+        <div className="flex items-center gap-3">
+          <div className="w-6 h-px bg-xmb-accent/30" />
+          <h2 className="text-lg font-light tracking-[0.2em] uppercase text-xmb-text-bright">Extract Document</h2>
+          <div className="w-6 h-px bg-xmb-accent/30" />
+        </div>
+        <p className="text-[11px] text-xmb-text-dim font-light tracking-wider">Save a copy to your device</p>
         <a
           href={url}
           download="Jose_Gonzalez_Resume.pdf"
-          className="flex items-center gap-2 px-6 py-3 rounded border border-xmb-accent text-xmb-accent hover:bg-xmb-highlight transition-colors text-sm"
+          className="flex items-center gap-2 px-6 py-3 text-[10px] tracking-widest uppercase border border-xmb-accent/30 text-xmb-accent hover:bg-xmb-accent/10"
+          style={{ transition: 'all 0.5s ease' }}
         >
-          <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
             <polyline points="7 10 12 15 17 10" />
             <line x1="12" y1="15" x2="12" y2="3" />
@@ -50,16 +58,25 @@ export function DetailResume({ item }: Props) {
     const categories = data.categories as Array<{ name: string; items: string[] }>;
     return (
       <div className="flex flex-col gap-6">
-        <h2 className="text-2xl font-bold text-xmb-accent xmb-glow">Skills</h2>
+        <div className="flex items-center gap-3">
+          <div className="w-6 h-px bg-xmb-accent/30" />
+          <h2 className="text-lg font-light tracking-[0.2em] uppercase text-xmb-text-bright">Capabilities</h2>
+        </div>
         <div className="flex flex-col gap-5">
           {categories.map((cat) => (
             <div key={cat.name}>
-              <h3 className="text-sm font-semibold text-xmb-text mb-2">{cat.name}</h3>
-              <div className="flex flex-wrap gap-2">
+              <h3
+                className="text-[10px] font-normal text-xmb-accent-dim/60 mb-2 tracking-[0.3em] uppercase"
+                style={{ fontFamily: "'IBM Plex Mono', monospace" }}
+              >
+                {cat.name}
+              </h3>
+              <div className="flex flex-wrap gap-1.5">
                 {cat.items.map((skill) => (
                   <span
                     key={skill}
-                    className="px-3 py-1 text-xs rounded border border-xmb-border bg-xmb-highlight text-xmb-accent font-mono"
+                    className="px-2.5 py-1 text-[10px] tracking-wider border border-xmb-border/40 text-xmb-text-dim"
+                    style={{ fontFamily: "'IBM Plex Mono', monospace" }}
                   >
                     {skill}
                   </span>

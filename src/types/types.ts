@@ -6,6 +6,7 @@ export type Project = {
     heading: string;
     subheading?: string;
     date: string;
+    category: 'project' | 'research';
     links: {
         live: string;
         github: string;

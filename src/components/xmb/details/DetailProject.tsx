@@ -1,5 +1,5 @@
-import type { XMBItem } from '../../../types/xmb';
 import type { Project } from '../../../types/types';
+import type { XMBItem } from '../../../types/xmb';
 import getImagePath from '../../../utils/iconSrcLoader';
 
 interface Props {
@@ -24,13 +24,14 @@ export function DetailProject({ item }: Props) {
         </div>
         <h2
           className="text-2xl font-bold tracking-wide text-white uppercase"
-          style={{ fontFamily: "'Bebas Neue', sans-serif", letterSpacing: '0.1em' }}
+          style={{
+            fontFamily: "'Bebas Neue', sans-serif",
+            letterSpacing: '0.1em',
+          }}
         >
           {project.heading}
         </h2>
-        {project.subheading && (
-          <p className="text-[12px] text-white/50 mt-1.5">{project.subheading}</p>
-        )}
+        {project.subheading && <p className="text-[12px] text-white/50 mt-1.5">{project.subheading}</p>}
         <p
           className="text-[10px] text-white/40 mt-2 tracking-widest uppercase"
           style={{ fontFamily: "'IBM Plex Mono', monospace" }}
@@ -57,7 +58,9 @@ export function DetailProject({ item }: Props) {
               className="flex items-center gap-1.5 px-2 py-0.5 text-[10px] tracking-wider uppercase border-2 border-white/50 text-white/70"
               style={{ fontFamily: "'IBM Plex Mono', monospace" }}
             >
-              {iconSrc && <img src={iconSrc} alt={tech} className="w-3 h-3" style={{ filter: 'saturate(0) brightness(2)' }} />}
+              {iconSrc && (
+                <img src={iconSrc} alt={tech} className="w-3 h-3" style={{ filter: 'saturate(0) brightness(2)' }} />
+              )}
               {tech}
             </span>
           );
@@ -68,11 +71,7 @@ export function DetailProject({ item }: Props) {
       {project.images.length > 0 && (
         <div className="flex flex-col gap-3">
           {project.images.map((img, i) => (
-            <div
-              key={i}
-              className="overflow-hidden"
-              style={{ border: '3px solid #fff' }}
-            >
+            <div key={i} className="overflow-hidden" style={{ border: '3px solid #fff' }}>
               <img
                 src={img}
                 alt={`${project.heading} ${i + 1}`}
@@ -82,8 +81,12 @@ export function DetailProject({ item }: Props) {
                   transition: 'filter 0.4s ease',
                 }}
                 loading="lazy"
-                onMouseEnter={(e) => { (e.target as HTMLImageElement).style.filter = 'saturate(0) contrast(1.1) brightness(1.1)'; }}
-                onMouseLeave={(e) => { (e.target as HTMLImageElement).style.filter = 'saturate(0) contrast(1.3) brightness(1.05)'; }}
+                onMouseEnter={(e) => {
+                  (e.target as HTMLImageElement).style.filter = 'saturate(0) contrast(1.1) brightness(1.1)';
+                }}
+                onMouseLeave={(e) => {
+                  (e.target as HTMLImageElement).style.filter = 'saturate(0) contrast(1.3) brightness(1.05)';
+                }}
               />
             </div>
           ))}
@@ -91,9 +94,7 @@ export function DetailProject({ item }: Props) {
       )}
 
       {/* Summary */}
-      <div className="text-[13px] text-white/70 leading-relaxed whitespace-pre-line">
-        {project.summary}
-      </div>
+      <div className="text-[13px] text-white/70 leading-relaxed whitespace-pre-line">{project.summary}</div>
 
       {/* Links — dramatic inversion on hover */}
       <div className="flex gap-3 pt-2">
@@ -119,7 +120,15 @@ export function DetailProject({ item }: Props) {
             className="flex items-center gap-2 px-4 py-2 text-[10px] tracking-widest uppercase border-2 border-white text-white hover:bg-white hover:text-black"
             style={{ transition: 'all 0.3s ease' }}
           >
-            <svg viewBox="0 0 24 24" className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <svg
+              viewBox="0 0 24 24"
+              className="w-3.5 h-3.5"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
               <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
               <polyline points="15 3 21 3 21 9" />
               <line x1="10" y1="14" x2="21" y2="3" />

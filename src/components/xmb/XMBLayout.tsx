@@ -1,11 +1,11 @@
 import type { Dispatch } from 'react';
-import type { XMBState, XMBAction } from '../../types/xmb';
+import { useMediaQuery } from '../../hooks/useMediaQuery';
+import type { XMBAction, XMBState } from '../../types/xmb';
 import { XMBBackground } from './XMBBackground';
 import { XMBBar } from './XMBBar';
 import { XMBDetailPanel } from './XMBDetailPanel';
-import { XMBStatusBar } from './XMBStatusBar';
 import { XMBMobileNav } from './XMBMobileNav';
-import { useMediaQuery } from '../../hooks/useMediaQuery';
+import { XMBStatusBar } from './XMBStatusBar';
 
 interface SoundControls {
   muted: boolean;
@@ -33,11 +33,7 @@ export function XMBLayout({ state, dispatch, sound }: Props) {
       <div className="halftone-overlay" />
 
       <div className="relative z-10 flex flex-col w-full h-full">
-        <XMBStatusBar
-          panelOpen={state.panelOpen}
-          muted={sound?.muted ?? false}
-          onToggleMute={sound?.toggleMute}
-        />
+        <XMBStatusBar panelOpen={state.panelOpen} muted={sound?.muted ?? false} onToggleMute={sound?.toggleMute} />
 
         {isDesktop ? (
           <div className="flex-1 flex items-center relative overflow-hidden">

@@ -1,11 +1,11 @@
 import type { Dispatch } from 'react';
-import type { XMBState, XMBAction, CategoryId } from '../../types/xmb';
+import type { CategoryId, XMBAction, XMBState } from '../../types/xmb';
 import { CategorySvgIcon } from './CategorySvgIcon';
 import { DetailAbout } from './details/DetailAbout';
+import { DetailContact } from './details/DetailContact';
 import { DetailProject } from './details/DetailProject';
 import { DetailResearch } from './details/DetailResearch';
 import { DetailResume } from './details/DetailResume';
-import { DetailContact } from './details/DetailContact';
 
 interface Props {
   state: XMBState;
@@ -24,6 +24,7 @@ export function XMBMobileNav({ state, dispatch }: Props) {
         {categories.map((cat, index) => (
           <button
             key={cat.id}
+            type="button"
             onClick={() => dispatch({ type: 'GO_TO_CATEGORY', index })}
             className="flex flex-col items-center gap-1 px-4 py-2 bg-transparent border-none cursor-pointer shrink-0"
             style={{
@@ -49,6 +50,7 @@ export function XMBMobileNav({ state, dispatch }: Props) {
       {panelOpen && selectedItem && selectedCategoryId ? (
         <div className="flex-1 overflow-y-auto p-4">
           <button
+            type="button"
             onClick={() => dispatch({ type: 'BACK' })}
             className="mb-5 flex items-center gap-2 text-[10px] tracking-widest uppercase text-white/50 bg-transparent border-none cursor-pointer"
             style={{ transition: 'color 0.3s ease' }}
@@ -66,6 +68,7 @@ export function XMBMobileNav({ state, dispatch }: Props) {
           {activeCategory.items.map((item, index) => (
             <button
               key={item.id}
+              type="button"
               onClick={() =>
                 dispatch({
                   type: 'GO_TO_ITEM',
@@ -81,12 +84,17 @@ export function XMBMobileNav({ state, dispatch }: Props) {
               }}
             >
               {item.thumbnail && (
-                <div className="w-10 h-10 overflow-hidden shrink-0" style={{ border: '2px solid rgba(255,255,255,0.15)' }}>
+                <div
+                  className="w-10 h-10 overflow-hidden shrink-0"
+                  style={{ border: '2px solid rgba(255,255,255,0.15)' }}
+                >
                   <img
                     src={item.thumbnail}
                     alt={item.label}
                     className="w-full h-full object-cover"
-                    style={{ filter: 'saturate(0) contrast(1.3) brightness(0.8)' }}
+                    style={{
+                      filter: 'saturate(0) contrast(1.3) brightness(0.8)',
+                    }}
                     loading="lazy"
                   />
                 </div>

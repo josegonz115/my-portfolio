@@ -1,5 +1,5 @@
-import type { XMBCategory } from '../types/xmb';
 import type { Project } from '../types/types';
+import type { XMBCategory } from '../types/xmb';
 import projectsData from './projects.json';
 
 const projects = projectsData as Project[];
@@ -7,10 +7,20 @@ const projects = projectsData as Project[];
 const parseDate = (dateStr: string): number => {
   const [month, year] = dateStr.split(' ');
   const months: Record<string, number> = {
-    January: 0, February: 1, March: 2, April: 3, May: 4, June: 5,
-    July: 6, August: 7, September: 8, October: 9, November: 10, December: 11,
+    January: 0,
+    February: 1,
+    March: 2,
+    April: 3,
+    May: 4,
+    June: 5,
+    July: 6,
+    August: 7,
+    September: 8,
+    October: 9,
+    November: 10,
+    December: 11,
   };
-  return new Date(parseInt(year), months[month] ?? 0).getTime();
+  return new Date(parseInt(year, 10), months[month] ?? 0).getTime();
 };
 
 const projectToItem = (p: Project) => ({
@@ -23,11 +33,11 @@ const projectToItem = (p: Project) => ({
 });
 
 const sortedProjects = [...projects]
-  .filter(p => p.category === 'project')
+  .filter((p) => p.category === 'project')
   .sort((a, b) => parseDate(b.date) - parseDate(a.date));
 
 const sortedResearch = [...projects]
-  .filter(p => p.category === 'research')
+  .filter((p) => p.category === 'research')
   .sort((a, b) => parseDate(b.date) - parseDate(a.date));
 
 export const xmbCategories: XMBCategory[] = [
@@ -42,7 +52,8 @@ export const xmbCategories: XMBCategory[] = [
         sublabel: 'Who I am',
         data: {
           type: 'bio',
-          content: "Hey, I'm Jose Juan Gonzalez Jr \u2014 a 25-year-old Software Engineering student at UC Irvine. I first studied Sociology at UC Berkeley, but found my passion in programming and made the leap to software engineering. I'm a self-taught developer who loves building things from scratch and learning new technologies along the way.",
+          content:
+            "Hey, I'm Jose Juan Gonzalez Jr \u2014 a 25-year-old Software Engineering student at UC Irvine. I first studied Sociology at UC Berkeley, but found my passion in programming and made the leap to software engineering. I'm a self-taught developer who loves building things from scratch and learning new technologies along the way.",
           image: '/images/bitme.png',
         },
       },
@@ -53,8 +64,16 @@ export const xmbCategories: XMBCategory[] = [
         data: {
           type: 'education',
           entries: [
-            { school: 'University of California, Irvine', degree: 'B.S. Software Engineering', period: '2022 \u2013 Present' },
-            { school: 'University of California, Berkeley', degree: 'B.A. Sociology', period: '2019 \u2013 2022' },
+            {
+              school: 'University of California, Irvine',
+              degree: 'B.S. Software Engineering',
+              period: '2022 \u2013 Present',
+            },
+            {
+              school: 'University of California, Berkeley',
+              degree: 'B.A. Sociology',
+              period: '2019 \u2013 2022',
+            },
           ],
         },
       },
@@ -65,10 +84,22 @@ export const xmbCategories: XMBCategory[] = [
         data: {
           type: 'interests',
           items: [
-            { name: 'Rock Climbing', description: 'Bouldering and sport climbing keep me sharp and focused.' },
-            { name: 'Running', description: 'Long-distance running for endurance and clarity.' },
-            { name: 'Machine Learning', description: 'Exploring ML/AI to understand intelligent systems.' },
-            { name: 'Web Development', description: 'Full-stack development with React, Node.js, and cloud services.' },
+            {
+              name: 'Rock Climbing',
+              description: 'Bouldering and sport climbing keep me sharp and focused.',
+            },
+            {
+              name: 'Running',
+              description: 'Long-distance running for endurance and clarity.',
+            },
+            {
+              name: 'Machine Learning',
+              description: 'Exploring ML/AI to understand intelligent systems.',
+            },
+            {
+              name: 'Web Development',
+              description: 'Full-stack development with React, Node.js, and cloud services.',
+            },
           ],
         },
       },
@@ -110,11 +141,20 @@ export const xmbCategories: XMBCategory[] = [
         data: {
           type: 'skills',
           categories: [
-            { name: 'Languages', items: ['TypeScript', 'JavaScript', 'Python', 'Java', 'C++', 'Go', 'SQL'] },
-            { name: 'Frontend', items: ['React', 'Next.js', 'Tailwind CSS', 'HTML/CSS'] },
+            {
+              name: 'Languages',
+              items: ['TypeScript', 'JavaScript', 'Python', 'Java', 'C++', 'Go', 'SQL'],
+            },
+            {
+              name: 'Frontend',
+              items: ['React', 'Next.js', 'Tailwind CSS', 'HTML/CSS'],
+            },
             { name: 'Backend', items: ['Node.js', 'Express.js', 'Prisma'] },
             { name: 'Databases', items: ['PostgreSQL', 'MongoDB', 'Supabase'] },
-            { name: 'Cloud & Tools', items: ['AWS', 'Google Cloud', 'Git', 'Docker'] },
+            {
+              name: 'Cloud & Tools',
+              items: ['AWS', 'Google Cloud', 'Git', 'Docker'],
+            },
           ],
         },
       },
@@ -129,19 +169,31 @@ export const xmbCategories: XMBCategory[] = [
         id: 'email',
         label: 'Email',
         sublabel: 'josegonz115@gmail.com',
-        data: { type: 'email', href: 'mailto:josegonz115@gmail.com', display: 'josegonz115@gmail.com' },
+        data: {
+          type: 'email',
+          href: 'mailto:josegonz115@gmail.com',
+          display: 'josegonz115@gmail.com',
+        },
       },
       {
         id: 'github',
         label: 'GitHub',
         sublabel: 'josegonz115',
-        data: { type: 'link', href: 'https://github.com/josegonz115', display: 'github.com/josegonz115' },
+        data: {
+          type: 'link',
+          href: 'https://github.com/josegonz115',
+          display: 'github.com/josegonz115',
+        },
       },
       {
         id: 'linkedin',
         label: 'LinkedIn',
         sublabel: 'josegonz115',
-        data: { type: 'link', href: 'https://www.linkedin.com/in/josegonz115/', display: 'linkedin.com/in/josegonz115' },
+        data: {
+          type: 'link',
+          href: 'https://www.linkedin.com/in/josegonz115/',
+          display: 'linkedin.com/in/josegonz115',
+        },
       },
     ],
   },

@@ -26,7 +26,11 @@ export function DetailAbout({ item }: Props) {
   }
 
   if (type === 'education') {
-    const entries = data.entries as Array<{ school: string; degree: string; period: string }>;
+    const entries = data.entries as Array<{
+      school: string;
+      degree: string;
+      period: string;
+    }>;
     return (
       <div className="flex flex-col gap-6">
         <div className="flex items-center gap-3">

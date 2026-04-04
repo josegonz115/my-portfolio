@@ -1,5 +1,5 @@
 import type { Dispatch } from 'react';
-import type { XMBState, XMBAction } from '../../types/xmb';
+import type { XMBAction, XMBState } from '../../types/xmb';
 import { XMBCategoryIcon } from './XMBCategoryIcon';
 import { XMBItemList } from './XMBItemList';
 
@@ -42,7 +42,8 @@ export function XMBBar({ state, dispatch }: Props) {
         className="w-full max-w-lg mx-auto mt-1 mb-0"
         style={{
           height: '2px',
-          background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 20%, rgba(255,255,255,0.3) 80%, transparent 100%)',
+          background:
+            'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 20%, rgba(255,255,255,0.3) 80%, transparent 100%)',
         }}
       />
 

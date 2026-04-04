@@ -1,14 +1,7 @@
-import {
-  Mesh,
-  PlaneGeometry,
-  ShaderMaterial,
-  CanvasTexture,
-  AdditiveBlending,
-  DoubleSide,
-} from 'three';
 import type { Scene } from 'three';
-import type { Disposable, BackgroundState } from './types';
+import { AdditiveBlending, CanvasTexture, DoubleSide, Mesh, PlaneGeometry, ShaderMaterial } from 'three';
 import { KANJI_COUNT, KANJI_COUNT_MOBILE } from './constants';
+import type { BackgroundState, Disposable } from './types';
 
 const vertexShader = /* glsl */ `
   uniform float uTime;
@@ -51,8 +44,10 @@ function createKanjiTexture(): CanvasTexture {
   const canvas = document.createElement('canvas');
   canvas.width = size;
   canvas.height = size;
-  const ctx = canvas.getContext('2d')!;
-
+  const ctx = canvas.getContext('2d');
+  if (!ctx) {
+    throw new Error('Failed to get 2D context from canvas');
+  }
   ctx.clearRect(0, 0, size, size);
   ctx.fillStyle = '#ffffff';
   ctx.font = 'bold 100px sans-serif';
@@ -103,9 +98,9 @@ export class MenacingKanji implements Disposable {
 
       const mesh = new Mesh(geometry, material);
       mesh.position.set(
-        (Math.random() - 0.5) * 12,  // X spread
+        (Math.random() - 0.5) * 12, // X spread
         0,
-        -3 - Math.random() * 4,       // Z depth: -3 to -7
+        -3 - Math.random() * 4, // Z depth: -3 to -7
       );
       mesh.rotation.z = -0.1 + Math.random() * 0.2; // slight tilt
       mesh.frustumCulled = false;

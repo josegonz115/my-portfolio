@@ -1,5 +1,5 @@
 import type { Dispatch } from 'react';
-import type { XMBCategory, XMBAction, CategoryId } from '../../types/xmb';
+import type { CategoryId, XMBAction, XMBCategory } from '../../types/xmb';
 import { XMBItem } from './XMBItem';
 
 interface Props {

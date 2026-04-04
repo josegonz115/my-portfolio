@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 interface Props {
   panelOpen: boolean;
@@ -15,7 +15,10 @@ export function XMBStatusBar({ panelOpen, muted, onToggleMute }: Props) {
   }, []);
 
   return (
-    <div className="flex items-center justify-between px-6 py-4 z-20" style={{ fontFamily: "'IBM Plex Mono', monospace" }}>
+    <div
+      className="flex items-center justify-between px-6 py-4 z-20"
+      style={{ fontFamily: "'IBM Plex Mono', monospace" }}
+    >
       {/* Left: nav hints */}
       <div className="flex items-center gap-4 text-[10px] tracking-widest uppercase text-white/40">
         <span className="hidden md:flex items-center gap-3">
@@ -46,28 +49,43 @@ export function XMBStatusBar({ panelOpen, muted, onToggleMute }: Props) {
         >
           Jose Gonzalez
         </span>
-        <span className="text-[8px] tracking-[0.4em] uppercase text-white/40">
-          Software Engineer
-        </span>
+        <span className="text-[8px] tracking-[0.4em] uppercase text-white/40">Software Engineer</span>
       </div>
 
       {/* Right: clock + mute */}
       <div className="flex items-center gap-4 text-[10px] tracking-wider">
         {onToggleMute && (
           <button
+            type="button"
             onClick={onToggleMute}
             className="bg-transparent border-none cursor-pointer p-0 text-white/40 hover:text-white/80"
             style={{ transition: 'color 0.3s ease' }}
             title={muted ? 'Unmute' : 'Mute'}
           >
             {muted ? (
-              <svg viewBox="0 0 24 24" className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg
+                viewBox="0 0 24 24"
+                className="w-3 h-3"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
                 <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
                 <line x1="23" y1="9" x2="17" y2="15" />
                 <line x1="17" y1="9" x2="23" y2="15" />
               </svg>
             ) : (
-              <svg viewBox="0 0 24 24" className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg
+                viewBox="0 0 24 24"
+                className="w-3 h-3"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
                 <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
                 <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
               </svg>

@@ -22,11 +22,7 @@ export function DetailResume({ item }: Props) {
           </h2>
         </div>
         <div className="overflow-hidden" style={{ height: '70vh', border: '3px solid #fff' }}>
-          <iframe
-            src={url}
-            className="w-full h-full"
-            title="Resume"
-          />
+          <iframe src={url} className="w-full h-full" title="Resume" />
         </div>
       </div>
     );
@@ -53,7 +49,15 @@ export function DetailResume({ item }: Props) {
           className="flex items-center gap-2 px-6 py-3 text-[10px] tracking-widest uppercase border-2 border-white text-white hover:bg-white hover:text-black"
           style={{ transition: 'all 0.3s ease' }}
         >
-          <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <svg
+            viewBox="0 0 24 24"
+            className="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
             <polyline points="7 10 12 15 17 10" />
             <line x1="12" y1="15" x2="12" y2="3" />
@@ -65,7 +69,10 @@ export function DetailResume({ item }: Props) {
   }
 
   if (type === 'skills') {
-    const categories = data.categories as Array<{ name: string; items: string[] }>;
+    const categories = data.categories as Array<{
+      name: string;
+      items: string[];
+    }>;
     return (
       <div className="flex flex-col gap-6">
         <div className="flex items-center gap-3">

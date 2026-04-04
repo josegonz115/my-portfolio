@@ -1,20 +1,11 @@
-import {
-  Scene,
-  PerspectiveCamera,
-  WebGLRenderer,
-  FogExp2,
-  Color,
-  Mesh,
-  PlaneGeometry,
-  MeshBasicMaterial,
-} from 'three';
-import type { BackgroundState, Disposable } from './types';
-import { CAMERA_FOV, CAMERA_NEAR, CAMERA_FAR, CAMERA_Z } from './constants';
-import { SpeedLines } from './SpeedLines';
-import { HalftoneField } from './HalftoneField';
-import { MenacingKanji } from './MenacingKanji';
-import { InkSplatter } from './InkSplatter';
+import { Color, FogExp2, Mesh, MeshBasicMaterial, PerspectiveCamera, PlaneGeometry, Scene, WebGLRenderer } from 'three';
 import { CrossHatch } from './CrossHatch';
+import { CAMERA_FAR, CAMERA_FOV, CAMERA_NEAR, CAMERA_Z } from './constants';
+import { HalftoneField } from './HalftoneField';
+import { InkSplatter } from './InkSplatter';
+import { MenacingKanji } from './MenacingKanji';
+import { SpeedLines } from './SpeedLines';
+import type { BackgroundState, Disposable } from './types';
 
 function damp(current: number, target: number, lambda: number, delta: number): number {
   return current + (target - current) * (1 - Math.exp(-lambda * delta));
@@ -60,9 +51,7 @@ export class SceneManager {
       antialias: !initialState.isMobile,
       powerPreference: 'low-power',
     });
-    this.renderer.setPixelRatio(
-      Math.min(window.devicePixelRatio, initialState.isMobile ? 1.5 : 2)
-    );
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, initialState.isMobile ? 1.5 : 2));
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     this.renderer.setClearColor(new Color(0x000000), 0);
 

@@ -16,6 +16,7 @@ export function XMBCategoryIcon({ category, distance, onClick }: Props) {
 
   return (
     <button
+      type="button"
       onClick={onClick}
       className="flex flex-col items-center gap-3 cursor-pointer shrink-0 bg-transparent border-none outline-none"
       style={{
@@ -41,9 +42,7 @@ export function XMBCategoryIcon({ category, distance, onClick }: Props) {
         {/* Outer ring — bold manga border */}
         <div
           className={`absolute inset-0 rounded-full transition-all duration-500 ${
-            isActive
-              ? 'border-2 border-white/60 shadow-[0_0_15px_rgba(255,255,255,0.15)]'
-              : 'border border-white/10'
+            isActive ? 'border-2 border-white/60 shadow-[0_0_15px_rgba(255,255,255,0.15)]' : 'border border-white/10'
           }`}
         />
 

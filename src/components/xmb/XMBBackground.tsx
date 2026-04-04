@@ -1,7 +1,7 @@
-import { useRef, useEffect } from 'react';
-import { SceneManager } from './background/SceneManager';
+import { useEffect, useRef } from 'react';
 import { useMediaQuery } from '../../hooks/useMediaQuery';
 import type { XMBState } from '../../types/xmb';
+import { SceneManager } from './background/SceneManager';
 import type { BackgroundState } from './background/types';
 
 interface Props {
@@ -14,6 +14,7 @@ export function XMBBackground({ state }: Props) {
   const isMobile = useMediaQuery('(max-width: 767px)');
 
   // Create scene manager once on mount
+  // biome-ignore lint/correctness/useExhaustiveDependencies: scene manager is intentionally created once on mount.
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -32,7 +33,6 @@ export function XMBBackground({ state }: Props) {
       manager.dispose();
       managerRef.current = null;
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Push state updates to the scene manager (no React re-render needed)
@@ -45,11 +45,5 @@ export function XMBBackground({ state }: Props) {
     });
   }, [state.activeCategoryIndex, state.panelOpen, isMobile]);
 
-  return (
-    <canvas
-      ref={canvasRef}
-      className="absolute inset-0 w-full h-full z-0"
-      style={{ pointerEvents: 'none' }}
-    />
-  );
+  return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full z-0" style={{ pointerEvents: 'none' }} />;
 }

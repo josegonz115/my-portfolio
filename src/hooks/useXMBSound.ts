@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState, useEffect } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 const STORAGE_KEY = 'xmb-sound-muted';
 
@@ -150,7 +150,7 @@ export function useXMBSound() {
   }, [muted, getCtx]);
 
   const toggleMute = useCallback(() => {
-    setMuted(m => !m);
+    setMuted((m) => !m);
   }, []);
 
   return { muted, toggleMute, playNavigate, playSelect, playBack };

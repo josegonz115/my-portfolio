@@ -1,13 +1,7 @@
-import {
-  Points,
-  BufferGeometry,
-  Float32BufferAttribute,
-  ShaderMaterial,
-  AdditiveBlending,
-} from 'three';
 import type { Scene } from 'three';
-import type { Disposable, BackgroundState } from './types';
+import { AdditiveBlending, BufferGeometry, Float32BufferAttribute, Points, ShaderMaterial } from 'three';
 import { INK_COUNT_DESKTOP, INK_COUNT_MOBILE } from './constants';
+import type { BackgroundState, Disposable } from './types';
 
 const vertexShader = /* glsl */ `
   uniform float uTime;
@@ -85,7 +79,9 @@ export class InkSplatter implements Disposable {
       fragmentShader,
       uniforms: {
         uTime: { value: 0 },
-        uPixelRatio: { value: Math.min(window.devicePixelRatio, isMobile ? 1.5 : 2) },
+        uPixelRatio: {
+          value: Math.min(window.devicePixelRatio, isMobile ? 1.5 : 2),
+        },
       },
       transparent: true,
       depthWrite: false,

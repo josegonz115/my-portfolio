@@ -1,13 +1,7 @@
-import {
-  BufferGeometry,
-  Float32BufferAttribute,
-  LineSegments,
-  ShaderMaterial,
-  AdditiveBlending,
-} from 'three';
 import type { Scene } from 'three';
-import type { Disposable, BackgroundState } from './types';
+import { AdditiveBlending, BufferGeometry, Float32BufferAttribute, LineSegments, ShaderMaterial } from 'three';
 import { CROSSHATCH_LINE_COUNT, CROSSHATCH_LINE_COUNT_MOBILE } from './constants';
+import type { BackgroundState, Disposable } from './types';
 
 const vertexShader = /* glsl */ `
   attribute float aOpacity;

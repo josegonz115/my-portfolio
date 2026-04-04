@@ -1,10 +1,10 @@
 import type { Dispatch } from 'react';
-import type { XMBState, XMBAction } from '../../types/xmb';
+import type { XMBAction, XMBState } from '../../types/xmb';
 import { DetailAbout } from './details/DetailAbout';
+import { DetailContact } from './details/DetailContact';
 import { DetailProject } from './details/DetailProject';
 import { DetailResearch } from './details/DetailResearch';
 import { DetailResume } from './details/DetailResume';
-import { DetailContact } from './details/DetailContact';
 
 interface Props {
   state: XMBState;
@@ -34,11 +34,20 @@ export function XMBDetailPanel({ state, dispatch }: Props) {
         >
           {/* Close — bold X */}
           <button
+            type="button"
             onClick={() => dispatch({ type: 'BACK' })}
             className="absolute top-5 right-5 bg-transparent border-none cursor-pointer group"
             style={{ transition: 'opacity 0.3s ease' }}
           >
-            <svg viewBox="0 0 24 24" className="w-5 h-5 text-white/40 group-hover:text-white" style={{ transition: 'color 0.3s ease' }} fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+            <svg
+              viewBox="0 0 24 24"
+              className="w-5 h-5 text-white/40 group-hover:text-white"
+              style={{ transition: 'color 0.3s ease' }}
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+            >
               <line x1="18" y1="6" x2="6" y2="18" />
               <line x1="6" y1="6" x2="18" y2="18" />
             </svg>

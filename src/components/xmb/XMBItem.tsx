@@ -10,6 +10,7 @@ interface Props {
 export function XMBItem({ item, isActive, index, onClick }: Props) {
   return (
     <button
+      type="button"
       onClick={onClick}
       className="flex items-center gap-3 px-4 py-2.5 w-full text-left bg-transparent border-none outline-none cursor-pointer"
       style={{
@@ -44,9 +45,7 @@ export function XMBItem({ item, isActive, index, onClick }: Props) {
             alt={item.label}
             className="w-full h-full object-cover"
             style={{
-              filter: isActive
-                ? 'saturate(0) contrast(1.4) brightness(1.1)'
-                : 'saturate(0) brightness(0.4)',
+              filter: isActive ? 'saturate(0) contrast(1.4) brightness(1.1)' : 'saturate(0) brightness(0.4)',
               transition: 'filter 0.4s ease',
             }}
             loading="lazy"

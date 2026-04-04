@@ -1,11 +1,6 @@
-import {
-  Mesh,
-  PlaneGeometry,
-  ShaderMaterial,
-  DoubleSide,
-} from 'three';
 import type { Scene } from 'three';
-import type { Disposable, BackgroundState } from './types';
+import { DoubleSide, Mesh, PlaneGeometry, ShaderMaterial } from 'three';
+import type { BackgroundState, Disposable } from './types';
 
 const vertexShader = /* glsl */ `
   varying vec2 vUv;

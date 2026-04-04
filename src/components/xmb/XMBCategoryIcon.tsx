@@ -21,42 +21,54 @@ export function XMBCategoryIcon({ category, distance, onClick }: Props) {
       style={{
         transform: `scale(${scale})`,
         opacity,
-        width: '140px',
-        transition: 'transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 0.5s ease',
+        width: '160px',
+        transition: 'transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 0.4s ease',
       }}
     >
-      {/* Icon container with subtle ring */}
+      {/* Icon container with manga ring */}
       <div
         className="relative w-16 h-16 flex items-center justify-center"
-        style={{
-          transition: 'all 0.6s cubic-bezier(0.25, 0.1, 0.25, 1)',
-        }}
+        style={{ transition: 'all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1)' }}
       >
-        {/* Pulse ring for active */}
+        {/* Menacing pulse ring for active */}
         {isActive && (
           <div
-            className="absolute inset-[-4px] rounded-full border border-xmb-accent/20"
-            style={{ animation: 'xmb-breathe 3s ease-in-out infinite' }}
+            className="absolute inset-[-6px] rounded-full border-2 border-white/40"
+            style={{ animation: 'xmb-menace 2.5s ease-in-out infinite' }}
           />
         )}
 
-        {/* Outer ring */}
+        {/* Outer ring — bold manga border */}
         <div
-          className={`absolute inset-0 rounded-full transition-all duration-600 ${
+          className={`absolute inset-0 rounded-full transition-all duration-500 ${
             isActive
-              ? 'border border-xmb-accent/30 shadow-[0_0_20px_rgba(200,164,78,0.08)]'
-              : 'border border-transparent'
+              ? 'border-2 border-white/60 shadow-[0_0_15px_rgba(255,255,255,0.15)]'
+              : 'border border-white/10'
           }`}
         />
 
         <CategorySvgIcon name={category.icon} active={isActive} />
+
+        {/* Floating ゴ menacing symbol on active */}
+        {isActive && (
+          <span
+            className="absolute -top-2 -right-3 text-[11px] text-white/20 font-bold select-none"
+            style={{
+              animation: 'xmb-float 3s ease-in-out infinite',
+              fontFamily: 'sans-serif',
+            }}
+          >
+            ゴ
+          </span>
+        )}
       </div>
 
-      {/* Label — uppercase, letter-spaced, sparse */}
+      {/* Label — bold, dramatic */}
       <span
-        className={`text-[10px] font-light tracking-[0.25em] uppercase transition-all duration-500 ${
-          isActive ? 'text-xmb-accent xmb-glow' : 'text-xmb-text-dim'
+        className={`text-[11px] font-bold tracking-[0.3em] uppercase transition-all duration-400 ${
+          isActive ? 'text-white xmb-glow' : 'text-white/30'
         }`}
+        style={{ fontFamily: "'Bebas Neue', 'Inter', sans-serif" }}
       >
         {category.label}
       </span>

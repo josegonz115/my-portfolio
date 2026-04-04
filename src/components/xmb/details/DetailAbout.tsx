@@ -12,10 +12,15 @@ export function DetailAbout({ item }: Props) {
     return (
       <div className="flex flex-col gap-6">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-px bg-xmb-accent/30" />
-          <h2 className="text-lg font-light tracking-[0.2em] uppercase text-xmb-text-bright">About</h2>
+          <div className="w-8 h-[2px] bg-white/40" />
+          <h2
+            className="text-xl tracking-[0.2em] uppercase text-white font-bold"
+            style={{ fontFamily: "'Bebas Neue', sans-serif" }}
+          >
+            About
+          </h2>
         </div>
-        <p className="text-xmb-text/80 leading-relaxed text-[13px] font-light">{data.content as string}</p>
+        <p className="text-white/70 leading-relaxed text-[13px]">{data.content as string}</p>
       </div>
     );
   }
@@ -25,16 +30,21 @@ export function DetailAbout({ item }: Props) {
     return (
       <div className="flex flex-col gap-6">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-px bg-xmb-accent/30" />
-          <h2 className="text-lg font-light tracking-[0.2em] uppercase text-xmb-text-bright">Education</h2>
+          <div className="w-8 h-[2px] bg-white/40" />
+          <h2
+            className="text-xl tracking-[0.2em] uppercase text-white font-bold"
+            style={{ fontFamily: "'Bebas Neue', sans-serif" }}
+          >
+            Education
+          </h2>
         </div>
         <div className="flex flex-col gap-5">
           {entries.map((entry, i) => (
-            <div key={i} className="border-l border-xmb-accent/15 pl-5 py-1">
-              <h3 className="text-[13px] font-normal text-xmb-text-bright tracking-wide">{entry.school}</h3>
-              <p className="text-[12px] text-xmb-text-dim mt-1 font-light">{entry.degree}</p>
+            <div key={i} className="border-l-2 border-white/30 pl-5 py-1">
+              <h3 className="text-[13px] font-medium text-white tracking-wide">{entry.school}</h3>
+              <p className="text-[12px] text-white/50 mt-1">{entry.degree}</p>
               <p
-                className="text-[10px] text-xmb-accent-dim/70 mt-2 tracking-widest uppercase"
+                className="text-[10px] text-white/40 mt-2 tracking-widest uppercase"
                 style={{ fontFamily: "'IBM Plex Mono', monospace" }}
               >
                 {entry.period}
@@ -51,14 +61,19 @@ export function DetailAbout({ item }: Props) {
     return (
       <div className="flex flex-col gap-6">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-px bg-xmb-accent/30" />
-          <h2 className="text-lg font-light tracking-[0.2em] uppercase text-xmb-text-bright">Interests</h2>
+          <div className="w-8 h-[2px] bg-white/40" />
+          <h2
+            className="text-xl tracking-[0.2em] uppercase text-white font-bold"
+            style={{ fontFamily: "'Bebas Neue', sans-serif" }}
+          >
+            Interests
+          </h2>
         </div>
         <div className="flex flex-col gap-3">
           {items.map((interest, i) => (
-            <div key={i} className="px-4 py-3 border border-xmb-border/50 bg-xmb-highlight/30">
-              <h3 className="text-[12px] font-normal text-xmb-text-bright tracking-wider uppercase">{interest.name}</h3>
-              <p className="text-[11px] text-xmb-text-dim mt-1 font-light">{interest.description}</p>
+            <div key={i} className="px-4 py-3 border-2 border-white/40 bg-white/[0.02]">
+              <h3 className="text-[12px] font-medium text-white tracking-wider uppercase">{interest.name}</h3>
+              <p className="text-[11px] text-white/50 mt-1">{interest.description}</p>
             </div>
           ))}
         </div>

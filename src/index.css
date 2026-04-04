@@ -1,65 +1,54 @@
 @import "tailwindcss";
 
 @theme {
-  /* === KOJIMA PALETTE === */
-  /* Deep blacks, muted earth tones, desaturated greens/grays */
-  --color-xmb-bg: #0d0d0d;
-  --color-xmb-bg-warm: #111110;
-  --color-xmb-text: #b8b4a8;
-  --color-xmb-text-dim: #5c5a52;
-  --color-xmb-text-bright: #d4d0c4;
+  /* === JOJO B&W PALETTE === */
+  --color-xmb-bg: #000000;
+  --color-xmb-bg-warm: #0a0a0a;
+  --color-xmb-text: #ffffff;
+  --color-xmb-text-dim: #666666;
+  --color-xmb-text-bright: #ffffff;
 
-  /* Amber/gold accent — like a codec frequency glow */
-  --color-xmb-accent: #c8a44e;
-  --color-xmb-accent-dim: #8a7235;
-  --color-xmb-accent-bright: #e0c068;
-
-  /* Cold blue secondary — tactical HUD */
-  --color-xmb-blue: #4a6e82;
-  --color-xmb-blue-dim: #2d4450;
-  --color-xmb-blue-bright: #6a9ab8;
-
-  /* Desaturated military green */
-  --color-xmb-green: #4a5a3a;
-  --color-xmb-green-dim: #2d3822;
+  /* White IS the accent on black */
+  --color-xmb-accent: #ffffff;
+  --color-xmb-accent-dim: #999999;
+  --color-xmb-accent-bright: #ffffff;
 
   /* Atmospheric */
-  --color-xmb-glow: rgba(200, 164, 78, 0.25);
-  --color-xmb-glow-blue: rgba(74, 110, 130, 0.3);
-  --color-xmb-panel-bg: rgba(13, 13, 13, 0.88);
-  --color-xmb-highlight: rgba(200, 164, 78, 0.06);
-  --color-xmb-border: rgba(200, 164, 78, 0.1);
-  --color-xmb-border-blue: rgba(74, 110, 130, 0.15);
+  --color-xmb-glow: rgba(255, 255, 255, 0.4);
+  --color-xmb-glow-blue: rgba(255, 255, 255, 0.3);
+  --color-xmb-panel-bg: rgba(0, 0, 0, 0.95);
+  --color-xmb-highlight: rgba(255, 255, 255, 0.04);
+  --color-xmb-border: rgba(255, 255, 255, 0.7);
 }
 
-/* === GLOW UTILITIES === */
+/* === GLOW UTILITIES — dramatic white === */
 @utility xmb-glow {
-  text-shadow: 0 0 12px var(--color-xmb-glow), 0 0 30px rgba(200, 164, 78, 0.1);
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.6), 0 0 25px rgba(255, 255, 255, 0.2);
 }
 
 @utility xmb-glow-blue {
-  text-shadow: 0 0 12px var(--color-xmb-glow-blue), 0 0 30px rgba(74, 110, 130, 0.1);
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.15);
 }
 
 @utility xmb-icon-glow {
-  filter: drop-shadow(0 0 6px var(--color-xmb-glow)) drop-shadow(0 0 20px rgba(200, 164, 78, 0.08));
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.5)) drop-shadow(0 0 15px rgba(255, 255, 255, 0.15));
 }
 
 @utility xmb-glass {
-  backdrop-filter: blur(20px) saturate(0.8);
-  background: var(--color-xmb-panel-bg);
+  background: rgba(0, 0, 0, 0.95);
+  border-left: 3px solid #fff;
 }
 
 /* === BASE === */
 :root {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   line-height: 1.5;
-  font-weight: 300;
+  font-weight: 400;
   font-size: 16px;
 
   color-scheme: dark;
-  color: var(--color-xmb-text);
-  background-color: var(--color-xmb-bg);
+  color: #ffffff;
+  background-color: #000000;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -76,7 +65,7 @@ body {
   min-width: 320px;
   min-height: 100vh;
   overflow: hidden;
-  background-color: var(--color-xmb-bg);
+  background-color: #000000;
 }
 
 #root {
@@ -85,30 +74,32 @@ body {
   overflow: hidden;
 }
 
-/* === FILM GRAIN OVERLAY === */
-.film-grain {
+/* === HALFTONE OVERLAY — manga screentone dots === */
+.halftone-overlay {
   position: fixed;
   inset: 0;
   z-index: 50;
   pointer-events: none;
-  opacity: 0.035;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  background-size: 200px 200px;
+  opacity: 0.05;
+  background-image: radial-gradient(circle, #fff 1px, transparent 1px);
+  background-size: 8px 8px;
   mix-blend-mode: overlay;
 }
 
-/* === VIGNETTE === */
+/* === VIGNETTE — hard panel edge feel === */
 .vignette {
   position: fixed;
   inset: 0;
   z-index: 49;
   pointer-events: none;
-  background: radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.5) 100%);
+  background:
+    linear-gradient(to right, rgba(0,0,0,0.5) 0%, transparent 4%, transparent 96%, rgba(0,0,0,0.5) 100%),
+    linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, transparent 4%, transparent 96%, rgba(0,0,0,0.4) 100%);
 }
 
-/* === SCROLLBAR — minimal, tactical === */
+/* === SCROLLBAR — bold white === */
 ::-webkit-scrollbar {
-  width: 2px;
+  width: 3px;
 }
 
 ::-webkit-scrollbar-track {
@@ -116,19 +107,19 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-xmb-accent-dim);
+  background: rgba(255, 255, 255, 0.5);
   border-radius: 1px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-xmb-accent);
+  background: #ffffff;
 }
 
-/* === ANIMATIONS — cinematic easing, slower, intentional === */
+/* === ANIMATIONS — snappy, dramatic === */
 @keyframes xmb-item-enter {
   from {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
@@ -139,7 +130,7 @@ body {
 @keyframes xmb-fade-in {
   from {
     opacity: 0;
-    transform: translateY(4px);
+    transform: translateY(6px);
   }
   to {
     opacity: 1;
@@ -147,21 +138,25 @@ body {
   }
 }
 
-@keyframes xmb-pulse {
+@keyframes xmb-menace {
   0%, 100% {
-    opacity: 1;
+    transform: scale(1);
+    opacity: 0.5;
   }
   50% {
-    opacity: 0.6;
+    transform: scale(1.04);
+    opacity: 0.8;
   }
 }
 
-@keyframes xmb-scanline {
-  0% {
-    transform: translateY(-100%);
+@keyframes xmb-float {
+  0%, 100% {
+    transform: translateY(0px) rotate(-8deg);
+    opacity: 0.15;
   }
-  100% {
-    transform: translateY(100vh);
+  50% {
+    transform: translateY(-6px) rotate(-12deg);
+    opacity: 0.25;
   }
 }
 

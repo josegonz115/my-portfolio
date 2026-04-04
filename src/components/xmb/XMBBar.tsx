@@ -12,8 +12,8 @@ export function XMBBar({ state, dispatch }: Props) {
   const { categories, activeCategoryIndex, activeItemIndex } = state;
   const activeCategory = categories[activeCategoryIndex];
 
-  // Center the active category — each icon is 140px wide
-  const offsetX = -(activeCategoryIndex * 140);
+  // Center the active category — each icon is 160px wide
+  const offsetX = -(activeCategoryIndex * 160);
 
   return (
     <div className="flex flex-col items-center w-full">
@@ -37,11 +37,12 @@ export function XMBBar({ state, dispatch }: Props) {
         </div>
       </div>
 
-      {/* Subtle horizontal line through the bar */}
+      {/* Bold horizontal divider — manga panel line */}
       <div
-        className="w-full max-w-lg mx-auto h-px mt-1 mb-0"
+        className="w-full max-w-lg mx-auto mt-1 mb-0"
         style={{
-          background: 'linear-gradient(90deg, transparent 0%, rgba(200, 164, 78, 0.08) 30%, rgba(200, 164, 78, 0.08) 70%, transparent 100%)',
+          height: '2px',
+          background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 20%, rgba(255,255,255,0.3) 80%, transparent 100%)',
         }}
       />
 

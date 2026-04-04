@@ -1,10 +1,6 @@
-import { Color, FogExp2, Mesh, MeshBasicMaterial, PerspectiveCamera, PlaneGeometry, Scene, WebGLRenderer } from 'three';
-import { CrossHatch } from './CrossHatch';
+import { Color, FogExp2, PerspectiveCamera, Scene, WebGLRenderer } from 'three';
 import { CAMERA_FAR, CAMERA_FOV, CAMERA_NEAR, CAMERA_Z } from './constants';
-import { HalftoneField } from './HalftoneField';
-import { InkSplatter } from './InkSplatter';
 import { MenacingKanji } from './MenacingKanji';
-import { SpeedLines } from './SpeedLines';
 import type { BackgroundState, Disposable } from './types';
 
 function damp(current: number, target: number, lambda: number, delta: number): number {
@@ -31,17 +27,6 @@ export class SceneManager {
   private targetCameraY = 0;
   private currentCameraY = 0;
 
-  // Speed lines reactivity
-  private lineIntensityTarget = 1.0;
-  private lineIntensityCurrent = 1.0;
-  private lastNavTimestamp = 0;
-  private speedLines: SpeedLines | null = null;
-
-  // Impact flash
-  private flashMesh: Mesh;
-  private flashMaterial: MeshBasicMaterial;
-  private flashOpacity = 0;
-
   constructor(canvas: HTMLCanvasElement, initialState: BackgroundState) {
     this.state = { ...initialState };
 
@@ -63,19 +48,6 @@ export class SceneManager {
     this.camera.position.set(0, 0, CAMERA_Z);
     this.camera.lookAt(0, 0, 0);
 
-    // Impact flash plane (in front of everything)
-    const flashGeo = new PlaneGeometry(20, 14);
-    this.flashMaterial = new MeshBasicMaterial({
-      color: 0xffffff,
-      transparent: true,
-      opacity: 0,
-      depthWrite: false,
-    });
-    this.flashMesh = new Mesh(flashGeo, this.flashMaterial);
-    this.flashMesh.position.z = 1;
-    this.flashMesh.frustumCulled = false;
-    this.scene.add(this.flashMesh);
-
     this.initSubsystems();
     this.updateCameraTargets();
 
@@ -89,57 +61,16 @@ export class SceneManager {
   private initSubsystems(): void {
     const isMobile = this.state.isMobile;
 
-    // Halftone (farthest back)
-    const halftone = new HalftoneField(this.scene, isMobile);
-    this.subsystems.push(halftone);
-
-    // Cross-hatch texture
-    const crosshatch = new CrossHatch(this.scene, isMobile);
-    this.subsystems.push(crosshatch);
-
-    // Speed lines (core visual)
-    const lines = new SpeedLines(this.scene, isMobile);
-    this.speedLines = lines;
-    this.subsystems.push(lines);
-
     // Menacing kanji
     const kanji = new MenacingKanji(this.scene, isMobile);
     this.subsystems.push(kanji);
-
-    // Ink splatter (nearest)
-    const ink = new InkSplatter(this.scene, isMobile);
-    this.subsystems.push(ink);
   }
 
   updateState(newState: BackgroundState): void {
     if (this.disposed) return;
 
-    const categoryChanged = newState.activeCategoryIndex !== this.state.activeCategoryIndex;
-    const panelOpening = !this.state.panelOpen && newState.panelOpen;
-
     this.state = { ...newState };
     this.updateCameraTargets();
-
-    // Navigation impulse: spike speed lines
-    if (categoryChanged) {
-      this.lastNavTimestamp = performance.now();
-      if (!newState.panelOpen) {
-        this.lineIntensityTarget = 3.0;
-      }
-    }
-
-    // Panel open: keep baseline speed, preserve converge framing
-    if (newState.panelOpen) {
-      this.lineIntensityTarget = 1.0;
-      this.speedLines?.setConvergeX(1.0); // converge rightward toward panel
-    } else {
-      this.speedLines?.setConvergeX(0);
-    }
-
-    // Impact flash on panel open
-    if (panelOpening) {
-      this.flashOpacity = 0.6;
-    }
   }
 
   private updateCameraTargets(): void {
@@ -165,22 +96,6 @@ export class SceneManager {
     this.currentCameraY = damp(this.currentCameraY, this.targetCameraY, 2.0, delta);
     this.camera.position.x = this.currentCameraX;
     this.camera.position.y = this.currentCameraY;
-
-    // Damp speed line intensity
-    const timeSinceNav = now - this.lastNavTimestamp;
-    if (!this.state.panelOpen && timeSinceNav > 600) {
-      this.lineIntensityTarget = 1.0;
-    }
-    this.lineIntensityCurrent = damp(this.lineIntensityCurrent, this.lineIntensityTarget, 4.0, delta);
-    this.speedLines?.setIntensity(this.lineIntensityCurrent);
-
-    // Impact flash decay
-    if (this.flashOpacity > 0.001) {
-      this.flashOpacity = damp(this.flashOpacity, 0, 8.0, delta);
-      this.flashMaterial.opacity = this.flashOpacity;
-    } else {
-      this.flashMaterial.opacity = 0;
-    }
 
     // Update subsystems
     for (const sub of this.subsystems) {
@@ -225,10 +140,6 @@ export class SceneManager {
       sub.dispose();
     }
     this.subsystems = [];
-    this.speedLines = null;
-
-    this.scene.remove(this.flashMesh);
-    this.flashMaterial.dispose();
 
     this.scene.clear();
   }

@@ -58,9 +58,7 @@ export function DetailProject({ item }: Props) {
               className="flex items-center gap-1.5 px-2 py-0.5 text-[10px] tracking-wider uppercase border-2 border-white/50 text-white/70"
               style={{ fontFamily: "'IBM Plex Mono', monospace" }}
             >
-              {iconSrc && (
-                <img src={iconSrc} alt={tech} className="w-3 h-3"  />
-              )}
+              {iconSrc && <img src={iconSrc} alt={tech} className="w-3 h-3" />}
               {tech}
             </span>
           );

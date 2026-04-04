@@ -26,12 +26,6 @@ export function XMBLayout({ state, dispatch, sound }: Props) {
       {/* Cinematic background canvas */}
       <XMBBackground state={state} />
 
-      {/* Vignette overlay */}
-      <div className="vignette" />
-
-      {/* Halftone overlay — manga screentone */}
-      <div className="halftone-overlay" />
-
       <div className="relative z-10 flex flex-col w-full h-full">
         <XMBStatusBar panelOpen={state.panelOpen} muted={sound?.muted ?? false} onToggleMute={sound?.toggleMute} />
 

@@ -13,8 +13,8 @@ export const SPEED_LINE_COUNT_MOBILE = 60;
 export const HALFTONE_RESOLUTION = 64;
 
 // === MENACING KANJI ===
-export const KANJI_COUNT = 8;
-export const KANJI_COUNT_MOBILE = 4;
+export const KANJI_COUNT = 14;
+export const KANJI_COUNT_MOBILE = 8;
 
 // === INK SPLATTER ===
 export const INK_COUNT_DESKTOP = 40;

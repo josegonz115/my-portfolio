@@ -115,23 +115,22 @@ export class SceneManager {
     if (this.disposed) return;
 
     const categoryChanged = newState.activeCategoryIndex !== this.state.activeCategoryIndex;
-    const panelChanged = newState.panelOpen !== this.state.panelOpen;
     const panelOpening = !this.state.panelOpen && newState.panelOpen;
 
     this.state = { ...newState };
     this.updateCameraTargets();
 
     // Navigation impulse: spike speed lines
-    if (categoryChanged || panelChanged) {
+    if (categoryChanged) {
       this.lastNavTimestamp = performance.now();
       if (!newState.panelOpen) {
         this.lineIntensityTarget = 3.0;
       }
     }
 
-    // Panel open: slow lines, trigger impact flash
+    // Panel open: keep baseline speed, preserve converge framing
     if (newState.panelOpen) {
-      this.lineIntensityTarget = 0.5;
+      this.lineIntensityTarget = 1.0;
       this.speedLines?.setConvergeX(1.0); // converge rightward toward panel
     } else {
       this.speedLines?.setConvergeX(0);

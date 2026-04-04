@@ -35,7 +35,7 @@ const fragmentShader = /* glsl */ `
 
   void main() {
     vec4 tex = texture2D(uTexture, vUv);
-    gl_FragColor = vec4(1.0, 1.0, 1.0, tex.a * uAlpha);
+    gl_FragColor = vec4(tex.rgb, tex.a * uAlpha);
   }
 `;
 
@@ -49,7 +49,7 @@ function createKanjiTexture(): CanvasTexture {
     throw new Error('Failed to get 2D context from canvas');
   }
   ctx.clearRect(0, 0, size, size);
-  ctx.fillStyle = '#ffffff';
+  ctx.fillStyle = '#A855F7';
   ctx.font = 'bold 100px sans-serif';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
@@ -112,15 +112,9 @@ export class MenacingKanji implements Disposable {
   update(time: number, _delta: number, state: BackgroundState): void {
     for (const mat of this.materials) {
       mat.uniforms.uTime.value = time;
-      // Drift faster when panel is open (menace intensifies)
-      const baseDrift = mat.uniforms.uDriftSpeed.value as number;
       const targetAlpha = state.panelOpen ? 0.08 : (mat.uniforms.uAlpha.value as number);
       const currentAlpha = mat.uniforms.uAlpha.value as number;
       mat.uniforms.uAlpha.value = currentAlpha + (targetAlpha - currentAlpha) * 0.01;
-
-      if (state.panelOpen) {
-        mat.uniforms.uDriftSpeed.value = baseDrift + (baseDrift * 1.5 - baseDrift) * 0.01;
-      }
     }
   }
 

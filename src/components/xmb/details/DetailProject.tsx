@@ -59,7 +59,7 @@ export function DetailProject({ item }: Props) {
               style={{ fontFamily: "'IBM Plex Mono', monospace" }}
             >
               {iconSrc && (
-                <img src={iconSrc} alt={tech} className="w-3 h-3" style={{ filter: 'saturate(0) brightness(2)' }} />
+                <img src={iconSrc} alt={tech} className="w-3 h-3"  />
               )}
               {tech}
             </span>
@@ -77,15 +77,15 @@ export function DetailProject({ item }: Props) {
                 alt={`${project.heading} ${i + 1}`}
                 className="w-full h-auto object-cover"
                 style={{
-                  filter: 'saturate(0) contrast(1.3) brightness(1.05)',
+                  filter: 'contrast(1.05) brightness(1)',
                   transition: 'filter 0.4s ease',
                 }}
                 loading="lazy"
                 onMouseEnter={(e) => {
-                  (e.target as HTMLImageElement).style.filter = 'saturate(0) contrast(1.1) brightness(1.1)';
+                  (e.target as HTMLImageElement).style.filter = 'contrast(1.15) brightness(1.1) saturate(1.2)';
                 }}
                 onMouseLeave={(e) => {
-                  (e.target as HTMLImageElement).style.filter = 'saturate(0) contrast(1.3) brightness(1.05)';
+                  (e.target as HTMLImageElement).style.filter = 'contrast(1.05) brightness(1)';
                 }}
               />
             </div>

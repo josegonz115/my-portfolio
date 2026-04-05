@@ -1,3 +1,4 @@
+import { ACCENT, CYBER_FLAGS, FONT_MONO } from '../../config/cyberFlags';
 import type { XMBItem as XMBItemType } from '../../types/xmb';
 
 interface Props {
@@ -8,48 +9,84 @@ interface Props {
 }
 
 export function XMBItem({ item, isActive, index, onClick }: Props) {
+  const cyber = CYBER_FLAGS.cyberPalette;
+
+  const activeColor = ACCENT;
+  const dimColor = cyber ? 'rgba(0,212,170,0.68)' : 'rgba(255,255,255,0.68)';
+  const activeSub = cyber ? 'rgba(0,212,170,0.75)' : 'rgba(255,255,255,0.75)';
+  const dimSub = cyber ? 'rgba(0,212,170,0.5)' : 'rgba(255,255,255,0.5)';
+
+  const thumbFilter = isActive ? 'contrast(1.4) brightness(1.1)' : 'brightness(0.68)';
+
   return (
     <button
+      type="button"
       onClick={onClick}
-      className={`
-        flex items-center gap-3 px-4 py-2 w-full text-left rounded-sm
-        transition-all duration-300 cursor-pointer bg-transparent border-none outline-none
-        ${isActive ? 'translate-x-2' : 'translate-x-0'}
-      `}
+      className="flex items-center gap-3 px-4 py-3.5 w-full text-left bg-transparent border-none outline-none cursor-pointer"
       style={{
-        animation: `xmb-item-enter 0.3s ease-out ${index * 50}ms both`,
+        transform: isActive ? 'translateX(8px)' : 'translateX(0)',
+        transition: 'transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 0.3s ease',
+        animation: `xmb-item-enter 0.3s cubic-bezier(0.25, 0.1, 0.25, 1) ${index * 60}ms both`,
       }}
     >
       {/* Active indicator bar */}
       <div
-        className={`w-0.5 h-8 rounded-full transition-all duration-300 shrink-0 ${
-          isActive ? 'bg-xmb-accent shadow-[0_0_8px_var(--color-xmb-glow)]' : 'bg-transparent'
-        }`}
+        className="shrink-0"
+        style={{
+          width: isActive ? '3px' : '1px',
+          height: '36px',
+          backgroundColor: isActive ? activeColor : 'transparent',
+          boxShadow: isActive ? `0 0 8px ${cyber ? 'rgba(0,212,170,0.3)' : 'rgba(255,255,255,0.3)'}` : 'none',
+          transition: 'all 0.4s ease',
+        }}
       />
 
       {/* Thumbnail */}
       {item.thumbnail && (
-        <div className="w-10 h-10 rounded overflow-hidden shrink-0 bg-xmb-highlight">
+        <div
+          className="w-14 h-14 rounded-sm overflow-hidden shrink-0"
+          style={{
+            border: isActive
+              ? `2px solid ${activeColor}`
+              : `1px solid ${cyber ? 'rgba(0,212,170,0.25)' : 'rgba(255,255,255,0.25)'}`,
+            transition: 'border-color 0.4s ease',
+          }}
+        >
           <img
             src={item.thumbnail}
             alt={item.label}
             className="w-full h-full object-cover"
+            style={{
+              filter: thumbFilter,
+              transition: 'filter 0.4s ease',
+            }}
             loading="lazy"
           />
         </div>
       )}
 
       {/* Text */}
-      <div className="flex flex-col min-w-0">
+      <div className="flex flex-col min-w-0 gap-0.5">
         <span
-          className={`text-sm font-medium truncate transition-colors duration-300 ${
-            isActive ? 'text-xmb-accent' : 'text-xmb-text'
-          }`}
+          className="text-[17px] font-medium tracking-wide truncate"
+          style={{
+            color: isActive ? activeColor : dimColor,
+            transition: 'color 0.4s ease',
+          }}
         >
           {item.label}
         </span>
         {item.sublabel && (
-          <span className="text-xs text-xmb-text-dim truncate">{item.sublabel}</span>
+          <span
+            className="text-[14px] tracking-wider truncate"
+            style={{
+              fontFamily: FONT_MONO,
+              color: isActive ? activeSub : dimSub,
+              transition: 'color 0.4s ease',
+            }}
+          >
+            {item.sublabel}
+          </span>
         )}
       </div>
     </button>

@@ -1,4 +1,4 @@
-import { useEffect, useCallback, useRef, type Dispatch } from 'react';
+import { type Dispatch, useCallback, useEffect, useRef } from 'react';
 import type { XMBAction, XMBState } from '../types/xmb';
 
 interface SoundCallbacks {
@@ -7,11 +7,7 @@ interface SoundCallbacks {
   playBack: () => void;
 }
 
-export function useXMBNavigation(
-  state: XMBState,
-  dispatch: Dispatch<XMBAction>,
-  sound?: SoundCallbacks,
-) {
+export function useXMBNavigation(state: XMBState, dispatch: Dispatch<XMBAction>, sound?: SoundCallbacks) {
   const soundRef = useRef(sound);
   soundRef.current = sound;
 

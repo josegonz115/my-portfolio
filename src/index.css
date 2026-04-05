@@ -1,44 +1,106 @@
 @import "tailwindcss";
 
 @theme {
-  --color-xmb-bg: #0a0a0f;
-  --color-xmb-text: #e0e0e0;
-  --color-xmb-text-dim: #888888;
-  --color-xmb-accent: #00ff41;
-  --color-xmb-accent-dim: #00cc33;
-  --color-xmb-glow: rgba(0, 255, 65, 0.3);
-  --color-xmb-panel-bg: rgba(10, 10, 20, 0.92);
-  --color-xmb-highlight: rgba(0, 255, 65, 0.1);
-  --color-xmb-border: rgba(0, 255, 65, 0.15);
+  /* === BASE PALETTE (overridden by [data-theme="cyber"]) === */
+  --color-xmb-bg: #000000;
+  --color-xmb-bg-warm: #0a0a0a;
+  --color-xmb-text: #ffffff;
+  --color-xmb-text-dim: #666666;
+  --color-xmb-text-bright: #ffffff;
+
+  --color-xmb-accent: #ffffff;
+  --color-xmb-accent-dim: #999999;
+  --color-xmb-accent-bright: #ffffff;
+
+  --color-xmb-glow: rgba(255, 255, 255, 0.4);
+  --color-xmb-glow-blue: rgba(255, 255, 255, 0.3);
+  --color-xmb-panel-bg: rgba(0, 0, 0, 0.95);
+  --color-xmb-highlight: rgba(255, 255, 255, 0.04);
+  --color-xmb-border: rgba(255, 255, 255, 0.7);
 }
 
+/* ============================================================
+   CYBERPUNK THEME OVERRIDES
+   Activated via data-theme="cyber" on <html>
+   ============================================================ */
+:root[data-theme="cyber"] {
+  --color-xmb-bg: #050a0e;
+  --color-xmb-bg-warm: #0a1218;
+  --color-xmb-text: #c2dce6;
+  --color-xmb-text-dim: #4a6670;
+  --color-xmb-text-bright: #e0f0f6;
+
+  --color-xmb-accent: #00d4aa;
+  --color-xmb-accent-dim: #1a7a6a;
+  --color-xmb-accent-bright: #00ffcc;
+
+  --color-xmb-glow: rgba(0, 212, 170, 0.4);
+  --color-xmb-glow-blue: rgba(0, 180, 200, 0.3);
+  --color-xmb-panel-bg: rgba(5, 10, 14, 0.95);
+  --color-xmb-highlight: rgba(0, 212, 170, 0.04);
+  --color-xmb-border: rgba(0, 212, 170, 0.5);
+}
+
+/* === GLOW UTILITIES — white (default) === */
 @utility xmb-glow {
-  text-shadow: 0 0 10px var(--color-xmb-glow), 0 0 20px var(--color-xmb-glow);
+  text-shadow:
+    0 0 8px rgba(255, 255, 255, 0.6),
+    0 0 25px rgba(255, 255, 255, 0.2);
+}
+
+@utility xmb-glow-blue {
+  text-shadow:
+    0 0 8px rgba(255, 255, 255, 0.5),
+    0 0 20px rgba(255, 255, 255, 0.15);
 }
 
 @utility xmb-icon-glow {
-  filter: drop-shadow(0 0 8px var(--color-xmb-glow));
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.5)) drop-shadow(0 0 15px rgba(255, 255, 255, 0.15));
 }
 
 @utility xmb-glass {
-  backdrop-filter: blur(12px);
-  background: var(--color-xmb-panel-bg);
+  background: rgba(0, 0, 0, 0.95);
+  border-left: 3px solid #fff;
 }
 
+/* === CYBERPUNK GLOW UTILITIES — teal === */
+@utility cyber-glow {
+  text-shadow:
+    0 0 8px rgba(0, 212, 170, 0.6),
+    0 0 25px rgba(0, 212, 170, 0.25);
+}
+
+@utility cyber-glow-soft {
+  text-shadow:
+    0 0 6px rgba(0, 212, 170, 0.4),
+    0 0 18px rgba(0, 212, 170, 0.12);
+}
+
+@utility cyber-icon-glow {
+  filter: drop-shadow(0 0 6px rgba(0, 212, 170, 0.5)) drop-shadow(0 0 15px rgba(0, 212, 170, 0.15));
+}
+
+/* === BASE === */
 :root {
-  font-family: 'IBM Plex Mono', monospace, Arial, sans-serif;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
   line-height: 1.5;
   font-weight: 400;
   font-size: 16px;
 
   color-scheme: dark;
-  color: var(--color-xmb-text);
-  background-color: var(--color-xmb-bg);
+  color: #ffffff;
+  background-color: #000000;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+:root[data-theme="cyber"] {
+  font-family: "Share Tech Mono", monospace;
+  color: #c2dce6;
+  background-color: #050a0e;
 }
 
 * {
@@ -50,7 +112,14 @@ body {
   min-width: 320px;
   min-height: 100vh;
   overflow: hidden;
-  background-color: var(--color-xmb-bg);
+}
+
+:root[data-theme="cyber"] body {
+  background-color: #050a0e;
+}
+
+:root:not([data-theme="cyber"]) body {
+  background-color: #000000;
 }
 
 #root {
@@ -59,9 +128,9 @@ body {
   overflow: hidden;
 }
 
-/* Scrollbar styling for detail panel */
+/* === SCROLLBAR === */
 ::-webkit-scrollbar {
-  width: 4px;
+  width: 3px;
 }
 
 ::-webkit-scrollbar-track {
@@ -69,15 +138,25 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-xmb-accent-dim);
-  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 1px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-xmb-accent);
+  background: #ffffff;
 }
 
-/* XMB Animations */
+:root[data-theme="cyber"] ::-webkit-scrollbar-thumb {
+  background: rgba(0, 212, 170, 0.4);
+}
+
+:root[data-theme="cyber"] ::-webkit-scrollbar-thumb:hover {
+  background: #00d4aa;
+}
+
+/* ============================================================
+   ANIMATIONS — shared
+   ============================================================ */
 @keyframes xmb-item-enter {
   from {
     opacity: 0;
@@ -92,8 +171,145 @@ body {
 @keyframes xmb-fade-in {
   from {
     opacity: 0;
+    transform: translateY(6px);
   }
   to {
     opacity: 1;
+    transform: translateY(0);
   }
+}
+
+/* === MANGA ANIMATIONS (legacy) === */
+@keyframes xmb-menace {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.04);
+    opacity: 0.8;
+  }
+}
+
+@keyframes xmb-float {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(-8deg);
+    opacity: 0.15;
+  }
+  50% {
+    transform: translateY(-6px) rotate(-12deg);
+    opacity: 0.25;
+  }
+}
+
+@keyframes xmb-breathe {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* === CYBERPUNK ANIMATIONS === */
+@keyframes cyber-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.3;
+    box-shadow: 0 0 8px rgba(0, 212, 170, 0.2);
+  }
+  50% {
+    transform: scale(1.06);
+    opacity: 0.6;
+    box-shadow: 0 0 20px rgba(0, 212, 170, 0.4);
+  }
+}
+
+@keyframes cyber-float {
+  0%,
+  100% {
+    transform: translateX(0px);
+    opacity: 0.2;
+  }
+  50% {
+    transform: translateX(3px);
+    opacity: 0.4;
+  }
+}
+
+@keyframes cyber-flicker {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  92% {
+    opacity: 1;
+  }
+  93% {
+    opacity: 0.8;
+  }
+  94% {
+    opacity: 1;
+  }
+  97% {
+    opacity: 0.9;
+  }
+  98% {
+    opacity: 1;
+  }
+}
+
+@keyframes cyber-glitch {
+  0% {
+    transform: translate(0);
+    filter: none;
+  }
+  10% {
+    transform: translate(-2px, 1px);
+    filter: hue-rotate(90deg);
+  }
+  20% {
+    transform: translate(2px, -1px);
+    filter: hue-rotate(-90deg);
+  }
+  30% {
+    transform: translate(0);
+    filter: none;
+  }
+  100% {
+    transform: translate(0);
+    filter: none;
+  }
+}
+
+/* === POST-PROCESSING OVERLAYS === */
+
+/* Scanlines: applied via className on a wrapper div */
+.cyber-scanlines::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 212, 170, 0.03) 2px,
+    rgba(0, 212, 170, 0.03) 4px
+  );
+}
+
+/* CRT vignette: applied via className on a wrapper div */
+.cyber-vignette::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  background: radial-gradient(ellipse at center, transparent 50%, rgba(5, 10, 14, 0.6) 80%, rgba(5, 10, 14, 0.9) 100%);
 }

@@ -1,8 +1,8 @@
 import { XMBLayout } from './components/xmb/XMBLayout';
-import { useXMBReducer } from './hooks/useXMBReducer';
-import { useXMBNavigation } from './hooks/useXMBNavigation';
-import { useXMBSound } from './hooks/useXMBSound';
 import { xmbCategories } from './data/xmbData';
+import { useXMBNavigation } from './hooks/useXMBNavigation';
+import { useXMBReducer } from './hooks/useXMBReducer';
+import { useXMBSound } from './hooks/useXMBSound';
 
 export default function App() {
   const [state, dispatch] = useXMBReducer(xmbCategories);

@@ -1,51 +1,45 @@
-# React + TypeScript + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
 # my-portfolio
+
+Portfolio site built with React, TypeScript, and Vite.
+
+## Scripts
+
+- `bun run dev` starts the Vite dev server.
+- `bun run build` builds production assets.
+- `bun run preview` previews the production build.
+- `bun run lint` runs Biome checks (lint + formatting + import organization verification).
+- `bun run lint:fix` applies Biome safe fixes and formatting.
+- `bun run format` runs Biome formatter in write mode.
+- `bun run format:check` checks formatting without writing.
+- `bun run precommit:biome` runs the staged-file Biome pre-commit gate.
+
+## Linting and Formatting
+
+This project uses **Biome only** for linting and formatting.
+
+- Configuration: `biome.json`
+- CI enforcement: `.github/workflows/biome.yml`
+
+## Git Hooks
+
+Local commit enforcement is powered by Husky.
+
+- Hooks install automatically during `bun install` via the `prepare` script.
+- On `git commit`, the pre-commit hook runs Biome on staged files only.
+- The hook auto-applies safe Biome fixes/formatting, re-stages touched files, and then verifies checks.
+
+If a commit fails because Biome reports non-auto-fixable issues, run:
+
+- `bun run lint:fix`
+- `bun run lint`
+
+Then re-stage your changes and commit again.
+
+## Editor Setup (VS Code)
+
+Install the **Biome** extension (`biomejs.biome`). Workspace settings in `.vscode/settings.json` configure:
+
+- Biome as the default formatter for JS/TS/JSON/CSS files.
+- Format on save.
+- Biome safe fixes + organize imports on save.
+- ESLint disabled to avoid dual-tool conflicts.

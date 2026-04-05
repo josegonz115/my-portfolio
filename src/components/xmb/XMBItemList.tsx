@@ -1,5 +1,5 @@
 import type { Dispatch } from 'react';
-import type { XMBCategory, XMBAction, CategoryId } from '../../types/xmb';
+import type { CategoryId, XMBAction, XMBCategory } from '../../types/xmb';
 import { XMBItem } from './XMBItem';
 
 interface Props {
@@ -12,7 +12,7 @@ export function XMBItemList({ category, activeItemIndex, dispatch }: Props) {
   if (category.items.length === 0) return null;
 
   return (
-    <div className="flex flex-col gap-0.5 mt-6 max-h-[50vh] overflow-y-auto">
+    <div className="flex flex-col mt-8 h-[55vh] overflow-y-auto">
       {category.items.map((item, index) => (
         <XMBItem
           key={item.id}

@@ -1,5 +1,5 @@
 import { useReducer } from 'react';
-import type { XMBState, XMBAction, CategoryId, XMBCategory } from '../types/xmb';
+import type { CategoryId, XMBAction, XMBCategory, XMBState } from '../types/xmb';
 
 function createInitialState(categories: XMBCategory[]): XMBState {
   const activeItemIndex: Record<CategoryId, number> = {
@@ -16,11 +16,11 @@ function createInitialState(categories: XMBCategory[]): XMBState {
 
   if (hash) {
     const [catId, itemId] = hash.split('/');
-    const catIndex = categories.findIndex(c => c.id === catId);
+    const catIndex = categories.findIndex((c) => c.id === catId);
     if (catIndex !== -1) {
       activeCategoryIndex = catIndex;
       if (itemId) {
-        const itemIndex = categories[catIndex].items.findIndex(i => i.id === itemId);
+        const itemIndex = categories[catIndex].items.findIndex((i) => i.id === itemId);
         if (itemIndex !== -1) {
           activeItemIndex[catId as CategoryId] = itemIndex;
         }
@@ -46,7 +46,12 @@ function xmbReducer(state: XMBState, action: XMBAction): XMBState {
   switch (action.type) {
     case 'MOVE_LEFT': {
       if (state.panelOpen) {
-        return { ...state, panelOpen: false, selectedItem: null, selectedCategoryId: null };
+        return {
+          ...state,
+          panelOpen: false,
+          selectedItem: null,
+          selectedCategoryId: null,
+        };
       }
       const newIndex = Math.max(0, activeCategoryIndex - 1);
       return { ...state, activeCategoryIndex: newIndex };
@@ -54,7 +59,12 @@ function xmbReducer(state: XMBState, action: XMBAction): XMBState {
 
     case 'MOVE_RIGHT': {
       if (state.panelOpen) {
-        return { ...state, panelOpen: false, selectedItem: null, selectedCategoryId: null };
+        return {
+          ...state,
+          panelOpen: false,
+          selectedItem: null,
+          selectedCategoryId: null,
+        };
       }
       const newIndex = Math.min(categories.length - 1, activeCategoryIndex + 1);
       return { ...state, activeCategoryIndex: newIndex };
@@ -95,7 +105,12 @@ function xmbReducer(state: XMBState, action: XMBAction): XMBState {
 
     case 'BACK': {
       if (!state.panelOpen) return state;
-      return { ...state, panelOpen: false, selectedItem: null, selectedCategoryId: null };
+      return {
+        ...state,
+        panelOpen: false,
+        selectedItem: null,
+        selectedCategoryId: null,
+      };
     }
 
     case 'GO_TO_CATEGORY': {
@@ -112,14 +127,17 @@ function xmbReducer(state: XMBState, action: XMBAction): XMBState {
     }
 
     case 'GO_TO_ITEM': {
-      const catIndex = categories.findIndex(c => c.id === action.categoryId);
+      const catIndex = categories.findIndex((c) => c.id === action.categoryId);
       if (catIndex === -1) return state;
       const item = categories[catIndex].items[action.index];
       if (!item) return state;
       return {
         ...state,
         activeCategoryIndex: catIndex,
-        activeItemIndex: { ...activeItemIndex, [action.categoryId]: action.index },
+        activeItemIndex: {
+          ...activeItemIndex,
+          [action.categoryId]: action.index,
+        },
         panelOpen: true,
         selectedItem: item,
         selectedCategoryId: action.categoryId,

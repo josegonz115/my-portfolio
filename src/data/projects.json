@@ -15,7 +15,7 @@
   },
   {
     "author": "Jose Juan Gonzalez Jr",
-    "tech_stack": ["csharp", "NETcore", "springboot", "sqlserver", "hazelcast", "qlik"],
+    "tech_stack": ["java", "springboot", "sqlserver", "hazelcast", "debezium", "qlik"],
     "images": [],
     "heading": "Visa",
     "subheading": "Associate Software Engineer • Denver, CO",
@@ -25,7 +25,7 @@
       "live": "",
       "github": ""
     },
-    "summary": "At Visa, I have worked on scalable shard distributed joint account management by designing and implementing a migration system that orchestrates multiple REST APIs, SQL Server stored procedures, and Qlik Replicate data replication pipelines across shard database clusters to support multi-account consistency across shards.\n\nI also improved data retrieval performance for high-throughput payment processing APIs serving major issuer clients including Chime by developing and maintaining the Issuer Processing Cache Manager backed by Hazelcast, core Issuer Processing Services, and related event-driven microservices.\n\nIn addition, I accelerated issuer onboarding and operational workflows by building features for a client-facing issuer hub platform using C# ASP.NET Core and Spring Boot. Alongside feature work, I maintained high availability of non-production SQL Server environments by serving as Dev SRE and providing on-demand reliability support to engineering teams. I also helped improve architectural consistency and code quality across distributed service ownership by championing cross-functional code reviews with engineering, SQL, and platform teams."
+    "summary": "At Visa, I am eliminating data proximity issues in joint account management by designing and implementing a migration system that moves distributed multi-shard account data onto a single co-located shard. To make that work reliably, I coordinated multiple REST APIs, SQL Server stored procedures, and Qlik Replicate pipelines across database clusters so account data could stay consistent after migration.\n\nI also improved data retrieval performance for high-throughput payment processing APIs serving major issuer clients including Chime by developing and maintaining the issuer cache platform in Java Spring Boot with Hazelcast. Beyond the cache platform itself, I architected and built a NearRealTime event consumer microservice inside an internal issuer event processing platform, creating a CDC-driven pipeline that captures SQL Server change events through Debezium and produces targeted cache invalidation requests to the issuer processing cache layer so downstream payment services stay in sync in real time.\n\nAlongside feature development, I maintained high availability of non-production SQL Server environments across sprint cycles by serving as Dev SRE and providing on-demand reliability support to engineering teams."
   },
   {
     "author": "Jose Juan Gonzalez Jr",

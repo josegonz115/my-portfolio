@@ -28,10 +28,7 @@ export function XMBMobileNav({ state, dispatch, onBack }: Props) {
   const thumbBorder = cyber ? 'rgba(0,212,170,0.15)' : 'rgba(255,255,255,0.15)';
   const bgActive = cyber ? 'rgba(0,212,170,0.03)' : 'rgba(255,255,255,0.03)';
 
-  const thumbFilter =
-    CYBER_FLAGS.thumbnailTint && cyber
-      ? 'saturate(0.3) sepia(0.5) hue-rotate(130deg) contrast(1.3) brightness(0.8)'
-      : 'saturate(0) contrast(1.3) brightness(0.8)';
+  const thumbFilter = 'saturate(0) contrast(1.3) brightness(0.8)';
 
   return (
     <div className="flex flex-col flex-1 overflow-hidden">

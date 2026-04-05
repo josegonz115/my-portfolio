@@ -17,8 +17,6 @@ export const CYBER_FLAGS = {
   textFlicker: true,
   /** Teal glow replacing white glow */
   cyberGlow: true,
-  /** Cyan tint filter on thumbnails */
-  thumbnailTint: false,
 } as const;
 
 // Derived font constants — every component imports these instead of hardcoding

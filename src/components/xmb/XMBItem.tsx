@@ -16,14 +16,7 @@ export function XMBItem({ item, isActive, index, onClick }: Props) {
   const activeSub = cyber ? 'rgba(0,212,170,0.75)' : 'rgba(255,255,255,0.75)';
   const dimSub = cyber ? 'rgba(0,212,170,0.5)' : 'rgba(255,255,255,0.5)';
 
-  const thumbFilter =
-    CYBER_FLAGS.thumbnailTint && cyber
-      ? isActive
-        ? 'sepia(0.5) hue-rotate(130deg) contrast(1.3) brightness(1.1)'
-        : 'sepia(0.5) hue-rotate(130deg) brightness(0.65)'
-      : isActive
-        ? 'contrast(1.4) brightness(1.1)'
-        : 'brightness(0.68)';
+  const thumbFilter = isActive ? 'contrast(1.4) brightness(1.1)' : 'brightness(0.68)';
 
   return (
     <button

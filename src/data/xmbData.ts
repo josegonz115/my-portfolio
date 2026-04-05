@@ -1,3 +1,5 @@
+import bitmeImage from '../assets/bitme.png';
+import meImage from '../assets/me.svg';
 import type { Project } from '../types/types';
 import type { XMBCategory } from '../types/xmb';
 import projectsData from './projects.json';
@@ -52,9 +54,15 @@ export const xmbCategories: XMBCategory[] = [
         sublabel: 'Who I am',
         data: {
           type: 'bio',
-          content:
-            "Hey, I'm Jose Juan Gonzalez Jr \u2014 a 25-year-old Software Engineering student at UC Irvine. I first studied Sociology at UC Berkeley, but found my passion in programming and made the leap to software engineering. I'm a self-taught developer who loves building things from scratch and learning new technologies along the way.",
-          image: '/images/bitme.png',
+          content: `Hi, I'm Jose Juan Gonzalez Jr, a Software Engineer at Visa in the Denver area with a path that's anything but traditional.
+
+I started my academic journey studying Sociology at UC Berkeley, where community organizing introduced me to CS and data science students who revealed to me the world of programming. That revelation changed everything. I started over, took prerequisites at Pasadena City College and transferred to UCI, where I found a community of driven, like-minded friends who I built both lifelong friendships and real projects. From hackathons like IrvineHacks to Cal Hacks it was a great experience of pushing myself beyond coursework to experience building firsthand.
+
+Finally in 2025 I landed my first professional role at Visa, where I've worked across the stack, from frontend client-facing UIs to backend caching and APIs.
+
+The journey is far from over. I learn something new every day and I wouldn't have it any other way.`,
+          image: bitmeImage,
+          imageSecondary: meImage,
         },
       },
       {
@@ -67,7 +75,7 @@ export const xmbCategories: XMBCategory[] = [
             {
               school: 'University of California, Irvine',
               degree: 'B.S. Software Engineering',
-              period: '2022 \u2013 Present',
+              period: '2022 \u2013 2025',
             },
             {
               school: 'University of California, Berkeley',
@@ -93,6 +101,10 @@ export const xmbCategories: XMBCategory[] = [
               description: 'Long-distance running for endurance and clarity.',
             },
             {
+              name: 'Cafe Hopping',
+              description: 'Explore cool and beautiful cafes to try out the best coffee bean and matcha alike.',
+            },
+            {
               name: 'Machine Learning',
               description: 'Exploring ML/AI to understand intelligent systems.',
             },
@@ -106,16 +118,16 @@ export const xmbCategories: XMBCategory[] = [
     ],
   },
   {
+    id: 'research',
+    label: 'Experience',
+    icon: 'code',
+    items: sortedResearch.map(projectToItem),
+  },
+  {
     id: 'projects',
     label: 'Projects',
     icon: 'code',
     items: sortedProjects.map(projectToItem),
-  },
-  {
-    id: 'research',
-    label: 'Research',
-    icon: 'microscope',
-    items: sortedResearch.map(projectToItem),
   },
   {
     id: 'resume',

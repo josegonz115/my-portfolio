@@ -28,13 +28,13 @@ export function XMBMobileNav({ state, dispatch, onBack }: Props) {
   const thumbBorder = cyber ? 'rgba(0,212,170,0.15)' : 'rgba(255,255,255,0.15)';
   const bgActive = cyber ? 'rgba(0,212,170,0.03)' : 'rgba(255,255,255,0.03)';
 
-  const thumbFilter = 'saturate(0) contrast(1.3) brightness(0.8)';
+  const thumbFilter = 'contrast(1.3) brightness(0.8)';
 
   return (
     <div className="flex flex-col flex-1 overflow-hidden">
       {/* Category tab bar */}
       <div
-        className="flex items-center justify-center gap-0 px-1 py-2 overflow-x-auto shrink-0"
+        className="flex items-center justify-between gap-0.5 px-2 py-2 overflow-hidden shrink-0"
         style={{ borderBottom: `1px solid ${dimBorder}` }}
       >
         {categories.map((cat, index) => (
@@ -42,15 +42,15 @@ export function XMBMobileNav({ state, dispatch, onBack }: Props) {
             key={cat.id}
             type="button"
             onClick={() => dispatch({ type: 'GO_TO_CATEGORY', index })}
-            className="flex flex-col items-center gap-1 px-4 py-2 bg-transparent border-none cursor-pointer shrink-0"
+            className="flex min-w-0 flex-1 flex-col items-center gap-1 px-1 py-2 bg-transparent border-none cursor-pointer"
             style={{
               borderBottom: index === activeCategoryIndex ? `2px solid ${ACCENT}` : '2px solid transparent',
               transition: 'border-color 0.3s ease',
             }}
           >
-            <CategorySvgIcon name={cat.icon} active={index === activeCategoryIndex} />
+            <CategorySvgIcon name={cat.icon} active={index === activeCategoryIndex} sizeClass="w-8 h-8" />
             <span
-              className="text-[9px] tracking-[0.2em] uppercase"
+              className="text-[9px] tracking-[0.12em] uppercase truncate"
               style={{
                 color: index === activeCategoryIndex ? ACCENT : dim,
                 transition: 'color 0.3s ease',
@@ -71,7 +71,7 @@ export function XMBMobileNav({ state, dispatch, onBack }: Props) {
               onBack?.();
               dispatch({ type: 'BACK' });
             }}
-            className="mb-5 flex items-center gap-2 text-[10px] tracking-widest uppercase bg-transparent border-none cursor-pointer"
+            className="mb-5 flex items-center gap-2 text-[11px] tracking-widest uppercase bg-transparent border-none cursor-pointer"
             style={{ color: cyber ? 'rgba(0,212,170,0.5)' : 'rgba(255,255,255,0.5)', transition: 'color 0.3s ease' }}
           >
             &larr; <span>Back</span>
@@ -115,7 +115,7 @@ export function XMBMobileNav({ state, dispatch, onBack }: Props) {
               )}
               <div className="flex flex-col min-w-0 gap-0.5">
                 <span
-                  className="text-[12px] font-medium tracking-wide truncate"
+                  className="text-[17px] font-medium tracking-wide truncate"
                   style={{
                     color: index === activeIdx ? ACCENT : dimText,
                     transition: 'color 0.3s ease',
@@ -125,7 +125,7 @@ export function XMBMobileNav({ state, dispatch, onBack }: Props) {
                 </span>
                 {item.sublabel && (
                   <span
-                    className="text-[9px] tracking-wider truncate"
+                    className="text-[13px] tracking-wider truncate"
                     style={{
                       fontFamily: FONT_MONO,
                       color: index === activeIdx ? activeSub : dimSub,

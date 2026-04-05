@@ -3,6 +3,7 @@ import { ACCENT, CYBER_FLAGS } from '../../config/cyberFlags';
 interface Props {
   name: string;
   active: boolean;
+  sizeClass?: string;
 }
 
 // Bold icon set — thick 2px strokes, high contrast
@@ -62,7 +63,7 @@ const iconPaths: Record<string, React.ReactNode> = {
   ),
 };
 
-export function CategorySvgIcon({ name, active }: Props) {
+export function CategorySvgIcon({ name, active, sizeClass = 'w-12 h-12' }: Props) {
   const path = iconPaths[name];
   if (!path) return null;
 
@@ -71,7 +72,7 @@ export function CategorySvgIcon({ name, active }: Props) {
   return (
     <svg
       viewBox="0 0 24 24"
-      className="w-12 h-12"
+      className={sizeClass}
       style={{
         color: active ? ACCENT : cyber ? 'rgba(0,212,170,0.62)' : 'rgba(255,255,255,0.62)',
         transition: 'color 0.4s ease, filter 0.4s ease',

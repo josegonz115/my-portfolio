@@ -1,8 +1,8 @@
 import type { Scene } from 'three';
 import { DoubleSide, Mesh, PlaneGeometry, ShaderMaterial, Vector3 } from 'three';
+import { CYBER_FLAGS } from '../../../config/cyberFlags';
 import { GRID_ALPHA, GRID_SCROLL_SPEED } from './constants';
 import type { BackgroundState, Disposable } from './types';
-import { CYBER_FLAGS } from '../../../config/cyberFlags';
 
 const GRID_COLOR = CYBER_FLAGS.cyberPalette ? { r: 0.0, g: 0.83, b: 0.67 } : { r: 1.0, g: 1.0, b: 1.0 };
 

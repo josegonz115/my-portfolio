@@ -1,5 +1,3 @@
-
-
 // === B&W MANGA PALETTE ===
 export const COLORS = {
   bg: { r: 0, g: 0, b: 0 },

@@ -111,10 +111,7 @@ export function DetailProject({ item }: Props) {
       )}
 
       {/* Summary */}
-      <div
-        className="text-[20px] leading-relaxed whitespace-pre-line"
-        style={{ color: summary }}
-      >
+      <div className="text-[20px] leading-relaxed whitespace-pre-line" style={{ color: summary }}>
         {project.summary}
       </div>
 

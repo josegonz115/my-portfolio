@@ -48,7 +48,10 @@ export function DetailContact({ item }: Props) {
       </div>
 
       <div className="flex flex-col items-center gap-2">
-        <h2 className="text-4xl tracking-[0.2em] uppercase font-bold" style={{ fontFamily: FONT_HEADER, color: ACCENT }}>
+        <h2
+          className="text-4xl tracking-[0.2em] uppercase font-bold"
+          style={{ fontFamily: FONT_HEADER, color: ACCENT }}
+        >
           {item.label}
         </h2>
         <span className="text-[14px] tracking-[0.3em] uppercase" style={{ fontFamily: FONT_MONO, color: textFaint }}>

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useMediaQuery } from '../../hooks/useMediaQuery';
 import type { XMBState } from '../../types/xmb';
 import { SceneManager } from './background/SceneManager';
@@ -11,6 +11,7 @@ interface Props {
 export function XMBBackground({ state }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const managerRef = useRef<SceneManager | null>(null);
+  const [webglFailed, setWebglFailed] = useState(false);
   const isMobile = useMediaQuery('(max-width: 767px)');
 
   // Create scene manager once on mount
@@ -26,11 +27,18 @@ export function XMBBackground({ state }: Props) {
       isMobile,
     };
 
-    const manager = new SceneManager(canvas, initialState);
-    managerRef.current = manager;
+    try {
+      const manager = new SceneManager(canvas, initialState);
+      managerRef.current = manager;
+      setWebglFailed(false);
+    } catch (error) {
+      managerRef.current = null;
+      setWebglFailed(true);
+      console.warn('XMBBackground: WebGL initialization failed, using CSS fallback background.', error);
+    }
 
     return () => {
-      manager.dispose();
+      managerRef.current?.dispose();
       managerRef.current = null;
     };
   }, []);
@@ -44,6 +52,10 @@ export function XMBBackground({ state }: Props) {
       isMobile,
     });
   }, [state.activeCategoryIndex, state.panelOpen, isMobile]);
+
+  if (webglFailed) {
+    return <div className="xmb-background-fallback absolute inset-0 z-0" aria-hidden="true" />;
+  }
 
   return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full z-0" style={{ pointerEvents: 'none' }} />;
 }

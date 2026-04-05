@@ -42,7 +42,9 @@ export function XMBLayout({ state, dispatch, sound }: Props) {
   }, []);
 
   // Build overlay class list from feature flags
-  const overlayClasses = [CYBER_FLAGS.scanlines && 'cyber-scanlines'].filter(Boolean).join(' ');
+  const overlayClasses = [CYBER_FLAGS.scanlines && 'cyber-scanlines', CYBER_FLAGS.crtVignette && 'cyber-vignette']
+    .filter(Boolean)
+    .join(' ');
 
   return (
     <div className={`relative w-full h-screen overflow-hidden select-none ${overlayClasses}`} tabIndex={0}>

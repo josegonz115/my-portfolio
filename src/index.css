@@ -128,6 +128,18 @@ body {
   overflow: hidden;
 }
 
+.xmb-background-fallback {
+  background:
+    radial-gradient(120% 90% at 50% 105%, rgba(255, 255, 255, 0.08), transparent 60%),
+    linear-gradient(180deg, #050505 0%, #000000 100%);
+}
+
+:root[data-theme="cyber"] .xmb-background-fallback {
+  background:
+    radial-gradient(120% 90% at 50% 105%, rgba(0, 212, 170, 0.14), transparent 62%),
+    linear-gradient(180deg, #08151b 0%, #04090d 55%, #020507 100%);
+}
+
 /* === SCROLLBAR === */
 ::-webkit-scrollbar {
   width: 3px;

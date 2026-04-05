@@ -1,5 +1,5 @@
 import { type Dispatch, useCallback, useEffect, useRef, useState } from 'react';
-import { ACCENT, BG_DARK, CYBER_FLAGS } from '../../config/cyberFlags';
+import { ACCENT, BG_DARK } from '../../config/cyberFlags';
 import type { XMBAction, XMBState } from '../../types/xmb';
 import { DetailAbout } from './details/DetailAbout';
 import { DetailContact } from './details/DetailContact';
@@ -10,18 +10,16 @@ import { DetailResume } from './details/DetailResume';
 interface Props {
   state: XMBState;
   dispatch: Dispatch<XMBAction>;
+  onBack?: () => void;
 }
 
-export function XMBDetailPanel({ state, dispatch }: Props) {
+export function XMBDetailPanel({ state, dispatch, onBack }: Props) {
   const { panelOpen, selectedItem, selectedCategoryId } = state;
   const scrollerRef = useRef<HTMLDivElement | null>(null);
   const [showTopBorder, setShowTopBorder] = useState(true);
   const [showBottomBorder, setShowBottomBorder] = useState(false);
 
-  const cyber = CYBER_FLAGS.cyberPalette;
   const borderColor = ACCENT;
-  const closeColor = cyber ? 'rgba(0,212,170,0.4)' : 'rgba(255,255,255,0.4)';
-  const closeHover = ACCENT;
 
   const updateScrollBorders = useCallback(() => {
     const scroller = scrollerRef.current;
@@ -91,34 +89,44 @@ export function XMBDetailPanel({ state, dispatch }: Props) {
 
       {selectedItem && selectedCategoryId && (
         <>
-          {/* Close button */}
+          {/* Desktop back button: outside detail panel boundary */}
           <button
             type="button"
-            onClick={() => dispatch({ type: 'BACK' })}
-            className="absolute top-5 right-5 z-20 bg-transparent border-none cursor-pointer group"
-            style={{ transition: 'opacity 0.3s ease' }}
+            onClick={() => {
+              onBack?.();
+              dispatch({ type: 'BACK' });
+            }}
+            className="absolute top-6 left-0 z-20 flex items-center gap-2 px-4 py-2.5 text-[12px] tracking-[0.22em] uppercase border-2 rounded-full cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-current focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+            style={{
+              transform: 'translateX(calc(-100% - 12px))',
+              borderColor: ACCENT,
+              color: ACCENT,
+              backgroundColor: BG_DARK,
+              transition: 'all 0.25s ease',
+            }}
+            onMouseEnter={(e) => {
+              const el = e.currentTarget;
+              el.style.backgroundColor = ACCENT;
+              el.style.color = BG_DARK;
+            }}
+            onMouseLeave={(e) => {
+              const el = e.currentTarget;
+              el.style.backgroundColor = BG_DARK;
+              el.style.color = ACCENT;
+            }}
           >
             <svg
               viewBox="0 0 24 24"
-              className="w-5 h-5"
-              style={{
-                color: closeColor,
-                transition: 'color 0.3s ease',
-              }}
+              className="w-4 h-4"
               fill="none"
               stroke="currentColor"
-              strokeWidth="2.5"
+              strokeWidth="2.2"
               strokeLinecap="round"
-              onMouseEnter={(e) => {
-                (e.currentTarget as SVGSVGElement).style.color = closeHover;
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as SVGSVGElement).style.color = closeColor;
-              }}
+              strokeLinejoin="round"
             >
-              <line x1="18" y1="6" x2="6" y2="18" />
-              <line x1="6" y1="6" x2="18" y2="18" />
+              <polyline points="15 18 9 12 15 6" />
             </svg>
+            <span>Back</span>
           </button>
 
           <div ref={scrollerRef} onScroll={updateScrollBorders} className="relative z-0 h-full overflow-y-auto">

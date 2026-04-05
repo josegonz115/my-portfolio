@@ -73,7 +73,7 @@ export function CategorySvgIcon({ name, active }: Props) {
       viewBox="0 0 24 24"
       className="w-12 h-12"
       style={{
-        color: active ? ACCENT : cyber ? 'rgba(0,212,170,0.4)' : 'rgba(255,255,255,0.4)',
+        color: active ? ACCENT : cyber ? 'rgba(0,212,170,0.62)' : 'rgba(255,255,255,0.62)',
         transition: 'color 0.4s ease, filter 0.4s ease',
         filter: active ? `drop-shadow(0 0 6px ${cyber ? 'rgba(0,212,170,0.5)' : 'rgba(255,255,255,0.5)'})` : 'none',
       }}

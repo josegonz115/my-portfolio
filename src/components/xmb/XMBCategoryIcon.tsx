@@ -12,13 +12,11 @@ export function XMBCategoryIcon({ category, distance, onClick }: Props) {
   const isActive = distance === 0;
   const absDistance = Math.abs(distance);
 
-  const scale = isActive ? 1 : absDistance === 1 ? 0.65 : 0.45;
-  const opacity = isActive ? 1 : absDistance === 1 ? 0.35 : 0.12;
+  const scale = isActive ? 1 : absDistance === 1 ? 0.72 : 0.58;
+  const opacity = isActive ? 1 : absDistance === 1 ? 0.62 : 0.4;
 
   const cyber = CYBER_FLAGS.cyberPalette;
-  const pulseAnim = cyber
-    ? 'cyber-pulse 2.5s ease-in-out infinite'
-    : 'xmb-menace 2.5s ease-in-out infinite';
+  const pulseAnim = cyber ? 'cyber-pulse 2.5s ease-in-out infinite' : 'xmb-menace 2.5s ease-in-out infinite';
   const floatAnim = cyber ? 'cyber-float 3s ease-in-out infinite' : 'xmb-float 3s ease-in-out infinite';
   const glowClass = cyber ? 'cyber-glow' : 'xmb-glow';
   const symbol = cyber ? '>_' : '\u30B4';
@@ -61,7 +59,7 @@ export function XMBCategoryIcon({ category, distance, onClick }: Props) {
                   boxShadow: cyber ? '0 0 15px rgba(0,212,170,0.15)' : '0 0 15px rgba(255,255,255,0.15)',
                 }
               : {
-                  border: cyber ? '1px solid rgba(0,212,170,0.1)' : '1px solid rgba(255,255,255,0.1)',
+                  border: cyber ? '1px solid rgba(0,212,170,0.28)' : '1px solid rgba(255,255,255,0.28)',
                 }
           }
         />
@@ -90,7 +88,7 @@ export function XMBCategoryIcon({ category, distance, onClick }: Props) {
         }`}
         style={{
           fontFamily: FONT_HEADER,
-          color: isActive ? (cyber ? '#00d4aa' : '#ffffff') : cyber ? 'rgba(0,212,170,0.3)' : 'rgba(255,255,255,0.3)',
+          color: isActive ? (cyber ? '#00d4aa' : '#ffffff') : cyber ? 'rgba(0,212,170,0.62)' : 'rgba(255,255,255,0.62)',
         }}
       >
         {category.label}

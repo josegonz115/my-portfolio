@@ -11,9 +11,10 @@ import { DetailResume } from './details/DetailResume';
 interface Props {
   state: XMBState;
   dispatch: Dispatch<XMBAction>;
+  onBack?: () => void;
 }
 
-export function XMBMobileNav({ state, dispatch }: Props) {
+export function XMBMobileNav({ state, dispatch, onBack }: Props) {
   const { categories, activeCategoryIndex, activeItemIndex, panelOpen, selectedItem, selectedCategoryId } = state;
   const activeCategory = categories[activeCategoryIndex];
   const activeIdx = activeItemIndex[activeCategory.id];
@@ -69,7 +70,10 @@ export function XMBMobileNav({ state, dispatch }: Props) {
         <div className="flex-1 overflow-y-auto p-4">
           <button
             type="button"
-            onClick={() => dispatch({ type: 'BACK' })}
+            onClick={() => {
+              onBack?.();
+              dispatch({ type: 'BACK' });
+            }}
             className="mb-5 flex items-center gap-2 text-[10px] tracking-widest uppercase bg-transparent border-none cursor-pointer"
             style={{ color: cyber ? 'rgba(0,212,170,0.5)' : 'rgba(255,255,255,0.5)', transition: 'color 0.3s ease' }}
           >

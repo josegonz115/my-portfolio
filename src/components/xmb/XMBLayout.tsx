@@ -11,6 +11,7 @@ import { XMBStatusBar } from './XMBStatusBar';
 interface SoundControls {
   muted: boolean;
   toggleMute: () => void;
+  playBack: () => void;
 }
 
 interface Props {
@@ -23,9 +24,7 @@ export function XMBLayout({ state, dispatch, sound }: Props) {
   const isDesktop = useMediaQuery('(min-width: 768px)');
 
   // Build overlay class list from feature flags
-  const overlayClasses = [CYBER_FLAGS.scanlines && 'cyber-scanlines', CYBER_FLAGS.crtVignette && 'cyber-vignette']
-    .filter(Boolean)
-    .join(' ');
+  const overlayClasses = [CYBER_FLAGS.scanlines && 'cyber-scanlines'].filter(Boolean).join(' ');
 
   return (
     <div className={`relative w-full h-screen overflow-hidden select-none ${overlayClasses}`} tabIndex={0}>
@@ -42,7 +41,7 @@ export function XMBLayout({ state, dispatch, sound }: Props) {
               className="w-full"
               style={{
                 transform: state.panelOpen ? 'translateX(-45%)' : 'translateX(0)',
-                opacity: state.panelOpen ? 0.15 : 1,
+                opacity: state.panelOpen ? 0.38 : 1,
                 transition: 'transform 0.7s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 0.6s ease',
               }}
             >
@@ -50,10 +49,10 @@ export function XMBLayout({ state, dispatch, sound }: Props) {
             </div>
 
             {/* Detail panel slides in from right */}
-            <XMBDetailPanel state={state} dispatch={dispatch} />
+            <XMBDetailPanel state={state} dispatch={dispatch} onBack={sound?.playBack} />
           </div>
         ) : (
-          <XMBMobileNav state={state} dispatch={dispatch} />
+          <XMBMobileNav state={state} dispatch={dispatch} onBack={sound?.playBack} />
         )}
       </div>
     </div>

@@ -12,18 +12,18 @@ export function XMBItem({ item, isActive, index, onClick }: Props) {
   const cyber = CYBER_FLAGS.cyberPalette;
 
   const activeColor = ACCENT;
-  const dimColor = cyber ? 'rgba(0,212,170,0.35)' : 'rgba(255,255,255,0.35)';
-  const activeSub = cyber ? 'rgba(0,212,170,0.6)' : 'rgba(255,255,255,0.6)';
-  const dimSub = cyber ? 'rgba(0,212,170,0.2)' : 'rgba(255,255,255,0.2)';
+  const dimColor = cyber ? 'rgba(0,212,170,0.68)' : 'rgba(255,255,255,0.68)';
+  const activeSub = cyber ? 'rgba(0,212,170,0.75)' : 'rgba(255,255,255,0.75)';
+  const dimSub = cyber ? 'rgba(0,212,170,0.5)' : 'rgba(255,255,255,0.5)';
 
   const thumbFilter =
     CYBER_FLAGS.thumbnailTint && cyber
       ? isActive
         ? 'sepia(0.5) hue-rotate(130deg) contrast(1.3) brightness(1.1)'
-        : 'sepia(0.5) hue-rotate(130deg) brightness(0.4)'
+        : 'sepia(0.5) hue-rotate(130deg) brightness(0.65)'
       : isActive
         ? 'contrast(1.4) brightness(1.1)'
-        : 'brightness(0.4)';
+        : 'brightness(0.68)';
 
   return (
     <button
@@ -55,7 +55,7 @@ export function XMBItem({ item, isActive, index, onClick }: Props) {
           style={{
             border: isActive
               ? `2px solid ${activeColor}`
-              : `1px solid ${cyber ? 'rgba(0,212,170,0.08)' : 'rgba(255,255,255,0.08)'}`,
+              : `1px solid ${cyber ? 'rgba(0,212,170,0.25)' : 'rgba(255,255,255,0.25)'}`,
             transition: 'border-color 0.4s ease',
           }}
         >

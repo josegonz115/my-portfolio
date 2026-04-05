@@ -12,10 +12,9 @@ export function XMBStatusBar({ panelOpen, muted, onToggleMute }: Props) {
   const cyber = CYBER_FLAGS.cyberPalette;
 
   // Dim/bright helpers for inline colors
-  const dim = cyber ? 'rgba(0,212,170,0.4)' : 'rgba(255,255,255,0.4)';
   const mid = cyber ? 'rgba(0,212,170,0.5)' : 'rgba(255,255,255,0.5)';
   const bright = cyber ? 'rgba(0,212,170,0.7)' : 'rgba(255,255,255,0.7)';
-  const dimFaint = cyber ? 'rgba(0,212,170,0.2)' : 'rgba(255,255,255,0.2)';
+  const dimFaint = cyber ? 'rgba(0,212,170,0.3)' : 'rgba(255,255,255,0.3)';
 
   useEffect(() => {
     const interval = setInterval(() => setTime(getTimeString()), 30000);
@@ -23,40 +22,42 @@ export function XMBStatusBar({ panelOpen, muted, onToggleMute }: Props) {
   }, []);
 
   return (
-    <div className="flex items-center justify-between px-6 py-4 z-20" style={{ fontFamily: FONT_MONO }}>
+    <div className="flex items-center justify-between px-5 md:px-7 py-4 md:py-5 z-20" style={{ fontFamily: FONT_MONO }}>
       {/* Left: nav hints */}
-      <div className="flex-1 flex items-center gap-4 text-[10px] tracking-widest uppercase" style={{ color: dim }}>
-        <span className="hidden md:flex items-center gap-3">
+      <div
+        className="flex-1 flex items-center gap-5 text-[11px] md:text-[13px] tracking-widest uppercase"
+        style={{ color: mid }}
+      >
+        <span className="hidden md:flex items-center gap-4">
           {panelOpen ? (
             <>
               <span style={{ color: mid }}>[</span>
               <span style={{ color: bright }}>ESC</span>
               <span style={{ color: mid }}>]</span>
-              <span style={{ color: dim }} className="ml-1">
+              <span style={{ color: mid }} className="ml-1">
                 CLOSE
               </span>
             </>
           ) : (
             <>
               <span style={{ color: mid }}>&larr; &rarr;</span>
-              <span style={{ color: dim }}>NAV</span>
+              <span style={{ color: mid }}>NAV</span>
               <span style={{ color: dimFaint }} className="mx-1">
                 |
               </span>
-              <span style={{ color: mid }}>ENTER</span>
-              <span style={{ color: dim }}>SELECT</span>
+              <span style={{ color: bright }}>ENTER</span>
+              <span style={{ color: mid }}>SELECT</span>
             </>
           )}
         </span>
       </div>
 
       {/* Center: name */}
-      <div className="flex flex-col items-center gap-0.5">
+      <div className="flex flex-col items-center gap-1">
         <span
-          className={CYBER_FLAGS.textFlicker ? '' : ''}
+          className="text-[22px] md:text-[26px]"
           style={{
             fontFamily: FONT_HEADER,
-            fontSize: '20px',
             letterSpacing: '0.4em',
             textTransform: 'uppercase',
             color: ACCENT,
@@ -65,31 +66,34 @@ export function XMBStatusBar({ panelOpen, muted, onToggleMute }: Props) {
         >
           Jose Gonzalez
         </span>
-        <span className="text-[11px] tracking-[0.4em] uppercase" style={{ color: dim }}>
+        <span className="text-[12px] md:text-[14px] tracking-[0.4em] uppercase" style={{ color: mid }}>
           Software Engineer
         </span>
       </div>
 
       {/* Right: clock + mute */}
-      <div className="flex-1 flex items-center justify-end gap-4 text-[10px] tracking-wider">
+      <div
+        className="flex-1 flex items-center justify-end gap-5 text-[11px] md:text-[13px] tracking-wider"
+        style={{ color: mid }}
+      >
         {onToggleMute && (
           <button
             type="button"
             onClick={onToggleMute}
             className="bg-transparent border-none cursor-pointer p-0"
-            style={{ color: dim, transition: 'color 0.3s ease' }}
+            style={{ color: mid, transition: 'color 0.3s ease' }}
             title={muted ? 'Unmute' : 'Mute'}
             onMouseEnter={(e) => {
-              (e.target as HTMLElement).style.color = bright;
+              (e.currentTarget as HTMLButtonElement).style.color = bright;
             }}
             onMouseLeave={(e) => {
-              (e.target as HTMLElement).style.color = dim;
+              (e.currentTarget as HTMLButtonElement).style.color = mid;
             }}
           >
             {muted ? (
               <svg
                 viewBox="0 0 24 24"
-                className="w-3 h-3"
+                className="w-4 h-4"
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="2"
@@ -103,7 +107,7 @@ export function XMBStatusBar({ panelOpen, muted, onToggleMute }: Props) {
             ) : (
               <svg
                 viewBox="0 0 24 24"
-                className="w-3 h-3"
+                className="w-4 h-4"
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="2"
@@ -116,7 +120,7 @@ export function XMBStatusBar({ panelOpen, muted, onToggleMute }: Props) {
             )}
           </button>
         )}
-        <span className="font-mono" style={{ color: dim }}>
+        <span className="font-mono" style={{ color: mid }}>
           {time}
         </span>
       </div>

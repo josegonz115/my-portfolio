@@ -49,7 +49,7 @@ const fragmentShader = /* glsl */ `
 
     // Above horizon: subtle glow falloff
     if (belowHorizon <= 0.0) {
-      float horizonGlow = smoothstep(0.06, 0.0, -belowHorizon);
+      float horizonGlow = 1.0 - smoothstep(0.0, 0.06, -belowHorizon);
       gl_FragColor = vec4(uColor, horizonGlow * 0.2 * uAlpha);
       return;
     }
@@ -77,13 +77,13 @@ const fragmentShader = /* glsl */ `
     float grid = max(hLine, vLine);
 
     // === DEPTH FOG — fade distant lines ===
-    float fog = smoothstep(35.0, 3.0, depth);
+    float fog = 1.0 - smoothstep(3.0, 35.0, depth);
 
     // === HORIZON GLOW ===
-    float glow = smoothstep(0.15, 0.0, belowHorizon) * 0.35;
+    float glow = (1.0 - smoothstep(0.0, 0.15, belowHorizon)) * 0.35;
 
     // === EDGE FADE — cinematic ===
-    float edgeFade = smoothstep(0.0, 0.12, uv.x) * smoothstep(1.0, 0.88, uv.x);
+    float edgeFade = smoothstep(0.0, 0.12, uv.x) * (1.0 - smoothstep(0.88, 1.0, uv.x));
 
     // === BOTTOM FADE — gentle fadeout at bottom ===
     float bottomFade = smoothstep(0.0, 0.06, uv.y);

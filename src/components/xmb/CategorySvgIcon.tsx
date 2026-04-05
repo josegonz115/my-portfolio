@@ -71,7 +71,7 @@ export function CategorySvgIcon({ name, active }: Props) {
   return (
     <svg
       viewBox="0 0 24 24"
-      className="w-10 h-10"
+      className="w-12 h-12"
       style={{
         color: active ? ACCENT : cyber ? 'rgba(0,212,170,0.4)' : 'rgba(255,255,255,0.4)',
         transition: 'color 0.4s ease, filter 0.4s ease',

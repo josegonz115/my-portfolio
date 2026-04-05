@@ -13,8 +13,8 @@ export function XMBBar({ state, dispatch }: Props) {
   const { categories, activeCategoryIndex, activeItemIndex } = state;
   const activeCategory = categories[activeCategoryIndex];
 
-  // Center the active category — each icon is 200px wide
-  const offsetX = -(activeCategoryIndex * 200);
+  // Center the active category — each icon is 240px wide
+  const offsetX = -(activeCategoryIndex * 240);
 
   const cyber = CYBER_FLAGS.cyberPalette;
   const dividerColor = cyber ? 'rgba(0,212,170,0.3)' : 'rgba(255,255,255,0.3)';
@@ -43,7 +43,7 @@ export function XMBBar({ state, dispatch }: Props) {
 
       {/* Horizontal divider */}
       <div
-        className="w-full max-w-xl mx-auto mt-1 mb-0"
+        className="w-full max-w-2xl mx-auto mt-1 mb-0"
         style={{
           height: '2px',
           background: `linear-gradient(90deg, transparent 0%, ${dividerColor} 20%, ${dividerColor} 80%, transparent 100%)`,
@@ -51,7 +51,7 @@ export function XMBBar({ state, dispatch }: Props) {
       />
 
       {/* Vertical item list for active category */}
-      <div className="w-full max-w-md mx-auto px-4">
+      <div className="w-full max-w-lg mx-auto px-4">
         <XMBItemList
           key={activeCategory.id}
           category={activeCategory}

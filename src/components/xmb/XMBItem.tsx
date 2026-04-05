@@ -29,7 +29,7 @@ export function XMBItem({ item, isActive, index, onClick }: Props) {
     <button
       type="button"
       onClick={onClick}
-      className="flex items-center gap-3 px-4 py-3 w-full text-left bg-transparent border-none outline-none cursor-pointer"
+      className="flex items-center gap-3 px-4 py-3.5 w-full text-left bg-transparent border-none outline-none cursor-pointer"
       style={{
         transform: isActive ? 'translateX(8px)' : 'translateX(0)',
         transition: 'transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 0.3s ease',
@@ -41,7 +41,7 @@ export function XMBItem({ item, isActive, index, onClick }: Props) {
         className="shrink-0"
         style={{
           width: isActive ? '3px' : '1px',
-          height: '32px',
+          height: '36px',
           backgroundColor: isActive ? activeColor : 'transparent',
           boxShadow: isActive ? `0 0 8px ${cyber ? 'rgba(0,212,170,0.3)' : 'rgba(255,255,255,0.3)'}` : 'none',
           transition: 'all 0.4s ease',
@@ -51,7 +51,7 @@ export function XMBItem({ item, isActive, index, onClick }: Props) {
       {/* Thumbnail */}
       {item.thumbnail && (
         <div
-          className="w-11 h-11 rounded-sm overflow-hidden shrink-0"
+          className="w-14 h-14 rounded-sm overflow-hidden shrink-0"
           style={{
             border: isActive
               ? `2px solid ${activeColor}`
@@ -75,7 +75,7 @@ export function XMBItem({ item, isActive, index, onClick }: Props) {
       {/* Text */}
       <div className="flex flex-col min-w-0 gap-0.5">
         <span
-          className="text-[15px] font-medium tracking-wide truncate"
+          className="text-[17px] font-medium tracking-wide truncate"
           style={{
             color: isActive ? activeColor : dimColor,
             transition: 'color 0.4s ease',
@@ -85,7 +85,7 @@ export function XMBItem({ item, isActive, index, onClick }: Props) {
         </span>
         {item.sublabel && (
           <span
-            className="text-[12px] tracking-wider truncate"
+            className="text-[14px] tracking-wider truncate"
             style={{
               fontFamily: FONT_MONO,
               color: isActive ? activeSub : dimSub,

@@ -25,7 +25,7 @@ export function XMBStatusBar({ panelOpen, muted, onToggleMute }: Props) {
   return (
     <div className="flex items-center justify-between px-6 py-4 z-20" style={{ fontFamily: FONT_MONO }}>
       {/* Left: nav hints */}
-      <div className="flex items-center gap-4 text-[10px] tracking-widest uppercase" style={{ color: dim }}>
+      <div className="flex-1 flex items-center gap-4 text-[10px] tracking-widest uppercase" style={{ color: dim }}>
         <span className="hidden md:flex items-center gap-3">
           {panelOpen ? (
             <>
@@ -56,7 +56,7 @@ export function XMBStatusBar({ panelOpen, muted, onToggleMute }: Props) {
           className={CYBER_FLAGS.textFlicker ? '' : ''}
           style={{
             fontFamily: FONT_HEADER,
-            fontSize: '16px',
+            fontSize: '20px',
             letterSpacing: '0.4em',
             textTransform: 'uppercase',
             color: ACCENT,
@@ -65,13 +65,13 @@ export function XMBStatusBar({ panelOpen, muted, onToggleMute }: Props) {
         >
           Jose Gonzalez
         </span>
-        <span className="text-[8px] tracking-[0.4em] uppercase" style={{ color: dim }}>
+        <span className="text-[11px] tracking-[0.4em] uppercase" style={{ color: dim }}>
           Software Engineer
         </span>
       </div>
 
       {/* Right: clock + mute */}
-      <div className="flex items-center gap-4 text-[10px] tracking-wider">
+      <div className="flex-1 flex items-center justify-end gap-4 text-[10px] tracking-wider">
         {onToggleMute && (
           <button
             type="button"

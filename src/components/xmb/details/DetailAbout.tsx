@@ -24,13 +24,13 @@ export function DetailAbout({ item }: Props) {
         <div className="flex items-center gap-3">
           <div className="w-8 h-[2px]" style={{ backgroundColor: dividerBg }} />
           <h2
-            className="text-xl tracking-[0.2em] uppercase font-bold"
+            className="text-4xl tracking-[0.2em] uppercase font-bold"
             style={{ fontFamily: FONT_HEADER, color: ACCENT }}
           >
             About
           </h2>
         </div>
-        <p className="leading-relaxed text-[13px]" style={{ color: textMid }}>
+        <p className="leading-relaxed text-[20px]" style={{ color: textMid }}>
           {data.content as string}
         </p>
       </div>
@@ -48,7 +48,7 @@ export function DetailAbout({ item }: Props) {
         <div className="flex items-center gap-3">
           <div className="w-8 h-[2px]" style={{ backgroundColor: dividerBg }} />
           <h2
-            className="text-xl tracking-[0.2em] uppercase font-bold"
+            className="text-4xl tracking-[0.2em] uppercase font-bold"
             style={{ fontFamily: FONT_HEADER, color: ACCENT }}
           >
             Education
@@ -57,14 +57,14 @@ export function DetailAbout({ item }: Props) {
         <div className="flex flex-col gap-5">
           {entries.map((entry, i) => (
             <div key={i} className="pl-5 py-1" style={{ borderLeft: `2px solid ${borderDim}` }}>
-              <h3 className="text-[13px] font-medium tracking-wide" style={{ color: ACCENT }}>
+              <h3 className="text-[18px] font-medium tracking-wide" style={{ color: ACCENT }}>
                 {entry.school}
               </h3>
-              <p className="text-[12px] mt-1" style={{ color: textDim }}>
+              <p className="text-[16px] mt-1" style={{ color: textDim }}>
                 {entry.degree}
               </p>
               <p
-                className="text-[10px] mt-2 tracking-widest uppercase"
+                className="text-[14px] mt-2 tracking-widest uppercase"
                 style={{ fontFamily: FONT_MONO, color: textFaint }}
               >
                 {entry.period}
@@ -83,7 +83,7 @@ export function DetailAbout({ item }: Props) {
         <div className="flex items-center gap-3">
           <div className="w-8 h-[2px]" style={{ backgroundColor: dividerBg }} />
           <h2
-            className="text-xl tracking-[0.2em] uppercase font-bold"
+            className="text-4xl tracking-[0.2em] uppercase font-bold"
             style={{ fontFamily: FONT_HEADER, color: ACCENT }}
           >
             Interests
@@ -92,10 +92,10 @@ export function DetailAbout({ item }: Props) {
         <div className="flex flex-col gap-3">
           {items.map((interest, i) => (
             <div key={i} className="px-4 py-3" style={{ border: `2px solid ${borderMid}`, backgroundColor: cardBg }}>
-              <h3 className="text-[12px] font-medium tracking-wider uppercase" style={{ color: ACCENT }}>
+              <h3 className="text-[18px] font-medium tracking-wider uppercase" style={{ color: ACCENT }}>
                 {interest.name}
               </h3>
-              <p className="text-[11px] mt-1" style={{ color: textDim }}>
+              <p className="text-[16px] mt-1" style={{ color: textDim }}>
                 {interest.description}
               </p>
             </div>

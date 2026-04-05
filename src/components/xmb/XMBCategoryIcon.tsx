@@ -31,19 +31,19 @@ export function XMBCategoryIcon({ category, distance, onClick }: Props) {
       style={{
         transform: `scale(${scale})`,
         opacity,
-        width: '200px',
+        width: '240px',
         transition: 'transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 0.4s ease',
       }}
     >
       {/* Icon container with ring */}
       <div
-        className="relative w-20 h-20 flex items-center justify-center"
+        className="relative w-24 h-24 flex items-center justify-center"
         style={{ transition: 'all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1)' }}
       >
         {/* Pulse ring for active */}
         {isActive && (
           <div
-            className="absolute inset-[-8px] rounded-full border-2"
+            className="absolute inset-[-10px] rounded-full border-2"
             style={{
               borderColor: cyber ? 'rgba(0,212,170,0.4)' : 'rgba(255,255,255,0.4)',
               animation: pulseAnim,
@@ -71,7 +71,7 @@ export function XMBCategoryIcon({ category, distance, onClick }: Props) {
         {/* Floating symbol on active */}
         {isActive && (
           <span
-            className="absolute -top-2 -right-3 text-[11px] font-bold select-none"
+            className="absolute -top-2 -right-3 text-[13px] font-bold select-none"
             style={{
               animation: floatAnim,
               fontFamily: cyber ? "'Share Tech Mono', monospace" : 'sans-serif',
@@ -85,7 +85,7 @@ export function XMBCategoryIcon({ category, distance, onClick }: Props) {
 
       {/* Label */}
       <span
-        className={`text-[13px] font-bold tracking-[0.3em] uppercase transition-all duration-400 ${
+        className={`text-[15px] font-bold tracking-[0.3em] uppercase transition-all duration-400 ${
           isActive ? `${glowClass}` : ''
         }`}
         style={{

@@ -22,13 +22,49 @@ export function DetailResume({ item }: Props) {
         <div className="flex items-center gap-3">
           <div className="w-6 h-[2px]" style={{ backgroundColor: dividerBg }} />
           <h2
-            className="text-xl tracking-[0.2em] uppercase font-bold"
+            className="text-4xl tracking-[0.2em] uppercase font-bold"
             style={{ fontFamily: FONT_HEADER, color: ACCENT }}
           >
             Resume
           </h2>
         </div>
-        <div className="overflow-hidden" style={{ height: '70vh', border: `3px solid ${ACCENT}` }}>
+        <a
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 px-5 py-2.5 text-[14px] tracking-widest uppercase self-start"
+          style={{
+            border: `2px solid ${ACCENT}`,
+            color: ACCENT,
+            transition: 'all 0.3s ease',
+          }}
+          onMouseEnter={(e) => {
+            const el = e.currentTarget;
+            el.style.backgroundColor = ACCENT;
+            el.style.color = BG_DARK;
+          }}
+          onMouseLeave={(e) => {
+            const el = e.currentTarget;
+            el.style.backgroundColor = 'transparent';
+            el.style.color = ACCENT;
+          }}
+        >
+          <svg
+            viewBox="0 0 24 24"
+            className="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+            <polyline points="15 3 21 3 21 9" />
+            <line x1="10" y1="14" x2="21" y2="3" />
+          </svg>
+          Open in New Tab
+        </a>
+        <div style={{ height: '1200px', border: `3px solid ${ACCENT}` }}>
           <iframe src={url} className="w-full h-full" title="Resume" />
         </div>
       </div>
@@ -42,20 +78,20 @@ export function DetailResume({ item }: Props) {
         <div className="flex items-center gap-3">
           <div className="w-6 h-[2px]" style={{ backgroundColor: dividerBg }} />
           <h2
-            className="text-xl tracking-[0.2em] uppercase font-bold"
+            className="text-4xl tracking-[0.2em] uppercase font-bold"
             style={{ fontFamily: FONT_HEADER, color: ACCENT }}
           >
             Download
           </h2>
           <div className="w-6 h-[2px]" style={{ backgroundColor: dividerBg }} />
         </div>
-        <p className="text-[11px] tracking-wider" style={{ color: textDim }}>
+        <p className="text-[16px] tracking-wider" style={{ color: textDim }}>
           Save a copy to your device
         </p>
         <a
           href={url}
           download="Jose_Gonzalez_Resume.pdf"
-          className="flex items-center gap-2 px-6 py-3 text-[10px] tracking-widest uppercase"
+          className="flex items-center gap-2 px-6 py-3 text-[14px] tracking-widest uppercase"
           style={{
             border: `2px solid ${ACCENT}`,
             color: ACCENT,
@@ -101,7 +137,7 @@ export function DetailResume({ item }: Props) {
         <div className="flex items-center gap-3">
           <div className="w-6 h-[2px]" style={{ backgroundColor: dividerBg }} />
           <h2
-            className="text-xl tracking-[0.2em] uppercase font-bold"
+            className="text-4xl tracking-[0.2em] uppercase font-bold"
             style={{ fontFamily: FONT_HEADER, color: ACCENT }}
           >
             Skills
@@ -111,7 +147,7 @@ export function DetailResume({ item }: Props) {
           {categories.map((cat) => (
             <div key={cat.name}>
               <h3
-                className="text-[10px] font-bold mb-2 tracking-[0.3em] uppercase"
+                className="text-[14px] font-bold mb-2 tracking-[0.3em] uppercase"
                 style={{ fontFamily: FONT_MONO, color: textDim }}
               >
                 {cat.name}
@@ -120,7 +156,7 @@ export function DetailResume({ item }: Props) {
                 {cat.items.map((skill) => (
                   <span
                     key={skill}
-                    className="px-2.5 py-1 text-[10px] tracking-wider"
+                    className="px-2.5 py-1 text-[14px] tracking-wider"
                     style={{
                       fontFamily: FONT_MONO,
                       border: `2px solid ${tagBorder}`,

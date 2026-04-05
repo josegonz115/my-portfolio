@@ -22,6 +22,7 @@ interface Props {
 
 export function XMBLayout({ state, dispatch, sound }: Props) {
   const isDesktop = useMediaQuery('(min-width: 768px)');
+  const uiScale = isDesktop ? 'clamp(1, calc(100vw / 1920), 1.24)' : '1';
 
   // Build overlay class list from feature flags
   const overlayClasses = [CYBER_FLAGS.scanlines && 'cyber-scanlines'].filter(Boolean).join(' ');
@@ -31,7 +32,16 @@ export function XMBLayout({ state, dispatch, sound }: Props) {
       {/* Background canvas */}
       <XMBBackground state={state} />
 
-      <div className="relative z-10 flex flex-col w-full h-full">
+      <div
+        className="relative z-10 flex flex-col w-full h-full"
+        style={{
+          transform: `scale(${uiScale})`,
+          transformOrigin: 'top center',
+          width: `calc(100% / ${uiScale})`,
+          height: `calc(100% / ${uiScale})`,
+          margin: '0 auto',
+        }}
+      >
         <XMBStatusBar panelOpen={state.panelOpen} muted={sound?.muted ?? false} onToggleMute={sound?.toggleMute} />
 
         {isDesktop ? (

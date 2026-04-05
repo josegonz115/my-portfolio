@@ -10,7 +10,9 @@
     "lint:fix": "biome check --write .",
     "format": "biome format --write .",
     "format:check": "biome format .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prepare": "husky",
+    "precommit:biome": "bun run scripts/biome-precommit.mjs"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.2.2",
@@ -26,6 +28,7 @@
     "@types/react-dom": "^19.2.3",
     "@types/three": "^0.183.1",
     "@vitejs/plugin-react": "^6.0.1",
+    "husky": "^9.1.7",
     "typescript": "^6.0.2",
     "vite": "^8.0.3",
     "wrangler": "^4.80.0"

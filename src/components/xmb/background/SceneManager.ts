@@ -152,5 +152,6 @@ export class SceneManager {
     this.subsystems = [];
 
     this.scene.clear();
+    this.renderer.dispose();
   }
 }

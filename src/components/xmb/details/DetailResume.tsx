@@ -64,7 +64,7 @@ export function DetailResume({ item }: Props) {
           </svg>
           Open in New Tab
         </a>
-        <div style={{ height: '1200px', border: `3px solid ${ACCENT}` }}>
+        <div style={{ height: 'clamp(420px, 70vh, 1000px)', border: `3px solid ${ACCENT}` }}>
           <iframe src={url} className="w-full h-full" title="Resume" />
         </div>
       </div>

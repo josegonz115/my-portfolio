@@ -101,8 +101,6 @@ const fragmentShader = /* glsl */ `
       // --- Curl stroke: single parabolic arc at crests ---
       float curl = 0.0;
       float curlIntensity = smoothstep(0.3, 0.8, crestAmount);
-      // Parameterize arc relative to pixel position
-      float arcT = clamp((uv.x - uv.x + 0.005) * 30.0, 0.0, 1.0);
       // Use crest position to create a dropping arc
       float curlDrop = crestAmount * crestAmount * 0.025;
       float curlDist = abs(uv.y - yBase - waveY + curlDrop);

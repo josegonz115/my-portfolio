@@ -1,4 +1,4 @@
-import type { Dispatch } from 'react';
+import { type Dispatch, useEffect, useState } from 'react';
 import { CYBER_FLAGS } from '../../config/cyberFlags';
 import { useMediaQuery } from '../../hooks/useMediaQuery';
 import type { XMBAction, XMBState } from '../../types/xmb';
@@ -22,7 +22,24 @@ interface Props {
 
 export function XMBLayout({ state, dispatch, sound }: Props) {
   const isDesktop = useMediaQuery('(min-width: 768px)');
-  const uiScale = isDesktop ? 'clamp(1, calc(100vw / 1920), 1.24)' : '1';
+  const [viewportWidth, setViewportWidth] = useState<number>(() =>
+    typeof window !== 'undefined' ? window.innerWidth : 1920,
+  );
+  const baseScale = isDesktop ? Math.min(1.24, Math.max(1, viewportWidth / 1920)) : 1;
+  const isResumePanelOpen = isDesktop && state.panelOpen && state.selectedCategoryId === 'resume';
+  const uiScaleNumber = isResumePanelOpen ? 1 : baseScale;
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const onResize = (): void => {
+      setViewportWidth(window.innerWidth);
+    };
+
+    onResize();
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
 
   // Build overlay class list from feature flags
   const overlayClasses = [CYBER_FLAGS.scanlines && 'cyber-scanlines'].filter(Boolean).join(' ');
@@ -35,11 +52,15 @@ export function XMBLayout({ state, dispatch, sound }: Props) {
       <div
         className="relative z-10 flex flex-col w-full h-full"
         style={{
-          transform: `scale(${uiScale})`,
-          transformOrigin: 'top center',
-          width: `calc(100% / ${uiScale})`,
-          height: `calc(100% / ${uiScale})`,
           margin: '0 auto',
+          ...(uiScaleNumber !== 1
+            ? {
+                transform: `scale(${uiScaleNumber})`,
+                transformOrigin: 'top center',
+                width: `calc(100% / ${uiScaleNumber})`,
+                height: `calc(100% / ${uiScaleNumber})`,
+              }
+            : {}),
         }}
       >
         <XMBStatusBar panelOpen={state.panelOpen} muted={sound?.muted ?? false} onToggleMute={sound?.toggleMute} />

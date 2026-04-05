@@ -16,8 +16,6 @@ export function DetailProject({ item }: Props) {
   const textDim = cyber ? 'rgba(0,212,170,0.5)' : 'rgba(255,255,255,0.5)';
   const textFaint = cyber ? 'rgba(0,212,170,0.4)' : 'rgba(255,255,255,0.4)';
   const tagBorder = cyber ? 'rgba(0,212,170,0.5)' : 'rgba(255,255,255,0.5)';
-  const btnBorder = cyber ? 'rgba(0,212,170,0.4)' : 'rgba(255,255,255,0.4)';
-  const btnText = cyber ? 'rgba(0,212,170,0.6)' : 'rgba(255,255,255,0.6)';
   const gradientFrom = cyber ? 'rgba(0,212,170,0.3)' : 'rgba(255,255,255,0.3)';
   const gradientMid = cyber ? 'rgba(0,212,170,0.2)' : 'rgba(255,255,255,0.2)';
   const summary = cyber ? '#00d4aa' : '#ffffff';
@@ -142,8 +140,8 @@ export function DetailProject({ item }: Props) {
             onMouseLeave={(e) => {
               const el = e.currentTarget;
               el.style.backgroundColor = 'transparent';
-              el.style.color = btnText;
-              el.style.borderColor = btnBorder;
+              el.style.color = ACCENT;
+              el.style.borderColor = ACCENT;
             }}
           >
             <svg viewBox="0 0 24 24" className="w-4 h-4" fill="currentColor">

@@ -1,11 +1,15 @@
 import { Color, FogExp2, PerspectiveCamera, Scene, WebGLRenderer } from 'three';
+import { CYBER_FLAGS } from '../../../config/cyberFlags';
 import { CAMERA_FAR, CAMERA_FOV, CAMERA_NEAR, CAMERA_Z } from './constants';
-import { MenacingKanji } from './MenacingKanji';
+import { OceanWaves } from './OceanWaves';
+import { PerspectiveGrid } from './PerspectiveGrid';
 import type { BackgroundState, Disposable } from './types';
 
 function damp(current: number, target: number, lambda: number, delta: number): number {
   return current + (target - current) * (1 - Math.exp(-lambda * delta));
 }
+
+const BG_COLOR = CYBER_FLAGS.cyberPalette ? 0x050a0e : 0x000000;
 
 export class SceneManager {
   private renderer: WebGLRenderer;
@@ -38,10 +42,10 @@ export class SceneManager {
     });
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, initialState.isMobile ? 1.5 : 2));
     this.renderer.setSize(window.innerWidth, window.innerHeight);
-    this.renderer.setClearColor(new Color(0x000000), 0);
+    this.renderer.setClearColor(new Color(BG_COLOR), 0);
 
     this.scene = new Scene();
-    this.scene.fog = new FogExp2(0x000000, 0.04);
+    this.scene.fog = new FogExp2(BG_COLOR, 0.04);
 
     const aspect = window.innerWidth / window.innerHeight;
     this.camera = new PerspectiveCamera(CAMERA_FOV, aspect, CAMERA_NEAR, CAMERA_FAR);
@@ -61,9 +65,13 @@ export class SceneManager {
   private initSubsystems(): void {
     const isMobile = this.state.isMobile;
 
-    // Menacing kanji
-    const kanji = new MenacingKanji(this.scene, isMobile);
-    this.subsystems.push(kanji);
+    if (CYBER_FLAGS.perspectiveGrid) {
+      const grid = new PerspectiveGrid(this.scene, isMobile);
+      this.subsystems.push(grid);
+    } else {
+      const ocean = new OceanWaves(this.scene, isMobile);
+      this.subsystems.push(ocean);
+    }
   }
 
   updateState(newState: BackgroundState): void {
@@ -74,9 +82,11 @@ export class SceneManager {
   }
 
   private updateCameraTargets(): void {
-    this.targetCameraX = (this.state.activeCategoryIndex - 2) * 0.3;
+    // Camera X stays at 0 — the PerspectiveGrid shader handles horizontal
+    // parallax via its uShiftX uniform. Moving the Three.js camera sideways
+    // conflicts with the shader's own perspective math, causing a flip artifact.
+    this.targetCameraX = 0;
     if (this.state.panelOpen) {
-      this.targetCameraX -= 0.5;
       this.targetCameraY = 0.1;
     } else {
       this.targetCameraY = 0;

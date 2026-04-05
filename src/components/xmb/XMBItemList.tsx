@@ -12,7 +12,7 @@ export function XMBItemList({ category, activeItemIndex, dispatch }: Props) {
   if (category.items.length === 0) return null;
 
   return (
-    <div className="flex flex-col mt-8 h-[50vh] overflow-y-auto">
+    <div className="flex flex-col mt-8 h-[55vh] overflow-y-auto">
       {category.items.map((item, index) => (
         <XMBItem
           key={item.id}

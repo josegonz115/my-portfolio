@@ -1,3 +1,4 @@
+import { ACCENT, CYBER_FLAGS, FONT_MONO } from '../../config/cyberFlags';
 import type { XMBItem as XMBItemType } from '../../types/xmb';
 
 interface Props {
@@ -8,25 +9,41 @@ interface Props {
 }
 
 export function XMBItem({ item, isActive, index, onClick }: Props) {
+  const cyber = CYBER_FLAGS.cyberPalette;
+
+  const activeColor = ACCENT;
+  const dimColor = cyber ? 'rgba(0,212,170,0.35)' : 'rgba(255,255,255,0.35)';
+  const activeSub = cyber ? 'rgba(0,212,170,0.6)' : 'rgba(255,255,255,0.6)';
+  const dimSub = cyber ? 'rgba(0,212,170,0.2)' : 'rgba(255,255,255,0.2)';
+
+  const thumbFilter =
+    CYBER_FLAGS.thumbnailTint && cyber
+      ? isActive
+        ? 'sepia(0.5) hue-rotate(130deg) contrast(1.3) brightness(1.1)'
+        : 'sepia(0.5) hue-rotate(130deg) brightness(0.4)'
+      : isActive
+        ? 'contrast(1.4) brightness(1.1)'
+        : 'brightness(0.4)';
+
   return (
     <button
       type="button"
       onClick={onClick}
-      className="flex items-center gap-3 px-4 py-2.5 w-full text-left bg-transparent border-none outline-none cursor-pointer"
+      className="flex items-center gap-3 px-4 py-3 w-full text-left bg-transparent border-none outline-none cursor-pointer"
       style={{
         transform: isActive ? 'translateX(8px)' : 'translateX(0)',
         transition: 'transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 0.3s ease',
         animation: `xmb-item-enter 0.3s cubic-bezier(0.25, 0.1, 0.25, 1) ${index * 60}ms both`,
       }}
     >
-      {/* Active indicator — thick white bar */}
+      {/* Active indicator bar */}
       <div
         className="shrink-0"
         style={{
           width: isActive ? '3px' : '1px',
-          height: '28px',
-          backgroundColor: isActive ? '#ffffff' : 'transparent',
-          boxShadow: isActive ? '0 0 8px rgba(255,255,255,0.3)' : 'none',
+          height: '32px',
+          backgroundColor: isActive ? activeColor : 'transparent',
+          boxShadow: isActive ? `0 0 8px ${cyber ? 'rgba(0,212,170,0.3)' : 'rgba(255,255,255,0.3)'}` : 'none',
           transition: 'all 0.4s ease',
         }}
       />
@@ -34,9 +51,11 @@ export function XMBItem({ item, isActive, index, onClick }: Props) {
       {/* Thumbnail */}
       {item.thumbnail && (
         <div
-          className="w-9 h-9 rounded-sm overflow-hidden shrink-0"
+          className="w-11 h-11 rounded-sm overflow-hidden shrink-0"
           style={{
-            border: isActive ? '2px solid #fff' : '1px solid rgba(255,255,255,0.08)',
+            border: isActive
+              ? `2px solid ${activeColor}`
+              : `1px solid ${cyber ? 'rgba(0,212,170,0.08)' : 'rgba(255,255,255,0.08)'}`,
             transition: 'border-color 0.4s ease',
           }}
         >
@@ -45,7 +64,7 @@ export function XMBItem({ item, isActive, index, onClick }: Props) {
             alt={item.label}
             className="w-full h-full object-cover"
             style={{
-              filter: isActive ? 'saturate(0) contrast(1.4) brightness(1.1)' : 'saturate(0) brightness(0.4)',
+              filter: thumbFilter,
               transition: 'filter 0.4s ease',
             }}
             loading="lazy"
@@ -56,9 +75,9 @@ export function XMBItem({ item, isActive, index, onClick }: Props) {
       {/* Text */}
       <div className="flex flex-col min-w-0 gap-0.5">
         <span
-          className="text-[13px] font-medium tracking-wide truncate"
+          className="text-[15px] font-medium tracking-wide truncate"
           style={{
-            color: isActive ? '#ffffff' : 'rgba(255,255,255,0.35)',
+            color: isActive ? activeColor : dimColor,
             transition: 'color 0.4s ease',
           }}
         >
@@ -66,10 +85,10 @@ export function XMBItem({ item, isActive, index, onClick }: Props) {
         </span>
         {item.sublabel && (
           <span
-            className="text-[10px] tracking-wider truncate"
+            className="text-[12px] tracking-wider truncate"
             style={{
-              fontFamily: "'IBM Plex Mono', monospace",
-              color: isActive ? 'rgba(255,255,255,0.6)' : 'rgba(255,255,255,0.2)',
+              fontFamily: FONT_MONO,
+              color: isActive ? activeSub : dimSub,
               transition: 'color 0.4s ease',
             }}
           >

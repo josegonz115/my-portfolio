@@ -1,3 +1,4 @@
+import { ACCENT, BG_DARK, CYBER_FLAGS, FONT_HEADER, FONT_MONO } from '../../../config/cyberFlags';
 import type { XMBItem } from '../../../types/xmb';
 
 interface Props {
@@ -7,21 +8,27 @@ interface Props {
 export function DetailResume({ item }: Props) {
   const { data } = item;
   const type = data.type as string;
+  const cyber = CYBER_FLAGS.cyberPalette;
+
+  const dividerBg = cyber ? 'rgba(0,212,170,0.4)' : 'rgba(255,255,255,0.4)';
+  const textDim = cyber ? 'rgba(0,212,170,0.5)' : 'rgba(255,255,255,0.5)';
+  const textMid = cyber ? 'rgba(0,212,170,0.7)' : 'rgba(255,255,255,0.7)';
+  const tagBorder = cyber ? 'rgba(0,212,170,0.4)' : 'rgba(255,255,255,0.4)';
 
   if (type === 'view') {
     const url = data.url as string;
     return (
       <div className="flex flex-col gap-4">
         <div className="flex items-center gap-3">
-          <div className="w-6 h-[2px] bg-white/40" />
+          <div className="w-6 h-[2px]" style={{ backgroundColor: dividerBg }} />
           <h2
-            className="text-xl tracking-[0.2em] uppercase text-white font-bold"
-            style={{ fontFamily: "'Bebas Neue', sans-serif" }}
+            className="text-xl tracking-[0.2em] uppercase font-bold"
+            style={{ fontFamily: FONT_HEADER, color: ACCENT }}
           >
             Resume
           </h2>
         </div>
-        <div className="overflow-hidden" style={{ height: '70vh', border: '3px solid #fff' }}>
+        <div className="overflow-hidden" style={{ height: '70vh', border: `3px solid ${ACCENT}` }}>
           <iframe src={url} className="w-full h-full" title="Resume" />
         </div>
       </div>
@@ -33,21 +40,37 @@ export function DetailResume({ item }: Props) {
     return (
       <div className="flex flex-col gap-8 items-center justify-center py-16">
         <div className="flex items-center gap-3">
-          <div className="w-6 h-[2px] bg-white/40" />
+          <div className="w-6 h-[2px]" style={{ backgroundColor: dividerBg }} />
           <h2
-            className="text-xl tracking-[0.2em] uppercase text-white font-bold"
-            style={{ fontFamily: "'Bebas Neue', sans-serif" }}
+            className="text-xl tracking-[0.2em] uppercase font-bold"
+            style={{ fontFamily: FONT_HEADER, color: ACCENT }}
           >
             Download
           </h2>
-          <div className="w-6 h-[2px] bg-white/40" />
+          <div className="w-6 h-[2px]" style={{ backgroundColor: dividerBg }} />
         </div>
-        <p className="text-[11px] text-white/50 tracking-wider">Save a copy to your device</p>
+        <p className="text-[11px] tracking-wider" style={{ color: textDim }}>
+          Save a copy to your device
+        </p>
         <a
           href={url}
           download="Jose_Gonzalez_Resume.pdf"
-          className="flex items-center gap-2 px-6 py-3 text-[10px] tracking-widest uppercase border-2 border-white text-white hover:bg-white hover:text-black"
-          style={{ transition: 'all 0.3s ease' }}
+          className="flex items-center gap-2 px-6 py-3 text-[10px] tracking-widest uppercase"
+          style={{
+            border: `2px solid ${ACCENT}`,
+            color: ACCENT,
+            transition: 'all 0.3s ease',
+          }}
+          onMouseEnter={(e) => {
+            const el = e.currentTarget;
+            el.style.backgroundColor = ACCENT;
+            el.style.color = BG_DARK;
+          }}
+          onMouseLeave={(e) => {
+            const el = e.currentTarget;
+            el.style.backgroundColor = 'transparent';
+            el.style.color = ACCENT;
+          }}
         >
           <svg
             viewBox="0 0 24 24"
@@ -76,10 +99,10 @@ export function DetailResume({ item }: Props) {
     return (
       <div className="flex flex-col gap-6">
         <div className="flex items-center gap-3">
-          <div className="w-6 h-[2px] bg-white/40" />
+          <div className="w-6 h-[2px]" style={{ backgroundColor: dividerBg }} />
           <h2
-            className="text-xl tracking-[0.2em] uppercase text-white font-bold"
-            style={{ fontFamily: "'Bebas Neue', sans-serif" }}
+            className="text-xl tracking-[0.2em] uppercase font-bold"
+            style={{ fontFamily: FONT_HEADER, color: ACCENT }}
           >
             Skills
           </h2>
@@ -88,8 +111,8 @@ export function DetailResume({ item }: Props) {
           {categories.map((cat) => (
             <div key={cat.name}>
               <h3
-                className="text-[10px] font-bold text-white/50 mb-2 tracking-[0.3em] uppercase"
-                style={{ fontFamily: "'IBM Plex Mono', monospace" }}
+                className="text-[10px] font-bold mb-2 tracking-[0.3em] uppercase"
+                style={{ fontFamily: FONT_MONO, color: textDim }}
               >
                 {cat.name}
               </h3>
@@ -97,8 +120,12 @@ export function DetailResume({ item }: Props) {
                 {cat.items.map((skill) => (
                   <span
                     key={skill}
-                    className="px-2.5 py-1 text-[10px] tracking-wider border-2 border-white/40 text-white/70"
-                    style={{ fontFamily: "'IBM Plex Mono', monospace" }}
+                    className="px-2.5 py-1 text-[10px] tracking-wider"
+                    style={{
+                      fontFamily: FONT_MONO,
+                      border: `2px solid ${tagBorder}`,
+                      color: textMid,
+                    }}
                   >
                     {skill}
                   </span>

@@ -1,3 +1,4 @@
+import { CYBER_FLAGS, FONT_HEADER } from '../../config/cyberFlags';
 import type { XMBCategory } from '../../types/xmb';
 import { CategorySvgIcon } from './CategorySvgIcon';
 
@@ -14,6 +15,14 @@ export function XMBCategoryIcon({ category, distance, onClick }: Props) {
   const scale = isActive ? 1 : absDistance === 1 ? 0.65 : 0.45;
   const opacity = isActive ? 1 : absDistance === 1 ? 0.35 : 0.12;
 
+  const cyber = CYBER_FLAGS.cyberPalette;
+  const pulseAnim = cyber
+    ? 'cyber-pulse 2.5s ease-in-out infinite'
+    : 'xmb-menace 2.5s ease-in-out infinite';
+  const floatAnim = cyber ? 'cyber-float 3s ease-in-out infinite' : 'xmb-float 3s ease-in-out infinite';
+  const glowClass = cyber ? 'cyber-glow' : 'xmb-glow';
+  const symbol = cyber ? '>_' : '\u30B4';
+
   return (
     <button
       type="button"
@@ -22,52 +31,67 @@ export function XMBCategoryIcon({ category, distance, onClick }: Props) {
       style={{
         transform: `scale(${scale})`,
         opacity,
-        width: '160px',
+        width: '200px',
         transition: 'transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 0.4s ease',
       }}
     >
-      {/* Icon container with manga ring */}
+      {/* Icon container with ring */}
       <div
-        className="relative w-16 h-16 flex items-center justify-center"
+        className="relative w-20 h-20 flex items-center justify-center"
         style={{ transition: 'all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1)' }}
       >
-        {/* Menacing pulse ring for active */}
+        {/* Pulse ring for active */}
         {isActive && (
           <div
-            className="absolute inset-[-6px] rounded-full border-2 border-white/40"
-            style={{ animation: 'xmb-menace 2.5s ease-in-out infinite' }}
+            className="absolute inset-[-8px] rounded-full border-2"
+            style={{
+              borderColor: cyber ? 'rgba(0,212,170,0.4)' : 'rgba(255,255,255,0.4)',
+              animation: pulseAnim,
+            }}
           />
         )}
 
-        {/* Outer ring — bold manga border */}
+        {/* Outer ring */}
         <div
-          className={`absolute inset-0 rounded-full transition-all duration-500 ${
-            isActive ? 'border-2 border-white/60 shadow-[0_0_15px_rgba(255,255,255,0.15)]' : 'border border-white/10'
-          }`}
+          className="absolute inset-0 rounded-full transition-all duration-500"
+          style={
+            isActive
+              ? {
+                  border: cyber ? '2px solid rgba(0,212,170,0.6)' : '2px solid rgba(255,255,255,0.6)',
+                  boxShadow: cyber ? '0 0 15px rgba(0,212,170,0.15)' : '0 0 15px rgba(255,255,255,0.15)',
+                }
+              : {
+                  border: cyber ? '1px solid rgba(0,212,170,0.1)' : '1px solid rgba(255,255,255,0.1)',
+                }
+          }
         />
 
         <CategorySvgIcon name={category.icon} active={isActive} />
 
-        {/* Floating ゴ menacing symbol on active */}
+        {/* Floating symbol on active */}
         {isActive && (
           <span
-            className="absolute -top-2 -right-3 text-[11px] text-white/20 font-bold select-none"
+            className="absolute -top-2 -right-3 text-[11px] font-bold select-none"
             style={{
-              animation: 'xmb-float 3s ease-in-out infinite',
-              fontFamily: 'sans-serif',
+              animation: floatAnim,
+              fontFamily: cyber ? "'Share Tech Mono', monospace" : 'sans-serif',
+              color: cyber ? 'rgba(0,212,170,0.25)' : 'rgba(255,255,255,0.2)',
             }}
           >
-            ゴ
+            {symbol}
           </span>
         )}
       </div>
 
-      {/* Label — bold, dramatic */}
+      {/* Label */}
       <span
-        className={`text-[11px] font-bold tracking-[0.3em] uppercase transition-all duration-400 ${
-          isActive ? 'text-white xmb-glow' : 'text-white/30'
+        className={`text-[13px] font-bold tracking-[0.3em] uppercase transition-all duration-400 ${
+          isActive ? `${glowClass}` : ''
         }`}
-        style={{ fontFamily: "'Bebas Neue', 'Inter', sans-serif" }}
+        style={{
+          fontFamily: FONT_HEADER,
+          color: isActive ? (cyber ? '#00d4aa' : '#ffffff') : cyber ? 'rgba(0,212,170,0.3)' : 'rgba(255,255,255,0.3)',
+        }}
       >
         {category.label}
       </span>

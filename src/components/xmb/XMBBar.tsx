@@ -1,4 +1,5 @@
 import type { Dispatch } from 'react';
+import { CYBER_FLAGS } from '../../config/cyberFlags';
 import type { XMBAction, XMBState } from '../../types/xmb';
 import { XMBCategoryIcon } from './XMBCategoryIcon';
 import { XMBItemList } from './XMBItemList';
@@ -12,8 +13,11 @@ export function XMBBar({ state, dispatch }: Props) {
   const { categories, activeCategoryIndex, activeItemIndex } = state;
   const activeCategory = categories[activeCategoryIndex];
 
-  // Center the active category — each icon is 160px wide
-  const offsetX = -(activeCategoryIndex * 160);
+  // Center the active category — each icon is 200px wide
+  const offsetX = -(activeCategoryIndex * 200);
+
+  const cyber = CYBER_FLAGS.cyberPalette;
+  const dividerColor = cyber ? 'rgba(0,212,170,0.3)' : 'rgba(255,255,255,0.3)';
 
   return (
     <div className="flex flex-col items-center w-full">
@@ -37,18 +41,17 @@ export function XMBBar({ state, dispatch }: Props) {
         </div>
       </div>
 
-      {/* Bold horizontal divider — manga panel line */}
+      {/* Horizontal divider */}
       <div
-        className="w-full max-w-lg mx-auto mt-1 mb-0"
+        className="w-full max-w-xl mx-auto mt-1 mb-0"
         style={{
           height: '2px',
-          background:
-            'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 20%, rgba(255,255,255,0.3) 80%, transparent 100%)',
+          background: `linear-gradient(90deg, transparent 0%, ${dividerColor} 20%, ${dividerColor} 80%, transparent 100%)`,
         }}
       />
 
       {/* Vertical item list for active category */}
-      <div className="w-full max-w-sm mx-auto px-4">
+      <div className="w-full max-w-md mx-auto px-4">
         <XMBItemList
           key={activeCategory.id}
           category={activeCategory}

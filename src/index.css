@@ -1,19 +1,17 @@
 @import "tailwindcss";
 
 @theme {
-  /* === JOJO B&W PALETTE === */
+  /* === BASE PALETTE (overridden by [data-theme="cyber"]) === */
   --color-xmb-bg: #000000;
   --color-xmb-bg-warm: #0a0a0a;
   --color-xmb-text: #ffffff;
   --color-xmb-text-dim: #666666;
   --color-xmb-text-bright: #ffffff;
 
-  /* White IS the accent on black */
   --color-xmb-accent: #ffffff;
   --color-xmb-accent-dim: #999999;
   --color-xmb-accent-bright: #ffffff;
 
-  /* Atmospheric */
   --color-xmb-glow: rgba(255, 255, 255, 0.4);
   --color-xmb-glow-blue: rgba(255, 255, 255, 0.3);
   --color-xmb-panel-bg: rgba(0, 0, 0, 0.95);
@@ -21,7 +19,29 @@
   --color-xmb-border: rgba(255, 255, 255, 0.7);
 }
 
-/* === GLOW UTILITIES — dramatic white === */
+/* ============================================================
+   CYBERPUNK THEME OVERRIDES
+   Activated via data-theme="cyber" on <html>
+   ============================================================ */
+:root[data-theme="cyber"] {
+  --color-xmb-bg: #050a0e;
+  --color-xmb-bg-warm: #0a1218;
+  --color-xmb-text: #c2dce6;
+  --color-xmb-text-dim: #4a6670;
+  --color-xmb-text-bright: #e0f0f6;
+
+  --color-xmb-accent: #00d4aa;
+  --color-xmb-accent-dim: #1a7a6a;
+  --color-xmb-accent-bright: #00ffcc;
+
+  --color-xmb-glow: rgba(0, 212, 170, 0.4);
+  --color-xmb-glow-blue: rgba(0, 180, 200, 0.3);
+  --color-xmb-panel-bg: rgba(5, 10, 14, 0.95);
+  --color-xmb-highlight: rgba(0, 212, 170, 0.04);
+  --color-xmb-border: rgba(0, 212, 170, 0.5);
+}
+
+/* === GLOW UTILITIES — white (default) === */
 @utility xmb-glow {
   text-shadow:
     0 0 8px rgba(255, 255, 255, 0.6),
@@ -43,6 +63,23 @@
   border-left: 3px solid #fff;
 }
 
+/* === CYBERPUNK GLOW UTILITIES — teal === */
+@utility cyber-glow {
+  text-shadow:
+    0 0 8px rgba(0, 212, 170, 0.6),
+    0 0 25px rgba(0, 212, 170, 0.25);
+}
+
+@utility cyber-glow-soft {
+  text-shadow:
+    0 0 6px rgba(0, 212, 170, 0.4),
+    0 0 18px rgba(0, 212, 170, 0.12);
+}
+
+@utility cyber-icon-glow {
+  filter: drop-shadow(0 0 6px rgba(0, 212, 170, 0.5)) drop-shadow(0 0 15px rgba(0, 212, 170, 0.15));
+}
+
 /* === BASE === */
 :root {
   font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
@@ -60,6 +97,12 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+:root[data-theme="cyber"] {
+  font-family: "Share Tech Mono", monospace;
+  color: #c2dce6;
+  background-color: #050a0e;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -69,6 +112,13 @@ body {
   min-width: 320px;
   min-height: 100vh;
   overflow: hidden;
+}
+
+:root[data-theme="cyber"] body {
+  background-color: #050a0e;
+}
+
+:root:not([data-theme="cyber"]) body {
   background-color: #000000;
 }
 
@@ -78,7 +128,7 @@ body {
   overflow: hidden;
 }
 
-/* === SCROLLBAR — bold white === */
+/* === SCROLLBAR === */
 ::-webkit-scrollbar {
   width: 3px;
 }
@@ -96,7 +146,17 @@ body {
   background: #ffffff;
 }
 
-/* === ANIMATIONS — snappy, dramatic === */
+:root[data-theme="cyber"] ::-webkit-scrollbar-thumb {
+  background: rgba(0, 212, 170, 0.4);
+}
+
+:root[data-theme="cyber"] ::-webkit-scrollbar-thumb:hover {
+  background: #00d4aa;
+}
+
+/* ============================================================
+   ANIMATIONS — shared
+   ============================================================ */
 @keyframes xmb-item-enter {
   from {
     opacity: 0;
@@ -119,6 +179,7 @@ body {
   }
 }
 
+/* === MANGA ANIMATIONS (legacy) === */
 @keyframes xmb-menace {
   0%,
   100% {
@@ -151,4 +212,104 @@ body {
   50% {
     opacity: 0.7;
   }
+}
+
+/* === CYBERPUNK ANIMATIONS === */
+@keyframes cyber-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.3;
+    box-shadow: 0 0 8px rgba(0, 212, 170, 0.2);
+  }
+  50% {
+    transform: scale(1.06);
+    opacity: 0.6;
+    box-shadow: 0 0 20px rgba(0, 212, 170, 0.4);
+  }
+}
+
+@keyframes cyber-float {
+  0%,
+  100% {
+    transform: translateX(0px);
+    opacity: 0.2;
+  }
+  50% {
+    transform: translateX(3px);
+    opacity: 0.4;
+  }
+}
+
+@keyframes cyber-flicker {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  92% {
+    opacity: 1;
+  }
+  93% {
+    opacity: 0.8;
+  }
+  94% {
+    opacity: 1;
+  }
+  97% {
+    opacity: 0.9;
+  }
+  98% {
+    opacity: 1;
+  }
+}
+
+@keyframes cyber-glitch {
+  0% {
+    transform: translate(0);
+    filter: none;
+  }
+  10% {
+    transform: translate(-2px, 1px);
+    filter: hue-rotate(90deg);
+  }
+  20% {
+    transform: translate(2px, -1px);
+    filter: hue-rotate(-90deg);
+  }
+  30% {
+    transform: translate(0);
+    filter: none;
+  }
+  100% {
+    transform: translate(0);
+    filter: none;
+  }
+}
+
+/* === POST-PROCESSING OVERLAYS === */
+
+/* Scanlines: applied via className on a wrapper div */
+.cyber-scanlines::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 212, 170, 0.03) 2px,
+    rgba(0, 212, 170, 0.03) 4px
+  );
+}
+
+/* CRT vignette: applied via className on a wrapper div */
+.cyber-vignette::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  background: radial-gradient(ellipse at center, transparent 50%, rgba(5, 10, 14, 0.6) 80%, rgba(5, 10, 14, 0.9) 100%);
 }

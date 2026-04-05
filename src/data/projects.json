@@ -15,6 +15,20 @@
   },
   {
     "author": "Jose Juan Gonzalez Jr",
+    "tech_stack": ["csharp", "NETcore", "springboot", "sqlserver", "hazelcast", "qlik"],
+    "images": [],
+    "heading": "Visa",
+    "subheading": "Associate Software Engineer • Denver, CO",
+    "date": "July 2025 - Present",
+    "category": "research",
+    "links": {
+      "live": "",
+      "github": ""
+    },
+    "summary": "At Visa, I have worked on scalable shard distributed joint account management by designing and implementing a migration system that orchestrates multiple REST APIs, SQL Server stored procedures, and Qlik Replicate data replication pipelines across shard database clusters to support multi-account consistency across shards.\n\nI also improved data retrieval performance for high-throughput payment processing APIs serving major issuer clients including Chime by developing and maintaining the Issuer Processing Cache Manager backed by Hazelcast, core Issuer Processing Services, and related event-driven microservices.\n\nIn addition, I accelerated issuer onboarding and operational workflows by building features for a client-facing issuer hub platform using C# ASP.NET Core and Spring Boot. Alongside feature work, I maintained high availability of non-production SQL Server environments by serving as Dev SRE and providing on-demand reliability support to engineering teams. I also helped improve architectural consistency and code quality across distributed service ownership by championing cross-functional code reviews with engineering, SQL, and platform teams."
+  },
+  {
+    "author": "Jose Juan Gonzalez Jr",
     "tech_stack": ["javascript", "react", "nodejs", "postgresql"],
     "images": ["/images/restaruant-rater.png"],
     "heading": "Restaurant Rater",
@@ -34,10 +48,9 @@
     "date": "December 2023",
     "category": "project",
     "links": {
-      "live": "https://eshoponline.cyou",
       "github": "https://github.com/josegonz115/e-shop"
     },
-    "summary": "This project was an eCommerce personal project I built to gain firsthand experience using a MERN tech stack for frontend and backend practices.\n\nThe eCommerce site's data was built using a MongoDB database and Node.js/Express.js api routes. In cohesion with the frontend, there was JSON web tokens and HTTP-Only cookies utilized to provide authentication. The frontend was developed using React.js along with other apis and libraries such as bootstrap and PayPal API. The global state was managed using the Redux Toolkit.\n\nAlso it was my first project using TypeScript. I believe that TS's static type feature is extremely helpful in the development process."
+    "summary": "This project was an eCommerce personal project I built to gain firsthand experience using a MERN tech stack for frontend and backend practices.\n\nThe eCommerce site's data was built using a MongoDB database and Node.js/Express.js api routes. In cohesion with the frontend, there was JSON web tokens and HTTP-Only cookies utilized to provide authentication. The frontend was developed using React.js along with other apis and libraries such as bootstrap and PayPal API. The global state was managed using the Redux Toolkit.\n\nAlso it was my first project using TypeScript. After this experience I learned that TS's static type paradigm is extremely important and helpful to the developer experience."
   },
   {
     "author": "Jose Juan Gonzalez Jr",
@@ -67,7 +80,6 @@
     "date": "April 2024",
     "category": "research",
     "links": {
-      "live": "https://marketplace.visualstudio.com/items?itemName=SpiderLabAtUCI.spider-lab-testing-tool",
       "github": "https://github.com/spideruci/live-testing"
     },
     "summary": "I was able to join a lab at UCI called the Spider Lab, which specializes in software analysis, testing, and visualization. More specifically, I joined PhD student Yi-Hung Chou's team, where he organized a group of undergraduate students to aid his project in creating a software testing VS Code developer tool.\n\nThe VS Code tool is aimed at automating the creation of unit tests and bypassing the personal testing biases that developers hold when programming. Through the use of LangChain integration, paired with techniques such as prompt engineering and function calling, I was able to funnel the developer's code and context to the LLM backend, which returned a structured JSON response that effectively connected to the developer-friendly React user interface.\n\nThe two primary goals were functionality and user experience. This project allowed me to develop as a programmer by improving my ability to visualize my programming. Now, whenever I program, I think about how the code is going to be used by future users, whether they are other developers or non-technical users."
@@ -100,7 +112,6 @@
     "date": "August 2024",
     "category": "project",
     "links": {
-      "live": "https://reeltunes.io/",
       "github": "https://github.com/ReelTunes/reeltunes-mono/tree/main"
     },
     "summary": "Over the summer, I joined a startup team comprised of students at Georgia Tech to build a web application product aimed at facilitating partnerships between creators and artists. The platform is designed to allow creators and artists to discover each other and request collaborations to promote their music.\n\nI started the project by architecting and building it with Kevin Yan, which taught me a lot about modularizing API endpoints into routes, controllers, and services, creating developer-friendly code. I also wrote code for authenticating, authorizing, and validating users through the use of JSON web tokens and HTTP-only cookies. Now, I am more comfortable writing middleware for authenticating users. Using an object-relational mapping tool like Prisma taught me the importance of using tools that provide type-safe and intuitive environments for fast programming.\n\nLater on, due to a lack of team members, there was a void in the frontend development. Given my prior skills, I rose to the occasion and took on the frontend work where the team needed help. For the rest of the project, I developed the React components on the frontend to be used alongside the backend API endpoints. This experience taught me how to connect to the backend and what to expect from both sides of the equation. I also learned more about the frontend's state, particularly how data is fetched and rendered.\n\nOverall, it was a great experience and a valuable way to spend my summer, allowing me to delve deeper into creating not just a web application but a complete product."

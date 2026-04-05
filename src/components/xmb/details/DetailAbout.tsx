@@ -19,6 +19,9 @@ export function DetailAbout({ item }: Props) {
   const cardBg = cyber ? 'rgba(0,212,170,0.02)' : 'rgba(255,255,255,0.02)';
 
   if (type === 'bio') {
+    const image = data.image as string | undefined;
+    const imageSecondary = data.imageSecondary as string | undefined;
+
     return (
       <div className="flex flex-col gap-6">
         <div className="flex items-center gap-3">
@@ -30,7 +33,27 @@ export function DetailAbout({ item }: Props) {
             About
           </h2>
         </div>
-        <p className="leading-relaxed text-[20px]" style={{ color: textMid }}>
+        {(image || imageSecondary) && (
+          <div className="flex flex-col sm:flex-row gap-4">
+            {image && (
+              <img
+                src={image}
+                alt="Jose Juan Gonzalez Jr"
+                className="w-full sm:w-[260px] sm:flex-none h-auto object-cover"
+                style={{ border: `2px solid ${ACCENT}` }}
+              />
+            )}
+            {imageSecondary && (
+              <img
+                src={imageSecondary}
+                alt="Jose Juan Gonzalez Jr illustration"
+                className="w-full sm:flex-1 sm:min-w-0 h-auto object-contain"
+                style={{ border: `2px solid ${ACCENT}` }}
+              />
+            )}
+          </div>
+        )}
+        <p className="leading-relaxed text-[20px] whitespace-pre-line" style={{ color: textMid }}>
           {data.content as string}
         </p>
       </div>

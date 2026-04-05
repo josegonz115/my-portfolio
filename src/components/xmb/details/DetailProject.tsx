@@ -27,7 +27,7 @@ export function DetailProject({ item }: Props) {
         <div className="flex items-center gap-3 mb-3">
           <div className="w-6 h-[4px]" style={{ backgroundColor: dividerBg }} />
           <span className="text-[14px] tracking-[0.4em] uppercase" style={{ fontFamily: FONT_MONO, color: textDim }}>
-            {project.category === 'research' ? 'Research' : 'Project'}
+            {project.category === 'research' ? 'Experience' : 'Project'}
           </span>
         </div>
         <h2
